@@ -20,7 +20,12 @@
 
 </head>
 <body>
-<h2>123</h2>
+<h2>13456</h2>
 	<script type="text/javascript" src="./Public/libs/seajs-3.0.0/dist/sea.js"></script>
+	<script type="text/javascript" src="./Public/libs/sea-config.js"></script>
+	
+	<script type="text/javascript">
+		seajs.use('test.js');
+	</script>
 </body>
 </html>
