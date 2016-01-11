@@ -12,15 +12,21 @@
 	<meta name="keywords" content="nulizhe,努力" />
     <meta name="description" content="nulizhe.com" />
 	<meta name="renderer" content="webkit">
+	<link href="./favicon.ico" rel="icon" type="image/x-icon" />
+	<link rel="stylesheet" type="text/css" href="./Public/libs/bootstrap/css/bootstrap.min.css"/>
 	<!--[if lt IE 9]>
     <script src=""></script>
     <script src=""></script>
  	<![endif]-->
-	<title>nulizhe.com</title>
+	<title>首页</title>
 
 </head>
 <body>
-<h2>13456</h2>
+	
+	<div class="container">
+		
+	</div>	
+
 	<script type="text/javascript" src="./Public/libs/seajs-3.0.0/dist/sea.js"></script>
 	<script type="text/javascript" src="./Public/libs/sea-config.js"></script>
 	

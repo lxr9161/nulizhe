@@ -1,4 +1,5 @@
-define("test", [ "jquery" ], function(require, exports, module) {
+alert($('h2').html());
+define(function(require, exports, module) {
 
-	alert($('h2').html());
+	//alert($('h2').html());
 });
