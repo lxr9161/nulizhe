@@ -8,8 +8,12 @@ use Think\Controller;
 */
 class UserController extends Controller
 {
-  public function index(){
+    public function index(){
 		$this->display('');
+	}
+
+	public function login(){
+		$this->display('login');
 	}
 }
 

@@ -20,9 +20,9 @@ define('APP_DEBUG',True);
 define('SITE_PATH', dirname(__FILE__)."/");
 
 //web图片资源目录
-define('IMAGE_PATH', './Public/images/');
+define('IMAGES_PATH', '/Public/images/');
 //js,css插件目录
-define('LIBS_PATH','./Public/libs/');
+define('LIBS_PATH','/Public/libs/');
 
 // 定义应用目录
 define('APP_PATH','./Application/');

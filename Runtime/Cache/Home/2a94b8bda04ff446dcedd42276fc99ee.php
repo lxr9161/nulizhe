@@ -13,7 +13,7 @@
     <meta name="description" content="nulizhe.com" />
 	<meta name="renderer" content="webkit">
 	<link href="./favicon.ico" rel="icon" type="image/x-icon" />
-	<link rel="stylesheet" type="text/css" href="./Public/libs/bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="<?php echo LIBS_PATH;?>bootstrap/css/bootstrap.min.css"/>
 	<!--[if lt IE 9]>
     <script src=""></script>
     <script src=""></script>
@@ -77,30 +77,47 @@
 	
 	<div class="container">
 		<div class="row">
-			<div class="col-md-9">
-				<div class="pull-left" style="margin-right: 15px;">
-					<div class="" style="height: 320px;width: 270px;background-color: black;">
-						<img src="<?php echo IMAGE_PATH;?>1.png">
+			<div class="col-md-7">
+				<div class="container-fluid" style="margin: 0 auto 10px;background-color: black;"  >
+					<div class="" style="margin-right: 15px;">
+						<div class="" style="width: 240px;">
+							<img src="<?php echo IMAGES_PATH;?>3.png" style="height: 160px;weight: 160px;">
+						</div>
 					</div>
+					<div class="" style="background-color: #adadad;height: 45px;"></div>
 				</div>
-				<div class="pull-left" style="margin-right: 15px;">
-					<div class="" style="height: 320px;width: 270px;background-color: black;">
-						<img src="<?php echo IMAGE_PATH;?>1.png">
+				<div class="container-fluid"  style="margin: 0 auto 10px;background-color: black;"  >
+					<div class="" style="margin-right: 15px;">
+						<div class="" style="width: 240px;">
+							<img src="<?php echo IMAGES_PATH;?>3.png" style="height: 160px;weight: 160px;">
+						</div>
 					</div>
+					<div class="" style="background-color: #adadad;height: 45px;"></div>
 				</div>
-				<div class="pull-left" style="margin-right: 15px;">
-					<div class="" style="height: 320px;width: 270px;background-color: black;">
-						<img src="<?php echo IMAGE_PATH;?>1.png">
+				<div class="container-fluid"  style="margin: 0 auto 10px;background-color: black;" >
+					<div class="" style="margin-right: 15px;">
+						<div class="" style="width: 240px;">
+							<img src="<?php echo IMAGES_PATH;?>3.png" style="height: 160px;weight: 160px;">
+						</div>
 					</div>
+					<div class="" style="background-color: #adadad;height: 45px;"></div>
+				</div>
+				<div class="container-fluid"  style="margin: 0 auto 10px;background-color: black;">
+					<div class="" style="margin-right: 15px;">
+						<div class="" style="width: 240px;">
+							<img src="<?php echo IMAGES_PATH;?>3.png" style="height: 160px;weight: 160px;">
+						</div>
+					</div>
+					<div class="" style="background-color: #adadad;height: 45px;"></div>
 				</div>
 			</div>
-			<div class="col-md-2">
-				
+			<div class="col-md-5">
+				<div class="" style="height: 500px;background-color: black;"></div>
 			</div>
 		</div>
 	</div>
 
-	<script type="text/javascript" src="./Public/libs/jquery-1.11.3.min.js"></script>
-	<script type="text/javascript" src="./Public/libs/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="<?php echo LIBS_PATH;?>jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="<?php echo LIBS_PATH;?>bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
