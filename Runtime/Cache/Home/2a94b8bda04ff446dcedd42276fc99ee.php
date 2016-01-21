@@ -11,9 +11,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<meta name="keywords" content="nulizhe,努力" />
     <meta name="description" content="nulizhe.com" />
-	<meta name="renderer" content="webkit">
+	<meta name="renderer" content="webkit" />
 	<link href="./favicon.ico" rel="icon" type="image/x-icon" />
 	<link rel="stylesheet" type="text/css" href="<?php echo LIBS_PATH;?>bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="<?php echo CSS_PATH;?>common.css"/>
 	<!--[if lt IE 9]>
     <script src=""></script>
     <script src=""></script>
@@ -31,7 +32,7 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="#">Brand</a>
+	      <a class="navbar-brand" href="/">Brand</a>
 	    </div>
 
 	    <!-- Collect the nav links, forms, and other content for toggling -->
@@ -53,17 +54,8 @@
 	        </li>
 	      </ul>
 	      <ul class="nav navbar-nav navbar-right">
-	        <li><a href="#">Link</a></li>
-	        <li class="dropdown">
-	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-	          <ul class="dropdown-menu">
-	            <li><a href="#">Action</a></li>
-	            <li><a href="#">Another action</a></li>
-	            <li><a href="#">Something else here</a></li>
-	            <li role="separator" class="divider"></li>
-	            <li><a href="#">Separated link</a></li>
-	          </ul>
-	        </li>
+	        <li><a href="/login">登录</a></li>
+	        <li><a href="/register">注册</a></li>
 	      </ul>
 	      <form class="navbar-form navbar-right" role="search">
 	        <div class="form-group">
