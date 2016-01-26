@@ -15,18 +15,33 @@ class UserController extends Controller
 		$this->user = M('user');
 	}
     public function index(){
-		$this->display('');
+    	if(isLogin()){
+    		$this->display();
+    	}else{
+    		header('Location:/login');
+    	}
 	}
-
+	public function logout(){
+		session('user_name',null);
+		cookie('user_name',null);
+		if(session('user_name') == null and cookie('user_name') == null){
+			$this->success('退出成功','/login');
+		}
+	}
 	public function login(){
-		$this->display('login');
-
+		if(isLogin()){
+			$this->success('你已经登录了','/user');
+		}else{
+			$this->display('login');
+		}
 	}
 
 	public function loginPost(){
 		if(IS_POST){
-			if(!check_verify($_POST['checkvode'],$id = '')){
-				exit('验证码不正确');
+			if(session('error_count') > 2){
+				if(!check_verify($_POST['checkvode'],$id = '')){
+					exit('验证码不正确');
+				}
 			}
 			$rule = array(
 				array('user_name','require','用户名不能为空'),
@@ -38,8 +53,17 @@ class UserController extends Controller
 				exit($this->user->getError());
 			}else{
 				if($this->user->where($where)->find()){
+					session('user_name',$_POST['user_name']);
+					cookie('user_name',$_POST['user_name'],'expire=2592000');
+					session('error_count',null);
 					header('Location:/user');
 				}else{
+					if(session('error_count')){
+						$error_count = session('error_count') + 1;
+						session('error_count',$error_count);
+					}else{
+						session('error_count',1);
+					}
 					$this->error('用户名或密码错误','/login');
 				}
 			}
@@ -51,10 +75,13 @@ class UserController extends Controller
 	}
 	public function registerPost(){
 		if(IS_POST){
+			if(!check_verify($_POST['checkvode'],$id = '')){
+				exit('验证码不正确');
+			}	
 			$rule = array(
 				array('agree','1','请同意服务条款',1,'equal'),
 				array('user_name','require','用户名不能为空'),
-				array('user_name','/^[^\s]*$/','用户名不能包含空格',0,'regex'),
+				array('user_name','/^([A-Za-z0-9_])+$/','用户名格式不正确',0,'regex'),
 				array('user_name','5,25','用户名长度不能小于5字符或大于25字符',0,'length'),
 				array('user_name','','该用户名已存在',0,'unique',0),
 				array('user_password','require','密码不能为空'),
@@ -71,6 +98,7 @@ class UserController extends Controller
 				exit($this->user->getError());
 			}else{
 				if($this->user->add($data)){
+					session('user_name',$_POST['user_name']);
 					$this->success('注册成功','/user');
 				}else{
 					$this->error('注册失败','/register');

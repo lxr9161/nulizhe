@@ -10,13 +10,16 @@
 			<div class="form-group">
 				<input type="password" class="form-control" name="user_password" placeholder="密码" />
 			</div>
+			<if condition="session('error_count') gt 2">
 			<div class="form-group" style="width: 120px;">
-				<input type="text" class="form-control" name="checkvode" value=""/>
+				<input type="text" class="form-control" name="checkvode" value="" placeholder="验证码"/>
 
 			</div>
-			<div class="" style="width: 100px;height: 36px; background-color: black;position: absolute;right: 50px; top: 139px; ">
-				<img src="Tool/checkvode"/>
-			</div>
+			
+				<div class="" style="width: 100px;height: 36px; background-color: black;position: absolute;right: 50px; top: 139px; ">
+					<img style="cursor: pointer" src="Tool/checkvode" onclick="this.src='Tool/checkvode?time='+ Math.random()" />
+				</div>
+			</if>
 			<button class="btn btn-default" type="submit" style="width: 100%;">登录</button>
 		</div>
 	</form>

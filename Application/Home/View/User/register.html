@@ -13,14 +13,16 @@
 				<input type="password" class="form-control" name="user_password_ok" placeholder="确认密码" />
 			</div>
 			<div class="form-group" style="width: 120px;">
-				<input type="text" class="form-control" name="verify" placeholder="验证码"/>
+				<input type="text" class="form-control" name="checkvode" placeholder="验证码"/>
 			</div>
 			<div class="checkbox">
 			    <label>
 			      <input type="checkbox" name="agree" value="1"> Check me out
 			    </label>
 			 </div>
-			<div class="" style="width: 100px;height: 36px; background-color: black;position: absolute;right: 50px; top: 188px; "></div>
+			<div class="" style="width: 100px;height: 36px; background-color: black;position: absolute;right: 50px; top: 188px; ">
+				<img src="Tool/checkvode" onclick="this.src='Tool/checkvode?time='+ Math.random()" />
+			</div>
 
 			<button class="btn btn-default" type="submit" style="width: 100%;">注册</button>
 		</div>

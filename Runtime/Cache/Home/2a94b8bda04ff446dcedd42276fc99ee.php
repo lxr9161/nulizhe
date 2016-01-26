@@ -19,7 +19,7 @@
     <script src=""></script>
     <script src=""></script>
  	<![endif]-->
-	<title>首页</title>
+	<title>首页-nulizhe.com</title>
 
 </head>
 <body>
@@ -54,8 +54,11 @@
 	        </li>
 	      </ul>
 	      <ul class="nav navbar-nav navbar-right">
-	        <li><a href="/login">登录</a></li>
-	        <li><a href="/register">注册</a></li>
+	      <?php if(isLogin()): ?><li><a href="/user">个人中心</a>
+	      	<li><a href="/user/logout">退出</a></li>
+	      <?php else: ?>
+	      	<li><a href="/login">登录</a></li>
+	        <li><a href="/register">注册</a></li><?php endif; ?>
 	      </ul>
 	      <form class="navbar-form navbar-right" role="search">
 	        <div class="form-group">
