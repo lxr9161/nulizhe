@@ -12,7 +12,7 @@ return array(
 		'__CSS__' => '/Public/css/'
 	),*/
 	'URL_MODEL' => 1,
-	'MODULE_ALLOW_LIST'    =>    array('Home','Admin'),
+	'MODULE_ALLOW_LIST'    =>    array('Home','Admin','Tool'),
 	'DEFAULT_MODULE' => 'Home',
 	'URL_ROUTER_ON'			=> true,
 	'URL_ROUTE_RULES' 		=> array(
