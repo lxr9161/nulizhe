@@ -114,5 +114,6 @@
 
 	<script type="text/javascript" src="<?php echo LIBS_PATH;?>jquery-1.11.3.min.js"></script>
 	<script type="text/javascript" src="<?php echo LIBS_PATH;?>bootstrap/js/bootstrap.min.js"></script>
+	
 </body>
 </html>

@@ -72,11 +72,14 @@
         <h4 class="modal-title" id="myModalLabel">Modal title</h4>
       </div>
       <div class="modal-body">
-        <form class="form" action="user/upload" enctype="multipart/form-data" method="post" >
+        <!-- <form class="form" action="user/upload" enctype="multipart/form-data" method="post" >
 			<input type="text" name="name" />
 			<input type='file'  name='photo' class="upic">
 		</form>
-		<button id="upload">上传</button>
+		<button id="upload">上传</button> -->
+		<form method="post" action="" enctype="multipart/form-data">
+		<label>File Input: <input type="file" name="file" id="demo1" /></label>
+		</form>
 		<img class="pic" src=""/>
       </div>
       <div class="modal-footer">
@@ -88,10 +91,17 @@
 </div>
 </block>
 <block name="script">
-<script type="text/javascript" src="{:LIBS_PATH}jquery.form.js"></script>
+<!-- <script type="text/javascript" src="{:LIBS_PATH}jquery.form.js"></script> -->
+<script type="text/javascript" src="{:LIBS_PATH}jquery.ajaxfileupload.js"></script>
 <script type="text/javascript">
 	$(function(){
-		$('#upload').click(function(){
+		$("#demo1").AjaxFileUpload({
+				action: 'user/upload',
+				onComplete: function(filename, response) {
+					$(".pic").attr("src", '/Uploads/' + response.file.savepath + response.file.savename).attr("width", 200);
+				}
+			});
+		/*$('#upload').click(function(){
 			$('.form').ajaxSubmit({
 				dataType: 'json',
 				success: function(data){
@@ -100,7 +110,8 @@
 				}
 			});
 			 return false;
-		});
+		});*/
+
 	});
 	
 </script>
