@@ -1,0 +1,33 @@
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="overflow:hidden">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <!-- <form class="form" action="user/upload" enctype="multipart/form-data" method="post" >
+			<input type="text" name="name" />
+			<input type='file'  name='photo' class="upic">
+		</form>
+		<button id="upload">上传</button> -->
+		<form method="post" action="" enctype="multipart/form-data">
+		<label>File Input: <input type="file" name="file" id="demo1" /></label>
+		</form>
+	
+      </div>
+      <div class="" style="width: 300px; height: 300px;border: 1px solid #dadada;vertical-align: 50%;text-align: center;">
+          <img id="jcorp-pic" class="pic " src="{:IMAGES_PATH}5.jpg" style="vertical-align:middle; max-height: 300px;max-width: 300px;" />
+    </div>
+      <div id="preview-pane">
+        <div class="preview-container">
+          <img src="{:IMAGES_PATH}3.png" class="jcrop-preview pic" />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
