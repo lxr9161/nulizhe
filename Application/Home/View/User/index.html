@@ -1,7 +1,7 @@
 <extend name="Public:base"/>
 <block name="css">
 	<style type="text/css">
-.jcrop-holder #preview-pane {
+	.jcrop-holder #preview-pane {
   display: block;
   position: absolute;
   z-index: 2000;
@@ -28,7 +28,7 @@
   height: 182px;
   overflow: hidden;
 }
-	</style>
+</style>
 </block>
 <block name="title">个人中心</block>
 <block name="content">
@@ -93,7 +93,7 @@
 			
 		</div>
 	</div>
-	<div class=""><img src="{:IMAGES_PATH}5.jpg" style="max-width: 350px;max-height: 350px;width: auto;height: auto;"></div>
+	<div class=""><img class="nihao" src="{:IMAGES_PATH}5.jpg" style="max-width: 350px;max-height: 350px;width: auto;height: auto;"></div>
 	<!-- Button trigger modal -->
 <!-- Modal -->
 <include file="user:part/upload"/>
@@ -101,91 +101,8 @@
 <block name="script">
 <!-- <script type="text/javascript" src="{:LIBS_PATH}jquery.form.js"></script> -->
 <script type="text/javascript" src="{:LIBS_PATH}jquery.ajaxfileupload.js"></script>
-<script type="text/javascript" src="{:LIBS_PATH}Jcrop/jquery.Jcrop.min.js"></script>
-<script type="text/javascript">
-	$(function(){
-		var jcrop_api,
-        boundx,
-        boundy,
-
-        // Grab some information about the preview pane
-        $preview = $('#preview-pane'),
-        $pcnt = $('#preview-pane .preview-container'),
-        $pimg = $('#preview-pane .preview-container img'),
-
-        xsize = $pcnt.width(),
-        ysize = $pcnt.height();
-		$("#demo1").AjaxFileUpload({
-				action: 'user/upload',
-				onComplete: function(filename, response) {
-					$(".pic").attr("src", '/Uploads/' + response.file.savepath + response.file.savename);
-					 $('#jcorp-pic').Jcrop({
-					      onChange: updatePreview,
-					      onSelect: updatePreview,
-					      aspectRatio: 1
-					    },function(){
-					      // Use the API to get the real image size
-					      var bounds = this.getBounds();
-					      boundx = bounds[0];
-					      boundy = bounds[1];
-					      // Store the API in the jcrop_api variable
-					      jcrop_api = this;
-
-					      // Move the preview into the jcrop container for css positioning
-					      $preview.appendTo(jcrop_api.ui.holder);
-					    });
-					 jcrop_api.setImage('/Uploads/' + response.file.savepath + response.file.savename);
-				}
-
-			});
-
-    // Create variables (in this scope) to hold the API and image size
-    
-
-   /* 
-    $('#jcorp-pic').Jcrop({
-      onChange: updatePreview,
-      onSelect: updatePreview,
-      aspectRatio: 1
-    },function(){
-      // Use the API to get the real image size
-      var bounds = this.getBounds();
-      boundx = bounds[0];
-      boundy = bounds[1];
-      // Store the API in the jcrop_api variable
-      jcrop_api = this;
-
-      // Move the preview into the jcrop container for css positioning
-      $preview.appendTo(jcrop_api.ui.holder);
-    });*/
-    
-    function updatePreview(c)
-    {
-      if (parseInt(c.w) > 0)
-      {
-        var rx = xsize / c.w;
-        var ry = ysize / c.h;
-
-        $pimg.css({
-          width: Math.round(rx * boundx) + 'px',
-          height: Math.round(ry * boundy) + 'px',
-          marginLeft: '-' + Math.round(rx * c.x) + 'px',
-          marginTop: '-' + Math.round(ry * c.y) + 'px'
-        });
-      }
-    };
-		/*$('#upload').click(function(){
-			$('.form').ajaxSubmit({
-				dataType: 'json',
-				success: function(data){
-					console.log('/Uploads');
-					$('.pic').attr('src','/Uploads/'+ data.photo.savepath + data.photo.savename);
-				}
-			});
-			 return false;
-		});*/
-
-	});
+<script type="text/javascript" src="{:LIBS_PATH}Jcrop/jquery.Jcrop.js"></script>
+<script type="text/javascript" src="{:JS_PATH}/user/user.js">
 	
 </script>
 </block>

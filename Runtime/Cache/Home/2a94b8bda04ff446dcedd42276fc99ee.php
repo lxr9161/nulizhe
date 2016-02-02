@@ -15,6 +15,8 @@
 	<link href="./favicon.ico" rel="icon" type="image/x-icon" />
 	<link rel="stylesheet" type="text/css" href="<?php echo LIBS_PATH;?>bootstrap/css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="<?php echo CSS_PATH;?>common.css"/>
+	<link rel="stylesheet" type="text/css" href="<?php echo LIBS_PATH;?>Jcrop/jquery.Jcrop.min.css"/>
+	
 	<!--[if lt IE 9]>
     <script src=""></script>
     <script src=""></script>
