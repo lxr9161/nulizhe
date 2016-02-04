@@ -186,9 +186,11 @@
     //}}}
     //w\h 图片容器的宽\高
     function presize($obj, w, h) //{{{
-    {
+    { 
       var nw = $obj.width(),
           nh = $obj.height();
+      console.log('preimg:'+nw);
+      console.log('preimg:'+nh);
       if ((nw > w) && w > 0) {
         nw = w;
         nh = (w / $obj.width()) * $obj.height();
@@ -1440,9 +1442,14 @@
       img.onload = function () {
         var iw = img.width;
         var ih = img.height;
+        console.log('reimg:'+ iw);
+        console.log('reimg:'+ ih);
         var bw = options.boxWidth;
         var bh = options.boxHeight;
-        $img.width(iw).height(ih);
+       // $img.width(iw).height(ih);
+        
+        console.log('img:'+$img.width());
+        console.log('img:'+$img.height());
         $img.attr('src', src);
         $img2.attr('src', src);
         presize($img, bw, bh);

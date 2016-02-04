@@ -1,6 +1,24 @@
+function autoImg(){
+	var boxW = $('.boxImage').width();
+	var boxH = $('boxImage').height();
+	var imgW = $('#jcrop-pic').width();
+	var imgH = $('#jcrop-pic').height();
+	if(imgW > imgH && imgW > boxW) {
+		alert(123);
+		$('#jcrop-pic').width(boxW);
+		$('#jcrop-pic').height(imgH*(boxW/imgH));
+	}else if(imgW < imgH && imgH > boxH){
+		alert(123);
+		$('#jcrop-pic').height(boxH);
+		$('#jcrop-pic').width(imgW*(boxH/imgH));
+	}else if(imgH == imgW && imgW > boxH){
+		$('#jcrop-pic').width(boxW).height(boxH);
+	}
+	alert(123);
+};
 $(function(){
 		
-
+	$('#jcrop-pic')
 
 		var jcrop_api,
         boundx,
@@ -17,7 +35,7 @@ $(function(){
     $('#jcrop-pic').Jcrop({
       onChange: updatePreview,
       onSelect: updatePreview,
-      aspectRatio: 1
+      aspectRatio: 1,
     },function(){
       // Use the API to get the real image size
       var bounds = this.getBounds();
@@ -29,8 +47,7 @@ $(function(){
       // Move the preview into the jcrop container for css positioning
       $preview.appendTo(jcrop_api.ui.holder);
     });
-   	
-    console.log(jcrop_api);
+   	 
     function updatePreview(c)
     {
       if (parseInt(c.w) > 0)
@@ -50,9 +67,19 @@ $("#demo1").AjaxFileUpload({
 				action: 'user/upload',
 				onComplete: function(filename, response) {
 					$(".pic").attr("src", '/Uploads/' + response.file.savepath + response.file.savename);
+						jcrop_api.setImage('/Uploads/' + response.file.savepath + response.file.savename);
+						
+						/*console.log($('#jcrop-pic').width());
+						console.log($('#jcrop-pic').height());*/
+				
+					
 					$('.btn-reload').show();
-					jcrop_api.setImage('/Uploads/' + response.file.savepath + response.file.savename);
-				}
+				
+				
+					
+					
+					
+				},
 		});
 
 
