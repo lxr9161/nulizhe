@@ -1,86 +1,68 @@
-function autoImg(){
-	var boxW = $('.boxImage').width();
-	var boxH = $('boxImage').height();
-	var imgW = $('#jcrop-pic').width();
-	var imgH = $('#jcrop-pic').height();
-	if(imgW > imgH && imgW > boxW) {
-		alert(123);
-		$('#jcrop-pic').width(boxW);
-		$('#jcrop-pic').height(imgH*(boxW/imgH));
-	}else if(imgW < imgH && imgH > boxH){
-		alert(123);
-		$('#jcrop-pic').height(boxH);
-		$('#jcrop-pic').width(imgW*(boxH/imgH));
-	}else if(imgH == imgW && imgW > boxH){
-		$('#jcrop-pic').width(boxW).height(boxH);
-	}
-	alert(123);
-};
+
 $(function(){
 		
-	$('#jcrop-pic')
 
-		var jcrop_api,
-        boundx,
-        boundy,x
-
-        // Grab some information about the preview pane
-        $preview = $('#preview-pane'),
-        $pcnt = $('#preview-pane .preview-container'),
-        $pimg = $('#preview-pane .preview-container img'),
-
-        xsize = $pcnt.width(),
-        ysize = $pcnt.height();
-    
+	var jcrop_api,
+    boundx,
+    boundy,
+    $preview = $('#preview-pane'),
+    $pcnt = $('#preview-pane .preview-container'),
+    $boxImage = $('.boxImage'),
+    xsize = $pcnt.width(),
+    ysize = $pcnt.height();
+    $preview = $('#preview-pane'),    
     $('#jcrop-pic').Jcrop({
       onChange: updatePreview,
       onSelect: updatePreview,
       aspectRatio: 1,
     },function(){
-      // Use the API to get the real image size
-      var bounds = this.getBounds();
-      boundx = bounds[0];
-      boundy = bounds[1];
-      // Store the API in the jcrop_api variable
       jcrop_api = this;
-
-      // Move the preview into the jcrop container for css positioning
-      $preview.appendTo(jcrop_api.ui.holder);
     });
-   	 
     function updatePreview(c)
     {
-      if (parseInt(c.w) > 0)
-      {
-        var rx = xsize / c.w;
-        var ry = ysize / c.h;
-
-        $pimg.css({
-          width: Math.round(rx * boundx) + 'px',
-          height: Math.round(ry * boundy) + 'px',
-          marginLeft: '-' + Math.round(rx * c.x) + 'px',
-          marginTop: '-' + Math.round(ry * c.y) + 'px'
-        });
-      }
-    };
-$("#demo1").AjaxFileUpload({
-				action: 'user/upload',
-				onComplete: function(filename, response) {
-					$(".pic").attr("src", '/Uploads/' + response.file.savepath + response.file.savename);
-						jcrop_api.setImage('/Uploads/' + response.file.savepath + response.file.savename);
-						
-						/*console.log($('#jcrop-pic').width());
-						console.log($('#jcrop-pic').height());*/
-				
-					
-					$('.btn-reload').show();
-				
-				
-					
-					
-					
-				},
-		});
+        $pimg = $('#preview-pane .preview-container img');
+     	var ggg = jcrop_api.getBounds();
+     	if(ggg[0] == 300 && ggg[0] != ggg[1]){
+     		var pt = (300 - ggg[1]) / 2;
+     		$boxImage.css({
+     			'padding-left' : 0,
+     			'padding-top'  : pt
+     		});
+     	}else if(ggg[1] == 300 && ggg[0] != ggg[1]){
+     		var pl = (300 - ggg[0]) / 2;
+     		$boxImage.css({
+     			'padding-left' : pl,
+     			'padding-top'  : 0
+     		});
+     	}else if(ggg[0] == ggg[1]){
+     		$boxImage.css({
+     			'padding-left' : 0,
+     			'padding-top'  : 0
+     		});
+     	}
+	    if(parseInt(c.w) > 0){
+	        var rx = xsize / c.w;
+	        var ry = ysize / c.h;
+	        $pimg.css({
+	          width: Math.round(rx * ggg[0]) + 'px',
+	          height: Math.round(ry * ggg[1]) + 'px',
+	          marginLeft: '-' + Math.round(rx * c.x) + 'px',
+	          marginTop: '-' + Math.round(ry * c.y) + 'px'
+	        });
+	    }
+	};
+	$("#demo1").AjaxFileUpload({
+		action: 'user/upload',
+		onComplete: function(filename, response) {
+			$(".pic").attr("src", '/Uploads/' + response.file.savepath + response.file.savename);
+				jcrop_api.setImage('/Uploads/' + response.file.savepath + response.file.savename);
+				var size = [0,80,80,80];
+				jcrop_api.setSelect(size);
+            $('.notice').hide();
+            $('.boxImage').show();
+			$('.btn-reload').show();
+		},
+	});
 
 
 		/*$('#upload').click(function(){

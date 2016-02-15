@@ -1225,7 +1225,7 @@
     var KeyManager = (function () {
       var $keymgr = $('<input type="radio" />').css({
         position: 'fixed',
-        left: '-120px',
+        left: '-1200px',
         width: '12px'
       }).addClass('jcrop-keymgr'),
 
@@ -1442,14 +1442,24 @@
       img.onload = function () {
         var iw = img.width;
         var ih = img.height;
-        console.log('reimg:'+ iw);
-        console.log('reimg:'+ ih);
         var bw = options.boxWidth;
         var bh = options.boxHeight;
-       // $img.width(iw).height(ih);
-        
-        console.log('img:'+$img.width());
-        console.log('img:'+$img.height());
+        if(iw > 300 && iw < ih){
+          iw = 300 / ih * iw;
+          ih = 300; 
+        }else if(iw > 300 && iw > ih){
+          ih = 300 / iw * ih;
+          iw = 300;
+        }else if(iw < 300 && ih < iw ){
+          ih = 300 / iw * ih;
+          iw = 300;
+        }else if(ih < 300 && iw < ih){
+          iw = 300 / ih * iw;
+          ih = 300;
+        }else if(iw == ih){
+          iw = ih = 300;
+        }
+        $img.width(iw).height(ih);
         $img.attr('src', src);
         $img2.attr('src', src);
         presize($img, bw, bh);

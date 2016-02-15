@@ -1,16 +1,12 @@
 <extend name="Public:base"/>
 <block name="css">
 	<style type="text/css">
-	.jcrop-holder #preview-pane {
+#preview-pane {
   display: block;
-  position: absolute;
-  z-index: 2000;
-  top: 10px;
-  right: -280px;
   padding: 6px;
+  margin-left: 36px;
   border: 1px rgba(0,0,0,.4) solid;
   background-color: white;
-
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
   border-radius: 6px;
@@ -27,6 +23,22 @@
   width: 182px;
   height: 182px;
   overflow: hidden;
+}
+.fileUpload {
+	position: relative;
+	overflow: hidden;
+	margin: 10px;
+}
+
+.fileUpload input.upload {	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
 }
 </style>
 </block>
@@ -94,6 +106,9 @@
 		</div>
 	</div>
 	<div class=""><img class="nihao" src="{:IMAGES_PATH}5.jpg" style="max-width: 350px;max-height: 350px;width: auto;height: auto;"></div>
+	<div class="" style="padding-top: 120px;width: 300px ;height: 300px; border: 1px solid #dadada;">
+		<p></p>
+	</div>
 	<!-- Button trigger modal -->
 <!-- Modal -->
 <include file="user:part/upload"/>
