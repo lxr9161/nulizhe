@@ -1,7 +1,5 @@
 
 $(function(){
-		
-
 	var jcrop_api,
     boundx,
     boundy,
@@ -60,11 +58,18 @@ $(function(){
 				jcrop_api.setSelect(size);
             $('.notice').hide();
             $('.boxImage').show();
-			$('.btn-reload').show();
+            $('#imgSrc').val('/Uploads/' + response.file.savepath + response.file.savename);
 		},
 	});
 
-
+    $('.btn-save').click(function(){
+        var crop = jcrop_api.tellSelect();
+        $('#x').val(crop.x);
+        $('#y').val(crop.y);
+        $('#w').val(crop.w);
+        $('#h').val(crop.h);
+        $('#imgInfo').submit();
+    });
 		/*$('#upload').click(function(){
 			$('.form').ajaxSubmit({
 				dataType: 'json',

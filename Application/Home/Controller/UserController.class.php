@@ -123,6 +123,11 @@ class UserController extends Controller
 	    	echo json_encode($info);
 	    }
 	}
+	public function imgCrop(){
+		var_dump($_POST);
+		$image = new \Think\Image();
+		
+	}
 }
 
 
