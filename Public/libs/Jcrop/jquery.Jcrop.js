@@ -189,8 +189,6 @@
     { 
       var nw = $obj.width(),
           nh = $obj.height();
-      console.log('preimg:'+nw);
-      console.log('preimg:'+nh);
       if ((nw > w) && w > 0) {
         nw = w;
         nh = (w / $obj.width()) * $obj.height();

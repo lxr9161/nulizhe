@@ -59,15 +59,23 @@ $(function(){
             $('.notice').hide();
             $('.boxImage').show();
             $('#imgSrc').val('/Uploads/' + response.file.savepath + response.file.savename);
+
 		},
 	});
 
     $('.btn-save').click(function(){
-        var crop = jcrop_api.tellSelect();
+        var crop = jcrop_api.tellSelect(),
+            cropImg = jcrop_api.getWidgetSize();
+            pw = $('.jcrop-preview').width(),
+            ph = $('.jcrop-preview').height()
         $('#x').val(crop.x);
         $('#y').val(crop.y);
         $('#w').val(crop.w);
         $('#h').val(crop.h);
+        $('#pw').val(pw);
+        $('#ph').val(ph);
+        $('#cw').val(cropImg[0]);
+        $('#ch').val(cropImg[1]);
         $('#imgInfo').submit();
     });
 		/*$('#upload').click(function(){

@@ -124,9 +124,23 @@ class UserController extends Controller
 	    }
 	}
 	public function imgCrop(){
-		var_dump($_POST);
-		$image = new \Think\Image();
-		
+		if(isLogin()){
+			var_dump($_POST);
+			$startX = $_POST['pw'] / $_POST['cw'] * $_POST['x'] ;
+			$startY = $_POST['ph'] / $_POST['ch'] * $_POST['y'];
+			echo 'x:'.round($startX,1);
+			echo '<br/>';
+			echo 'y:'.round($startY,1);
+			var_dump($user);
+			$picName = time().'.jpg';
+			is_dir('./Uploads/pic'.$user) ? ture : mkdir('./Uploads/pic/'.$user);
+			/*$image = new \Think\Image();
+			$image->open('.'.$_POST['imgSrc']);
+			$image->crop(182, 182,0,0)->save('./Uploads/pic/'.$user.'/'.$picName);*/
+
+		}else{
+			$this->error('请先登录','/login');
+		}
 	}
 }
 
