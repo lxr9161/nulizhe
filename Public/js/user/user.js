@@ -52,14 +52,17 @@ $(function(){
 	$("#demo1").AjaxFileUpload({
 		action: 'user/upload',
 		onComplete: function(filename, response) {
-			$(".pic").attr("src", '/Uploads/' + response.file.savepath + response.file.savename);
-				jcrop_api.setImage('/Uploads/' + response.file.savepath + response.file.savename);
-				var size = [0,80,80,80];
-				jcrop_api.setSelect(size);
-            $('.notice').hide();
-            $('.boxImage').show();
-            $('#imgSrc').val('/Uploads/' + response.file.savepath + response.file.savename);
-
+            if(response !== false){
+                $(".pic").attr("src", '/Uploads/' + response.file.savepath + response.file.savename);
+                jcrop_api.setImage('/Uploads/' + response.file.savepath + response.file.savename);
+                var size = [0,80,80,80];
+                jcrop_api.setSelect(size);
+                $('.notice').hide();
+                $('.boxImage').show();
+                $('#imgSrc').val('/Uploads/' + response.file.savepath + response.file.savename);
+            }else{
+                alert('图片格式错误,请重新选择');
+            }
 		},
 	});
 
@@ -76,7 +79,10 @@ $(function(){
         $('#ph').val(ph);
         $('#cw').val(cropImg[0]);
         $('#ch').val(cropImg[1]);
-        $('#imgInfo').submit();
+        //$('#imgInfo').submit();
+        $.post('user/imgCrop',$('#imgInfo').serialize(),function(data){
+            console.log(data);
+        },'json');
     });
 		/*$('#upload').click(function(){
 			$('.form').ajaxSubmit({

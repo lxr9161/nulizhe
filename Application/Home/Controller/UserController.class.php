@@ -110,7 +110,7 @@ class UserController extends Controller
 	public function upload(){
 		$upload = new \Think\Upload();// 实例化上传类
 	    $upload->maxSize   =     3145728 ;// 设置附件上传大小
-	    $upload->exts      =     array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
+	    $upload->exts      =     array('jpg', 'png', 'gif', 'jpeg');// 设置附件上传类型
 	    $upload->rootPath  =     './Uploads/'; // 设置附件上传根目录
 	    $upload->savePath  =     'tempic/'; // 设置附件上传（子）目录
 	    $upload->subName   =     '';
@@ -118,26 +118,51 @@ class UserController extends Controller
 	    // 上传文件 
 	    $info   =   $upload->upload();
 	    if(!$info) {// 上传错误提示错误信息
-	        $this->error($upload->getError());
+	        echo 'false';
 	    }else{// 上传成功
 	    	echo json_encode($info);
 	    }
 	}
 	public function imgCrop(){
 		if(isLogin()){
-			var_dump($_POST);
-			$startX = $_POST['pw'] / $_POST['cw'] * $_POST['x'] ;
-			$startY = $_POST['ph'] / $_POST['ch'] * $_POST['y'];
-			echo 'x:'.round($startX,1);
-			echo '<br/>';
-			echo 'y:'.round($startY,1);
-			var_dump($user);
-			$picName = time().'.jpg';
-			is_dir('./Uploads/pic'.$user) ? ture : mkdir('./Uploads/pic/'.$user);
-			/*$image = new \Think\Image();
-			$image->open('.'.$_POST['imgSrc']);
-			$image->crop(182, 182,0,0)->save('./Uploads/pic/'.$user.'/'.$picName);*/
-
+			if(IS_POST && !empty($_POST['imgSrc'])){
+				$startX = (int)round($_POST['pw'] / $_POST['cw'] * $_POST['x']);
+				$startY = (int)round($_POST['ph'] / $_POST['ch'] * $_POST['y']);
+				$pw = $_POST['pw'];
+				$ph = $_POST['ph'];
+				$user = session('user_name') ? session('user_name') : cookie('user_name');
+				$picName = time().'.jpg';
+				is_dir('./Uploads/pic/'.$user) ? ture : mkdir('./Uploads/pic/'.$user);
+				$targ_w = $targ_h = 182;
+				$jpeg_quality = 90;
+				$src = '.'.$_POST['imgSrc'];
+				$imgSize = getimagesize($src);
+				switch ($imgSize['mime']) {
+					case 'image/jpeg':
+							$img_r = imagecreatefromjpeg($src);
+						break;
+					case 'image/png':
+							$img_r = imagecreatefrompng($src);
+						break;
+					case 'image/gif':
+							$img_r = imagecreatefromgif($src);
+						break;
+					default:
+						$this->ajaxReturn(array('status'=>'error','errorType'=>'extensions','Info'=>'图片格式错误。'));
+						break;
+				}
+				$dst_r = ImageCreateTrueColor(182,182);
+				$cropImg = ImageCreateTrueColor($_POST['pw'],$_POST['ph']);
+				imagecopyresampled($cropImg, $img_r, 0, 0, 0,0 ,$_POST['pw'],$_POST['ph'], $imgSize[0], $imgSize[1]);
+				imagecopy($dst_r, $cropImg, 0, 0, $startX, $startY, 182, 182);
+				imagejpeg($dst_r,'./Uploads/pic/'.$user.'/'.$picName,$jpeg_quality);
+				imagedestroy($dst_r);
+				imagedestroy($cropImg);
+				imagedestroy($img_r);
+				file_exists('./Uploads/pic/'.$user.'/'.$picName) ? $this->ajaxReturn(array('status'=>'success','Info'=>'图片保存成功。')) : $this->ajaxReturn(array('status'=>'error','errorType'=>'missImage','Info'=>'图片已丢失。'));
+			}else{
+				$this->ajaxReturn(array('status'=>'error','errorType'=>'NotUploaded','Info'=>'请上传图片。'));
+			}
 		}else{
 			$this->error('请先登录','/login');
 		}
