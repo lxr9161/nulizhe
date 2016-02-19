@@ -1,3 +1,7 @@
 .no-padding {
 	padding: 0;
 }
+.prompt-icon {
+	font-size: 18px;
+	vertical-align: -3px;
+}

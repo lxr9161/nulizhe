@@ -10,3 +10,11 @@ function isLogin(){
 function encryption(){
 	
 }
+/*
+*
+*
+*/
+
+function image_crop(){
+	
+}

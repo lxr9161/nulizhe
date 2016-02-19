@@ -1,14 +1,15 @@
 
 $(function(){
 	var jcrop_api,
-    boundx,
-    boundy,
-    $preview = $('#preview-pane'),
-    $pcnt = $('#preview-pane .preview-container'),
-    $boxImage = $('.boxImage'),
-    xsize = $pcnt.width(),
-    ysize = $pcnt.height();
-    $preview = $('#preview-pane'),    
+        boundx,
+        boundy,
+        $preview = $('#preview-pane'),
+        $pcnt = $('#preview-pane .preview-container'),
+        $boxImage = $('.boxImage'),
+        xsize = $pcnt.width(),
+        ysize = $pcnt.height(),
+        $preview = $('#preview-pane'),
+        $prompt = $('.prompt');
     $('#jcrop-pic').Jcrop({
       onChange: updatePreview,
       onSelect: updatePreview,
@@ -52,25 +53,30 @@ $(function(){
 	$("#demo1").AjaxFileUpload({
 		action: 'user/upload',
 		onComplete: function(filename, response) {
-            if(response !== false){
+            if(response.status == 'error'){
+                $prompt.html("<div class='text-danger'><span class='prompt-icon glyphicon glyphicon-remove-sign'></span> " + response.Info + '</div>');
+            }else{
                 $(".pic").attr("src", '/Uploads/' + response.file.savepath + response.file.savename);
                 jcrop_api.setImage('/Uploads/' + response.file.savepath + response.file.savename);
-                var size = [0,80,80,80];
+                var size = [0,0,300,300];
                 jcrop_api.setSelect(size);
                 $('.notice').hide();
                 $('.boxImage').show();
                 $('#imgSrc').val('/Uploads/' + response.file.savepath + response.file.savename);
-            }else{
-                alert('图片格式错误,请重新选择');
+                $('#postStatus').val(0);
+                $('.btn-save').removeClass('disabled');
             }
 		},
 	});
-
+    $('.pic-word').bind('input propertychange',function(){
+        var words = $(this).val().length;
+        $('.words-length').html(30-words);
+    });
     $('.btn-save').click(function(){
         var crop = jcrop_api.tellSelect(),
-            cropImg = jcrop_api.getWidgetSize();
+            cropImg = jcrop_api.getWidgetSize(),
             pw = $('.jcrop-preview').width(),
-            ph = $('.jcrop-preview').height()
+            ph = $('.jcrop-preview').height();
         $('#x').val(crop.x);
         $('#y').val(crop.y);
         $('#w').val(crop.w);
@@ -79,9 +85,21 @@ $(function(){
         $('#ph').val(ph);
         $('#cw').val(cropImg[0]);
         $('#ch').val(cropImg[1]);
-        //$('#imgInfo').submit();
         $.post('user/imgCrop',$('#imgInfo').serialize(),function(data){
-            console.log(data);
+            if(data.status == 'success'){
+                $('#postStatus').val(1);
+                $('.btn-save').addClass('disabled');
+                $prompt.html("<div class='text-success'><span class='prompt-icon glyphicon glyphicon-ok-sign'></span> " + data.Info + '</div>');
+                $(".pic").attr("src", '/Public/images/3.png');
+                jcrop_api.setImage('/Public/images/3.png');
+                var size = [0,0,300,300];
+                jcrop_api.setSelect(size);
+                $('.notice').show();
+                $('.notice').css('background-position','-300px 0');
+                $('.boxImage').hide();
+            }else if(data.status == 'error'){
+                $prompt.html("<div class='text-danger'><span class='prompt-icon glyphicon glyphicon-remove-sign'></span> " + data.Info + '</div>');
+            }
         },'json');
     });
 		/*$('#upload').click(function(){

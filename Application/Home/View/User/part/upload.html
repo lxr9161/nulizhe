@@ -3,22 +3,20 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+         <div class="prompt"  style="text-align: center;">
+          <span class="prompt-icon glyphicon glyphicon-upload" style="">
+          </span> 请上传
+        </div>
       </div>
       <div class="modal-body" style="display: table;">
-        <!-- <form class="form" action="user/upload" enctype="multipart/form-data" method="post" >
-        <input type="text" name="name" />
-        <input type='file'  name='photo' class="upic">
-        </form>
-        <button id="upload">上传</button> -->
         <form method="post" action="" enctype="multipart/form-data">
         <div class="fileUpload btn btn-primary">
         <span>选择图片</span>
          <input type="file" name="file" id="demo1" class="upload" />
         </div>
-        <span style="font-size: 12px; color: #d1d1d1">支持jpg、jpeg、gif、png、bmp格式的图片</span>
+        <span style="font-size: 12px; color: #d1d1d1">支持jpg、jpeg、gif、png格式的图片</span>
         </form>
-         <div class="notice pull-left" style="width: 300px; height: 300px;vertical-align: 50%;text-align: center; background-color: #dadada;">
+         <div class="notice pull-left" style="width: 300px; height: 300px;vertical-align: 50%;text-align: center;background-image: url('/Public/images/upload4.png');background-repeat: no-repeat;background-position: 0 0">
          </div>
         <div class="boxImage pull-left" style="width: 300px; height: 300px;vertical-align: 50%;text-align: center; background-color: #dadada;display:none;">
 
@@ -33,7 +31,8 @@
           <form method="post" action="user/imgCrop" id="imgInfo">
             <div class="form-group">
               <p>关于她/他的</p>
-              <textarea name="describe" style="resize:none;width: 200px;height: 50px;"></textarea>
+              <textarea maxlength="30" class="pic-word" name="picWords" style="resize:none;width: 220px;height: 45px;font-size: 12px;"></textarea>
+              <p style="text-align: right;font-size: 12px;">（还能输入 <span class="words-length">30</span> 个字/30个字）</p>
             </div>
               <input type="hidden" id="imgSrc" name="imgSrc" />
               <input type="hidden" id="x" name="x" />
@@ -44,13 +43,13 @@
               <input type="hidden" id="ph" name="ph"/>
               <input type="hidden" id="cw" name="cw"/>
               <input type="hidden" id="ch" name="ch"/>
+              <input type="hidden" id="postStatus" name="postStatus"/>
           </form>
         </div>
       </div>
-
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary btn-save">保存</button>
+        <a href="javascript:;" class="btn btn-default btn-close" data-dismiss="modal">关闭</a>
+        <a href="javascript:;" class="btn btn-primary btn-save disabled">保存</a>
       </div>
     </div>
   </div>
