@@ -5,7 +5,7 @@ function check_verify($code, $id = ''){
     return $verify->check($code, $id);
 }
 function isLogin(){
-	return session('?user_name') || cookie('user_name') ? true : false; 
+	return session('user_name') || cookie('user_name') ? true : false; 
 }
 function encryption(){
 	
@@ -14,7 +14,3 @@ function encryption(){
 *
 *
 */
-
-function image_crop(){
-	
-}

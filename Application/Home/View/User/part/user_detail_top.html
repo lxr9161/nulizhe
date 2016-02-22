@@ -7,20 +7,27 @@
 		<div class="" style="margin-left: 100px;padding-top: 10px;">
 			<div class="row">
 				<div class="col-xs-6">
-					<p style="">用户名：xxxxxxx</p>
-					<p style="">昵称：xxxxxxxxx</p>
+					<p style="">用户名：{$user.user_name}</p>
+					<p style="">昵称：
+						<empty name="user.user_nickname">
+							{$user.user_name}
+						<else />
+							{$user.user_nickname}
+						</empty>
+
+					</p>
 				</div>
 				<div class="col-xs-6">
-					<p style="">星座：天枰座</p>
-					<p style="">年龄：123</p>
+					<p style="">星座：{$user.user_sign|default="未填"}</p>
+					<p style="">年龄：{$user.user_age|default="未填"}</p>
 				</div>
 				<div class="col-xs-8" style="margin-bottom: 5px;">
-					所在地：福建省-厦门市
+					所在地：{$user.user_addr|default="未填"}
 				</div>
 				<div class="col-xs-8">
-					简介简介简介
+					{$user.user_signature|default="未填"}
 				</div>
-				<div  style="text-align:right;float:right"><a href="" class="btn btn-success">编辑个人资料</a></div>
+				<div  style="text-align:right;float:right"><a href="user/details" class="btn btn-success">编辑个人资料</a></div>
 			</div>
 		</div>
 	</div>

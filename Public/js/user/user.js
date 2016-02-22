@@ -68,9 +68,17 @@ $(function(){
             }
 		},
 	});
-    $('.pic-word').bind('input propertychange',function(){
-        var words = $(this).val().length;
-        $('.words-length').html(30-words);
+    $('.pic-words').bind('input propertychange',function(){
+        var that = $(this),
+            wordsLength = $(this).val().length;
+        if(wordsLength <= 40){
+            $('.words-length').html(40-wordsLength);
+        }
+        if(wordsLength > 40){
+            var words = that.val().substr(0,40);
+            that.val(words);
+            $('.words-length').html(0);
+        }
     });
     $('.btn-save').click(function(){
         var crop = jcrop_api.tellSelect(),
@@ -96,21 +104,16 @@ $(function(){
                 jcrop_api.setSelect(size);
                 $('.notice').show();
                 $('.notice').css('background-position','-300px 0');
+                $('.pic-words').val('');
+                var picInfo = '<span class ="pic-item">';
+                    picInfo += '<img class="pic-size" src="'+ data.picInfo.pic_path +'"/><br/>';
+                    picInfo += '<span class="words">'+ data.picInfo.pic_words +'</span>';
+                    picInfo += '</span>';
+                $('.pic-box').prepend(picInfo);
                 $('.boxImage').hide();
             }else if(data.status == 'error'){
                 $prompt.html("<div class='text-danger'><span class='prompt-icon glyphicon glyphicon-remove-sign'></span> " + data.Info + '</div>');
             }
         },'json');
     });
-		/*$('#upload').click(function(){
-			$('.form').ajaxSubmit({
-				dataType: 'json',
-				success: function(data){
-					console.log('/Uploads');
-					$('.pic').attr('src','/Uploads/'+ data.photo.savepath + data.photo.savename);
-				}
-			});
-			 return false;
-		});*/
-
 });

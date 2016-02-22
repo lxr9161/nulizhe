@@ -18,6 +18,12 @@ class UserController extends Controller
 	}
     public function index(){
     	if(isLogin()){
+    		$username = session('user_name') ? session('user_name') : cookie('user_name');
+    		$field = 'user_id,user_nickname,user_name,user_avater,user_sign,user_age,user_sex,user_description,user_signature,user_addr';
+    		$where['user_name'] = $username;
+    		$userCenter = $this->user->field($field)->where($where)->find();
+    		$this->assign('user',$userCenter);
+    		$this->assign('picList',$this->_getPic($userCenter['user_id']));
     		$this->display();
     	}else{
     		header('Location:/login');
@@ -106,7 +112,6 @@ class UserController extends Controller
 					$this->error('注册失败','/register');
 				}
 			}	
-			
 		}
 	}
 	public function upload(){
@@ -135,6 +140,9 @@ class UserController extends Controller
 	public function imgCrop(){
 		if(isLogin()){
 			if(IS_POST && !empty($_POST['imgSrc'])){
+				if(mb_strlen($_POST['picWords'],'utf-8') > 40){
+					$this->ajaxReturn(array('status'=>'error','errorType'=>'length','Info'=>'图片描述大于40个字。'));
+				};
 				if($_POST['postStatus'] == 0){
 					$startX = (int)round($_POST['pw'] / $_POST['cw'] * $_POST['x']);
 					$startY = (int)round($_POST['ph'] / $_POST['ch'] * $_POST['y']);
@@ -173,7 +181,9 @@ class UserController extends Controller
 						$picData['pic_create_date'] = date('Y-m-d H:i:s',time());
 						$picData['pic_path'] = './Uploads/pic/'.$user.'/'.$picName;
 						$picData['pic_user'] = $user;
-						$this->picture->add($picData) ? $this->ajaxReturn(array('status'=>'success','Info'=>'图片保存成功。')) : $this->ajaxReturn(array('status'=>'error','errorType'=>'saveFail','Info'=>'图片保存失败，请重试！'));
+						$picData['pic_words'] = $_POST['picWords'];
+						$picData['pic_user_id'] = $_POST['picUserId'];
+						$this->picture->add($picData) ? $this->ajaxReturn(array('status'=>'success','Info'=>'图片保存成功。','picInfo'=>$picData)) : $this->ajaxReturn(array('status'=>'error','errorType'=>'saveFail','Info'=>'图片保存失败，请重试！'));
 
 					}else{
 						$this->ajaxReturn(array('status'=>'error','errorType'=>'missImage','Info'=>'图片已丢失。'));
@@ -187,6 +197,15 @@ class UserController extends Controller
 		}else{
 			$this->error('请先登录','/login');
 		}
+	}
+	public function details(){
+		$this->display('details');
+	}
+	private function _getPic($userId){
+		$field = 'pic_id,pic_path,pic_user,pic_user_id,pic_words';
+		$where['pic_user_id'] = $userId;
+		$picList = $this->picture->field($field)->where($where)->order('pic_create_date DESC')->select();
+		return $picList;
 	}
 }
 

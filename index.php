@@ -20,12 +20,12 @@ define('APP_DEBUG',True);
 define('SITE_PATH', dirname(__FILE__)."/");
 
 //web图片资源目录
-define('IMAGES_PATH', './Public/images/');
+define('IMAGES_PATH', '/Public/images/');
 //js,css插件目录
-define('LIBS_PATH','./Public/libs/');
+define('LIBS_PATH','/Public/libs/');
 //CSS目录
-define('CSS_PATH','./Public/css/');
-define('JS_PATH','./Public/js/');
+define('CSS_PATH','/Public/css/');
+define('JS_PATH','/Public/js/');
 
 // 定义应用目录
 define('APP_PATH','./Application/');

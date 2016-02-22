@@ -50,49 +50,15 @@
 		<div class="row">
 			<div class="col-md-7">
 				<h4 class="" style="font-weight: bold;">图库</h4>
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Launch demo modal</button>
-
-				<div class="" style="margin:0 auto;text-align: center; font-size: 12px;">
-					<span style=" margin:  5px;border: 1px solid #dadada;width: 200px; display:inline-block;height: 238px;vertical-align: top; overflow: hidden">
-						<img src="{:IMAGES_PATH}3.png" style="height: 182px;width: 182px;margin:8px;">
-						<br/>
-						<span style="display:inline-block;text-align: left;padding: 0 8px;">你是怎样通过学习改变命运的？你是怎样通过学习改变命运的？</span>
-					</span>
-					<span style=" margin:  5px;border: 1px solid #dadada;width: 200px; display:inline-block;height: 238px;vertical-align: top; overflow: hidden">
-						<img src="{:IMAGES_PATH}3.png" style="height: 182px;width: 182px;margin:8px;">
-						<br/>
-						<span style="display:inline-block;text-align: left;padding: 0 8px;">你是怎样通过学习改变命运的？你是怎样通过学习改变命运的？</span>
-					</span>
-					<span style=" margin:  5px;border: 1px solid #dadada;width: 200px; display:inline-block;height: 238px;vertical-align: top; overflow: hidden">
-						<img src="{:IMAGES_PATH}3.png" style="height: 182px;width: 182px;margin:8px;">
-						<br/>
-						<span style="display:inline-block;text-align: left;padding: 0 8px;">你是怎样通过学习改变命运的？你是怎样通过学习改变命运的？</span>
-					</span>
-					<span style=" margin:  5px;border: 1px solid #dadada;width: 200px; display:inline-block;height: 238px;vertical-align: top; overflow: hidden">
-						<img src="{:IMAGES_PATH}3.png" style="height: 182px;width: 182px;margin:8px;">
-						<br/>
-						<span style="display:inline-block;text-align: left;padding: 0 8px;">你是怎样通过学习改变命运的？你是怎样通过学习改变命运的？</span>
-					</span>
-					<span style=" margin:  5px;box-shadow:2px 3px 2px 1px rgba(0,0,0,0.7);width: 200px; display:inline-block;height: 238px;vertical-align: top; overflow: hidden">
-						<img src="{:IMAGES_PATH}3.png" style="height: 184px;width: 184px;margin:8px;">
-						<br/>
-						<span style="display:inline-block;text-align: left;padding: 0 8px;">你是怎样通过学习改变命运的？你是怎样通过学习改变命运的？</span>
-					</span>
-					<span style=" margin:  5px;box-shadow:2px 3px 2px 1px rgba(0,0,0,0.7);width: 200px; display:inline-block;height: 238px;vertical-align: top; overflow: hidden">
-						<img src="{:IMAGES_PATH}3.png" style="height: 184px;width: 184px;margin:8px;">
-						<br/>
-						<span style="display:inline-block;text-align: left;padding: 0 8px;">你是怎样通过学习改变命运的？你是怎样通过学习改变命运的？</span>
-					</span>
-					<span style=" margin:  5px;box-shadow:2px 3px 2px 1px rgba(0,0,0,0.7);width: 200px; display:inline-block;height: 238px;vertical-align: top; overflow: hidden">
-						<img src="{:IMAGES_PATH}3.png" style="height: 184px;width: 184px;margin:8px;">
-						<br/>
-						<span style="display:inline-block;text-align: left;padding: 0 8px;">你是怎样通过学习改变命运的？你是怎样通过学习改变命运的？</span>
-					</span>
-					<span style=" margin:  5px;box-shadow:2px 3px 2px 1px rgba(0,0,0,0.7);width: 200px; display:inline-block;height: 238px;vertical-align: top; overflow: hidden">
-						<img src="{:IMAGES_PATH}3.png" style="height: 184px;width: 184px;margin:8px;">
-						<br/>
-						<span style="display:inline-block;text-align: left;padding: 0 8px;">你是怎样通过学习改变你是怎样通过学习改变你是怎样通过学习改变</span>
-					</span>
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">添加图片</button>
+				<div class="pic-box">
+					<volist name='picList' id="vo">
+						<span class="pic-item">
+							<img class="pic-size" src="{$vo.pic_path}">
+							<br/>
+							<span class="words">{$vo.pic_words}</span>
+						</span>
+					</volist>
 				</div>
 			</div>
 			<div class="col-md-3">
@@ -105,33 +71,13 @@
 			</div>
 		</div>
 	</div>
-	<div class="" style="margin: 30px;"><img class="nihao" src="{:IMAGES_PATH}5.jpg" style="max-width: 350px;max-height: 350px;width: auto;height: auto;"></div>
-	<div class="" style="float: left;margin-left:15px;position: relative;padding-top: 220px;width: 300px ;height: 300px; border: 1px solid #dadada;">
-		<p style=" text-align: center; font-size: 20px;font-family: '楷体';color: #555555">
-		请在本地选择一张图片上传
-		</p>
-		<!-- <div style="position: relative; top: -15px;font-size: 14px;font-family: '楷体';color: #555555;text-align: center;">（重新选择图片可继续上传。若无需要，请关闭对话框。）
-		</div> -->
-		<div style="position: absolute;top: 15px;left: 51px;">
-			<span class="glyphicon glyphicon-upload" style="font-size: 14em;color: #aaaaaa"></span>
-		</div>
-	
-	</div>
-	<div class="" style="float: left;position: relative;padding-top: 220px;width: 300px ;height: 300px; border: 1px solid #dadada;">
-		<p style=" text-align: center; font-size: 20px;font-family: '楷体';color: #555555">
-		图片保存成功！
-		</p>
-		<div style="position: relative; top: -15px;font-size: 14px;font-family: '楷体';color: #555555;text-align: center;">（重新选择图片可继续上传。若无需要，请关闭对话框。）
-		</div>
-		<div style="position: absolute;top: 15px;left: 51px;">
-			<span class="glyphicon glyphicon-ok-sign" style="font-size: 14em;color: #aaaaaa"></span>
-		</div>
-	
-	</div>
-	<p class="clearfix" style="clear: both;"></p>
-	<!-- Button trigger modal -->
-<!-- Modal -->
 <include file="user:part/upload"/>
+<div class="" style="width: 500px; height: 500px;border: 1px solid #dadada;margin: 5px auto;">
+	<div class="" style="position:relative;height: 250px;width: 200px;background-color: #000000;margin: 5px auto;border-top-left-radius: 120px;border-top-right-radius: 120px;border-bottom-left-radius: 120px 200px;border-bottom-right-radius: 120px 200px;">
+		<div style="position:absolute;top: 80px	;left:25px;width: 60px;height: 35px; background-color: #ffffff;border-top-left-radius: 15px 20px;border-top-right-radius: 45px 20px;border-bottom-left-radius: 15px 15px;border-bottom-right-radius: 45px 15px "></div>
+		<div style="position: absolute;top: 80px;right: 25px;background-color: #ffffff;width: 60px;height: 35px;border-top-left-radius: 45px 20px;border-top-right-radius: 15px 20px;border-bottom-left-radius: 45px 15px;border-bottom-right-radius: 15px;"></div>
+	</div>
+</div>
 </block>
 <block name="script">
 <script type="text/javascript" src="{:LIBS_PATH}jquery.form.js"></script>
