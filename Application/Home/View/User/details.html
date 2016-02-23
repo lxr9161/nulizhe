@@ -2,6 +2,92 @@
 <block name="title">个人设置</block>
 <block name="content">
 	<div class="container">
-		
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2" />
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label for="userNickname" class="col-sm-2 control-label">Email</label>
+						<div class="col-sm-10">
+						<!-- 	<p class="form-control-static">email@example.com</p> -->
+							<input type="text" class="form-control" id="userNickname" name="user_nickname" placeholder="昵称">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputPassword" class="col-sm-2 control-label">Password</label>
+						<div class="col-sm-10">
+							<input type="password" class="form-control" id="inputPassword" placeholder="Password">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="sign" class="col-sm-2 control-label">星座</label>
+						<div class="col-sm-10">
+							<select name="" class="form-control" id="sign">
+								<option value="0" selected="selected">请选择</option>
+								<option value="Aries">白羊座</option>
+								<option value="Taurus">金牛座</option>
+								<option value="Gemini">双子座</option>
+								<option value="Cancer">巨蟹座</option>
+								<option value="Leo">狮子座</option>
+								<option value="Virgo">处女座</option>
+								<option value="Libra">天秤座</option>
+								<option value="Scorpio">天蝎座</option>
+								<option value="Sagittarius">射手座</option>
+								<option value="Capricorn">摩羯座</option>
+								<option value="Aquarius">水瓶座</option>
+								<option value="Pisces">双鱼座</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-2 control-label">性别</div>
+						<div class="col-sm-10">
+							<label class="radio-inline">
+								<input type="radio" name="sex" id="sexNull" value="0" checked="checked"> 保密
+							</label>
+							<label class="radio-inline">
+							    <input type="radio" name="sex" id="sexMan" value="1"> 男
+							</label>
+							<label class="radio-inline">
+							    <input type="radio" name="sex" id="sexWoman" value="2"> 女
+							</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="birthday" class="col-xs-2 control-label">生日</label>
+						<div class="col-xs-3">
+							<select name="birthdayYear" class="form-control" id="birthdayYear">
+								<option value="2008" selected="selected">2008</option>
+							</select>
+						</div>
+						<div class="col-xs-3">
+							<select name="birthdayMonth" class="form-control" id="birthdayMonth">
+								<option value="8" selected="selected">08</option>
+							</select>
+						</div>
+						<div class="col-xs-3">
+							<select name="birthdayDay" class="form-control" id="birthdayDay">
+								<option value="8" selected="selected">08</option>
+							</select>
+						</div>
+					</div>	
+					<div class="form-group">
+						<label for="addr" class="col-sm-2 control-label">所在地</label>
+						<div class="col-sm-3">
+							<select name="province" class="form-control" id="province" >
+								<option value="beijing">北京市</option>
+							</select>
+						</div>
+						<div class="col-sm-3">
+							<select name="city" class="form-control" id="city">
+								<option value="bejing">北京市</option>
+							</select>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
 	</div>
+</block>
+<block name="script">
+	<script type="text/javascript" src="{:JS_PATH}/user/details.js"></script>
 </block>

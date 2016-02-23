@@ -116,4 +116,5 @@ $(function(){
             }
         },'json');
     });
+    console.log(getFullYear());
 });
