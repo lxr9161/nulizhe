@@ -4,10 +4,15 @@ $(function(){
 		yearOption = $('#birthdayYear'),
 		monthOption = $('#birthdayMonth'),
 		dayOption = $('#birthdayDay'),
+		proOption = $('#province'),
+		cityOption = $('#city'),
 		year = yearOption.val(),
 		month = monthOption.val(),
-		day = dayOption.val();
-	var yopt,mopt,dopt;
+		day = dayOption.val(),
+		province = proOption.val(),
+		city = cityOption.val();
+
+	var yopt,mopt,dopt,popt,copt,proArr = new Array();
 	
 	SelectDay(year,month);
 	for(var i = nowYear; i >=1900; i--){	
@@ -49,7 +54,33 @@ $(function(){
 		}
 	}
 	$.getJSON('/public/js/city.json',function(data){
-		console.log(data);
-		
+		for(i in data) {
+			if(data[i].province == province){
+				popt += '<option value="'+ data[i].province +'" selected="selected">'+ data[i].province +'</option>';
+				for(j in data[i].citys){
+					if(data[i].citys[j].name == city){
+						copt += '<option value="'+ data[i].citys[j].name +'" selected="selected">'+ data[i].citys[j].name +'</option>' 
+					}else{
+						copt += '<option value="'+ data[i].citys[j].name +'">'+ data[i].citys[j].name +'</option>' 
+					}
+					
+				}
+			}else {
+				popt += '<option value="'+ data[i].province +'">'+ data[i].province +'</option>'; 
+			}
+			proOption.html(popt);
+			cityOption.html(copt);
+		}
+		proOption.change(function(){
+			copt = '';
+			for(i in data){
+				if(data[i].province == $(this).val()){
+					for(j in data[i].citys){
+						copt += '<option value="'+ data[i].citys[j].name +'">'+ data[i].citys[j].name +'</option>';
+					}
+				}
+			}
+			cityOption.html(copt);
+		});
 	});
 });
