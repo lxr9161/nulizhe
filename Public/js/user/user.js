@@ -68,7 +68,7 @@ $(function(){
             }
 		},
 	});
-    $('.pic-words').bind('input propertychange',function(){
+    /*$('.pic-words').bind('input propertychange',function(){
         var that = $(this),
             wordsLength = $(this).val().length;
         if(wordsLength <= 40){
@@ -79,7 +79,7 @@ $(function(){
             that.val(words);
             $('.words-length').html(0);
         }
-    });
+    });*/
     $('.btn-save').click(function(){
         var crop = jcrop_api.tellSelect(),
             cropImg = jcrop_api.getWidgetSize(),
@@ -116,5 +116,4 @@ $(function(){
             }
         },'json');
     });
-    console.log(getFullYear());
 });

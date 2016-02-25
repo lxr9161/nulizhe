@@ -201,6 +201,9 @@ class UserController extends Controller
 	public function details(){
 		$this->display('details');
 	}
+	public function updateAvatar(){
+		$this->display('update_avatar');
+	}
 	private function _getPic($userId){
 		$field = 'pic_id,pic_path,pic_user,pic_user_id,pic_words';
 		$where['pic_user_id'] = $userId;

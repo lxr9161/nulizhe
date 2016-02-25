@@ -1,130 +1,167 @@
 [
 	{
 		"province" : "直辖市",
-		"citys" : [{"name":"北京市"},{"name":"天津市"},{"name":"上海市"},{"name":"重庆市"}]
+		"provinceId" : "1",
+		"citys" : [{"name":"北京市","cityId":"1"},{"name":"天津市","cityId":"2"},{"name":"上海市","cityId":"3"},{"name":"重庆市","cityId":"4"}]
 	},
 	{
 		"province" : "河北省",
-		"citys" : [{"name":"石家庄市"},{"name":"唐山市"},{"name":"秦皇岛市"},{"name":"邯郸市"},{"name":"邢台市"},{"name":"保定市"},{"name":"张家口市"},{"name":"承德市"},{"name":"沧州市"},{"name":"廊坊市"},{"name":"衡水市"}]
+		"provinceId" : "2",
+		"citys" : [{"name":"石家庄市","cityId":"1"},{"name":"唐山市","cityId":"2"},{"name":"秦皇岛市","cityId":"3"},{"name":"邯郸市","cityId":"4"},{"name":"邢台市","cityId":"5"},{"name":"保定市","cityId":"6"},{"name":"张家口市","cityId":"7"},{"name":"承德市","cityId":"8"},{"name":"沧州市","cityId":"9"},{"name":"廊坊市","cityId":"10"},{"name":"衡水市","cityId":"11"},{"name":"其他","cityId":"0"}]
 	},
 	{
 		"province" : "山西省",
-		"citys" : [{"name":"太原市"},{"name":"大同市"},{"name":"阳泉市"},{"name":"长治市"},{"name":"晋城市"},{"name":"朔州市"},{"name":"晋中市"},{"name":"运城市"},{"name":"忻州市"},{"name":"临汾市"},{"name":"吕梁市"}]
+		"provinceId" : "3",
+		"citys" : [{"name":"太原市","cityId":"1"},{"name":"大同市","cityId":"2"},{"name":"阳泉市","cityId":"3"},{"name":"长治市","cityId":"4"},{"name":"晋城市","cityId":"5"},{"name":"朔州市","cityId":"6"},{"name":"晋中市","cityId":"7"},{"name":"运城市","cityId":"8"},{"name":"忻州市","cityId":"9"},{"name":"临汾市","cityId":"10"},{"name":"吕梁市","cityId":"11"},{"name":"其他","cityId":"0"}]
 	},
 	{
 		"province" : "辽宁省",
-		"citys" : [{"name":"沈阳市"},{"name":"大连市"},{"name":"鞍山市"},{"name":"抚顺市"},{"name":"本溪市"},{"name":"丹东市"},{"name":"锦州市"},{"name":"营口市"},{"name":"阜新市"},{"name":"辽阳市"},{"name":"盘锦市"},{"name":"铁路市"},{"name":"朝阳市"},{"name":"葫芦岛市"}]
+		"provinceId" : "4",
+		"citys" : [{"name":"沈阳市","cityId":"1"},{"name":"大连市","cityId":"2"},{"name":"鞍山市","cityId":"3"},{"name":"抚顺市","cityId":"4"},{"name":"本溪市","cityId":"5"},{"name":"丹东市","cityId":"6"},{"name":"锦州市","cityId":"7"},{"name":"营口市","cityId":"8"},{"name":"阜新市","cityId":"9"},{"name":"辽阳市","cityId":"10"},{"name":"盘锦市","cityId":"11"},{"name":"铁路市","cityId":"12"},{"name":"朝阳市","cityId":"13"},{"name":"葫芦岛市","cityId":"14"},{"name":"其他","cityId":"0"}]
 	},
 	{
 		"province" : "吉林省",
-		"citys" : [{"name":"长春市"},{"name":"吉林市"},{"name":"四平市"},{"name":"辽源市"},{"name":"通化市"},{"name":"白山市"},{"name":"松原市"},{"name":"白城市"},{"name":"延边朝鲜族自治州"}]
+		"provinceId" : "5",
+		"citys" : [{"name":"长春市","cityId":"1"},{"name":"吉林市","cityId":"2"},{"name":"四平市","cityId":"3"},{"name":"辽源市","cityId":"4"},{"name":"通化市","cityId":"5"},{"name":"白山市","cityId":"6"},{"name":"松原市","cityId":"7"},{"name":"白城市","cityId":"8"},{"name":"延边朝鲜族自治州","cityId":"9"},{"name":"其他","cityId":"0"}]
 	},
 	{
 		"province" : "黑龙江省",
-		"citys" : [{"name":"哈尔滨市"},{"name":"齐齐哈尔市"},{"name":"鸡西市"},{"name":"鹤岗市"},{"name":"双鸭山市"},{"name":"大庆市"},{"name":"伊春市"},{"name":"佳木斯市"},{"name":"七台河市"},{"name":"牡丹江市"},{"name":"黑河市"},{"name":"绥化市"},{"name":"大兴安岭地区"}]
+		"provinceId" : "6",
+		"citys" : [{"name":"哈尔滨市","cityId":"1"},{"name":"齐齐哈尔市","cityId":"2"},{"name":"鸡西市","cityId":"3"},{"name":"鹤岗市","cityId":"4"},{"name":"双鸭山市","cityId":"5"},{"name":"大庆市","cityId":"6"},{"name":"伊春市","cityId":"7"},{"name":"佳木斯市","cityId":"8"},{"name":"七台河市","cityId":"9"},{"name":"牡丹江市","cityId":"10"},{"name":"黑河市","cityId":"11"},{"name":"绥化市","cityId":"12"},{"name":"大兴安岭地区","cityId":"13"},{"name":"其他","cityId":"0"}]
 	},
 	{
 		"province" : "江苏省",
-		"citys" : [{"name":"南京市"},{"name":"无锡市"},{"name":"徐州市"},{"name":"常州市"},{"name":"苏州市"},{"name":"南通市"},{"name":"连云港市"},{"name":"淮安市"},{"name":"盐城市"},{"name":"扬州市"},{"name":"镇江市"},{"name":"泰州市"},{"name":"宿迁市"}]
+		"provinceId" : "7",
+		"citys" : [{"name":"南京市","cityId":"1"},{"name":"无锡市","cityId":"2"},{"name":"徐州市","cityId":"3"},{"name":"常州市","cityId":"4"},{"name":"苏州市","cityId":"5"},{"name":"南通市","cityId":"6"},{"name":"连云港市","cityId":"7"},{"name":"淮安市","cityId":"8"},{"name":"盐城市","cityId":"9"},{"name":"扬州市","cityId":"10"},{"name":"镇江市","cityId":"11"},{"name":"泰州市","cityId":"12"},{"name":"宿迁市","cityId":"13"},{"name":"其他","cityId":"0"}]
 	},
 	{
 		"province" : "浙江省",
-		"citys" : [{"name":"杭州市"},{"name":"宁波市"},{"name":"温州市"},{"name":"嘉兴市"},{"name":"湖州市"},{"name":"绍兴市"},{"name":"金华市"},{"name":"衢州市"},{"name":"舟山市"},{"name":"台州市"},{"name":"丽水市"}]
+		"provinceId" : "8",
+		"citys" : [{"name":"杭州市","cityId":"1"},{"name":"宁波市","cityId":"2"},{"name":"温州市","cityId":"3"},{"name":"嘉兴市","cityId":"4"},{"name":"湖州市","cityId":"5"},{"name":"绍兴市","cityId":"6"},{"name":"金华市","cityId":"7"},{"name":"衢州市","cityId":"8"},{"name":"舟山市","cityId":"9"},{"name":"台州市","cityId":"10"},{"name":"丽水市","cityId":"11"},{"name":"其他","cityId":"0"},{"name":"其他","cityId":"0"}]
 	},
 	{
 		"province" : "安徽省",
-		"citys" : [{"name":"合肥市"},{"name":"芜湖市"},{"name":"蚌埠市"},{"name":"淮南市"},{"name":"马鞍上市"},{"name":"淮北市"},{"name":"铜陵市"},{"name":"安庆市"},{"name":"黄山市"},{"name":"滁州市"},{"name":"阜阳市"},{"name":"宿州市"},{"name":"宣城市"},{"name":"六安市"},{"name":"池州市"},{"name":"毫州市"}]
+		"provinceId" : "9",
+		"citys" : [{"name":"合肥市","cityId":"1"},{"name":"芜湖市","cityId":"2"},{"name":"蚌埠市","cityId":"3"},{"name":"淮南市","cityId":"4"},{"name":"马鞍上市","cityId":"5"},{"name":"淮北市","cityId":"6"},{"name":"铜陵市","cityId":"7"},{"name":"安庆市","cityId":"8"},{"name":"黄山市","cityId":"9"},{"name":"滁州市","cityId":"10"},{"name":"阜阳市","cityId":"11"},{"name":"宿州市","cityId":"12"},{"name":"宣城市","cityId":"13"},{"name":"六安市","cityId":"14"},{"name":"池州市","cityId":"15"},{"name":"毫州市","cityId":"16"},{"name":"其他","cityId":"0"}]
 	},
 	{
 		"province" : "福建省",
-		"citys" : [{"name":"福州市"},{"name":"厦门市"},{"name":"莆田市"},{"name":"三明市"},{"name":"泉州市"},{"name":"漳州市"},{"name":"南平市"},{"name":"龙岩市"}]
+		"provinceId" : "10",
+		"citys" : [{"name":"福州市","cityId":"1"},{"name":"厦门市","cityId":"2"},{"name":"莆田市","cityId":"3"},{"name":"三明市","cityId":"4"},{"name":"泉州市","cityId":"5"},{"name":"漳州市","cityId":"6"},{"name":"南平市","cityId":"7"},{"name":"龙岩市","cityId":"8"},{"name":"其他","cityId":"0"}]
 	},
 	{
 		"province" : "江西省",
-		"citys" : [{"name":"南昌市"},{"name":"景德镇市"},{"name":"萍乡市"},{"name":"九江市"},{"name":"新余市"},{"name":"鹰潭市"},{"name":"赣州市"},{"name":"上饶市"},{"name":"吉安市"},{"name":"抚州市"},{"name":"宜春市"}]
+		"provinceId" : "11",
+		"citys" : [{"name":"南昌市","cityId":"1"},{"name":"景德镇市","cityId":"2"},{"name":"萍乡市","cityId":"3"},{"name":"九江市","cityId":"4"},{"name":"新余市","cityId":"5"},{"name":"鹰潭市","cityId":"6"},{"name":"赣州市","cityId":"7"},{"name":"上饶市","cityId":"8"},{"name":"吉安市","cityId":"9"},{"name":"抚州市","cityId":"10"},{"name":"宜春市","cityId":"11"},{"name":"其他","cityId":"0"}]
 	},
 	{
 		"province" : "山东省",
-		"citys" : [{"name":"济南市"},{"name":"青岛市"},{"name":"淄博市"},{"name":"枣庄市"},{"name":"东营市"},{"name":"烟台市"},{"name":"潍坊市"},{"name":"济宁市"},{"name":"泰安市"},{"name":"威海市"},{"name":"日照市"},{"name":"滨州市"},{"name":"莱芜市"},{"name":"临沂市"},{"name":"德州市"},{"name":"聊城市"},{"name":"菏泽市"}]
+		"provinceId" : "12",
+		"citys" : [{"name":"济南市","cityId":"1"},{"name":"青岛市","cityId":"2"},{"name":"淄博市","cityId":"3"},{"name":"枣庄市","cityId":"4"},{"name":"东营市","cityId":"5"},{"name":"烟台市","cityId":"6"},{"name":"潍坊市","cityId":"7"},{"name":"济宁市","cityId":"8"},{"name":"泰安市","cityId":"9"},{"name":"威海市","cityId":"10"},{"name":"日照市","cityId":"11"},{"name":"滨州市","cityId":"12"},{"name":"莱芜市","cityId":"13"},{"name":"临沂市","cityId":"14"},{"name":"德州市","cityId":"15"},{"name":"聊城市","cityId":"16"},{"name":"菏泽市","cityId":"17"},{"name":"其他","cityId":"0"}]
 	},
 	{
 		"province" : "河南省",
-		"citys" : [{"name":"郑州市"},{"name":"开封市"},{"name":"洛阳市"},{"name":"平顶山市"},{"name":"安阳市"},{"name":"鹤壁市"},{"name":"新乡市"},{"name":"焦作市"},{"name":"濮阳市"},{"name":"许昌市"},{"name":"漯河市"},{"name":"三门峡市"},{"name":"南阳市"},{"name":"商丘市"},{"name":"信阳市"},{"name":"驻马店市"},{"name":"周口市"}]
+		"provinceId" : "13",
+		"citys" : [{"name":"郑州市","cityId":"1"},{"name":"开封市","cityId":"2"},{"name":"洛阳市","cityId":"3"},{"name":"平顶山市","cityId":"4"},{"name":"安阳市","cityId":"5"},{"name":"鹤壁市","cityId":"6"},{"name":"新乡市","cityId":"7"},{"name":"焦作市","cityId":"8"},{"name":"濮阳市","cityId":"9"},{"name":"许昌市","cityId":"10"},{"name":"漯河市","cityId":"11"},{"name":"三门峡市","cityId":"12"},{"name":"南阳市","cityId":"13"},{"name":"商丘市","cityId":"14"},{"name":"信阳市","cityId":"15"},{"name":"驻马店市","cityId":"16"},{"name":"周口市","cityId":"17"},{"name":"其他","cityId":"0"}]
 	},
 	{
 		"province" : "湖北省",
-		"citys" : [{"name":"武汉市"},{"name":"黄石市"},{"name":"十堰市"},{"name":"宜昌市"},{"name":"襄樊市"},{"name":"鄂州市"},{"name":"荆门市"},{"name":"孝感市"},{"name":"荆州市"},{"name":"黄冈市"},{"name":"咸宁市"},{"name":"随州市"},{"name":"恩施土家族苗族自治州"},{"name":"神农架林区"}]
+		"provinceId" : "14",
+		"citys" : [{"name":"武汉市","cityId":"1"},{"name":"黄石市","cityId":"2"},{"name":"十堰市","cityId":"3"},{"name":"宜昌市","cityId":"4"},{"name":"襄樊市","cityId":"5"},{"name":"鄂州市","cityId":"6"},{"name":"荆门市","cityId":"7"},{"name":"孝感市","cityId":"8"},{"name":"荆州市","cityId":"9"},{"name":"黄冈市","cityId":"10"},{"name":"咸宁市","cityId":"11"},{"name":"随州市","cityId":"12"},{"name":"恩施土家族苗族自治州","cityId":"13"},{"name":"神农架林区","cityId":"14"},{"name":"其他","cityId":"0"}]
 	},
 	{
 		"province" : "湖南省",
-		"citys" : [{"name":"长沙市"},{"name":"株洲市"},{"name":"湘潭市"},{"name":"衡阳市"},{"name":"邵阳市"},{"name":"岳阳市"},{"name":"常德市"},{"name":"张家界市"},{"name":"益阳市"},{"name":"郴州市"},{"name":"永州市"},{"name":"怀化市"},{"name":"娄底市"},{"name":"湘西土家苗族自治州"}]
+		"provinceId" : "15",
+		"citys" : [{"name":"长沙市","cityId":"1"},{"name":"株洲市","cityId":"2"},{"name":"湘潭市","cityId":"3"},{"name":"衡阳市","cityId":"4"},{"name":"邵阳市","cityId":"5"},{"name":"岳阳市","cityId":"6"},{"name":"常德市","cityId":"7"},{"name":"张家界市","cityId":"8"},{"name":"益阳市","cityId":"9"},{"name":"郴州市","cityId":"10"},{"name":"永州市","cityId":"11"},{"name":"怀化市","cityId":"12"},{"name":"娄底市","cityId":"13"},{"name":"湘西土家苗族自治州","cityId":"14"},{"name":"其他","cityId":"0"}]
 	},
 	{
 		"province" : "广东省",
-		"citys" : [{"name":"广州市"},{"name":"韶关市"},{"name":"深圳市"},{"name":"珠海市"},{"name":"汕头市"},{"name":"佛山市"},{"name":"江门市"},{"name":"湛江市"},{"name":"茂名市"},{"name":"肇庆市"},{"name":"惠州市"},{"name":"梅州市"},{"name":"汕尾市"},{"name":"河源市"},{"name":"阳江市"},{"name":"清远市"},{"name":"东莞市"},{"name":"中山市"},{"name":"潮州市"},{"name":"揭阳市"},{"name":"云浮市"}]
+		"provinceId" : "16",
+		"citys" : [{"name":"广州市","cityId":"1"},{"name":"韶关市","cityId":"2"},{"name":"深圳市","cityId":"3"},{"name":"珠海市","cityId":"4"},{"name":"汕头市","cityId":"5"},{"name":"佛山市","cityId":"6"},{"name":"江门市","cityId":"7"},{"name":"湛江市","cityId":"8"},{"name":"茂名市","cityId":"9"},{"name":"肇庆市","cityId":"10"},{"name":"惠州市","cityId":"11"},{"name":"梅州市","cityId":"12"},{"name":"汕尾市","cityId":"13"},{"name":"河源市","cityId":"14"},{"name":"阳江市","cityId":"15"},{"name":"清远市","cityId":"16"},{"name":"东莞市","cityId":"17"},{"name":"中山市","cityId":"18"},{"name":"潮州市","cityId":"19"},{"name":"揭阳市","cityId":"20"},{"name":"云浮市","cityId":"21"},{"name":"其他","cityId":"0"}]
 	},
 	{
 		"province" : "海南省",
-		"citys" : [{"name":"海口市"},{"name":"三亚市"},{"name":"三沙市"},{"name":"儋州市"}]
+		"provinceId" : "17",
+		"citys" : [{"name":"海口市","cityId":"1"},{"name":"三亚市","cityId":"2"},{"name":"三沙市","cityId":"3"},{"name":"儋州市","cityId":"4"},{"name":"其他","cityId":"0"}]
 	},
 	{
 		"province" : "四川省",
-		"citys" : [{"name":"成都市"},{"name":"绵阳市"},{"name":"自贡市"},{"name":"攀枝花市"},{"name":"泸州市"},{"name":"德阳市"},{"name":"广元市"},{"name":"遂宁市"},{"name":"内江市"},{"name":"乐山市"},{"name":"资阳市"},{"name":"宜宾市"},{"name":"南充市"},{"name":"达州市"},{"name":"雅安市"},{"name":"阿坝藏族羌族自治州"},{"name":"甘孜藏族自治州"},{"name":"凉山彝族自治州"},{"name":"广安市"},{"name":"巴中市"},{"name":"眉山市"}]
+		"provinceId" : "18",
+		"citys" : [{"name":"成都市","cityId":"1"},{"name":"绵阳市","cityId":"2"},{"name":"自贡市","cityId":"3"},{"name":"攀枝花市","cityId":"4"},{"name":"泸州市","cityId":"5"},{"name":"德阳市","cityId":"6"},{"name":"广元市","cityId":"7"},{"name":"遂宁市","cityId":"8"},{"name":"内江市","cityId":"9"},{"name":"乐山市","cityId":"10"},{"name":"资阳市","cityId":"11"},{"name":"宜宾市","cityId":"12"},{"name":"南充市","cityId":"13"},{"name":"达州市","cityId":"14"},{"name":"雅安市","cityId":"15"},{"name":"阿坝藏族羌族自治州","cityId":"16"},{"name":"甘孜藏族自治州","cityId":"17"},{"name":"凉山彝族自治州","cityId":"18"},{"name":"广安市","cityId":"19"},{"name":"巴中市","cityId":"20"},{"name":"眉山市","cityId":"21"},{"name":"其他","cityId":"0"}]
 	},
 	{
 		"province" : "贵州省",
-		"citys" : [{"name":"贵阳市"},{"name":"六盘水市"},{"name":"遵义市"},{"name":"安顺市"},{"name":"毕节市"},{"name":"铜仁市"},{"name":"黔西南布依族苗族自治州"},{"name":"黔东南苗族侗族自治州"},{"name":"黔南布依族苗族自治州"}]
+		"provinceId" : "19",
+		"citys" : [{"name":"贵阳市","cityId":"1"},{"name":"六盘水市","cityId":"2"},{"name":"遵义市","cityId":"3"},{"name":"安顺市","cityId":"4"},{"name":"毕节市","cityId":"5"},{"name":"铜仁市","cityId":"6"},{"name":"黔西南布依族苗族自治州","cityId":"7"},{"name":"黔东南苗族侗族自治州","cityId":"8"},{"name":"黔南布依族苗族自治州","cityId":"9"},{"name":"其他","cityId":"0"}]
 	},
 	{
 		"province" : "云南省",
-		"citys" : [{"name":"昆明市"},{"name":"曲靖市"},{"name":"玉溪市"},{"name":"邵通市"},{"name":"保山市"},{"name":"丽江市"},{"name":"普洱市"},{"name":"临沧市"},{"name":"德宏傣族景颇族自治州"},{"name":"怒江傈傈族自治州"},{"name":"迪庆藏族自治州"},{"name":"大理白族自治州"},{"name":"楚雄彝族自治州"},{"name":"红河哈尼族彝族自治州"},{"name":"文山壮族苗族自治州"},{"name":"西双版纳傣族自治州"}]
+		"provinceId" : "20",
+		"citys" : [{"name":"昆明市","cityId":"1"},{"name":"曲靖市","cityId":"2"},{"name":"玉溪市","cityId":"3"},{"name":"邵通市","cityId":"4"},{"name":"保山市","cityId":"5"},{"name":"丽江市","cityId":"6"},{"name":"普洱市","cityId":"7"},{"name":"临沧市","cityId":"8"},{"name":"德宏傣族景颇族自治州","cityId":"9"},{"name":"怒江傈傈族自治州","cityId":"10"},{"name":"迪庆藏族自治州","cityId":"11"},{"name":"大理白族自治州","cityId":"12"},{"name":"楚雄彝族自治州","cityId":"13"},{"name":"红河哈尼族彝族自治州","cityId":"14"},{"name":"文山壮族苗族自治州","cityId":"15"},{"name":"西双版纳傣族自治州","cityId":"16"},{"name":"其他","cityId":"0"}]
 	},
 	{
 		"province" : "陕西省",
-		"citys" : [{"name":"西安市"},{"name":"铜川市"},{"name":"宝鸡市"},{"name":"咸阳市"},{"name":"渭南市"},{"name":"延安市"},{"name":"汉中市"},{"name":"榆林市"},{"name":"安康市"},{"name":"商洛市"}]
+		"provinceId" : "21",
+		"citys" : [{"name":"西安市","cityId":"1"},{"name":"铜川市","cityId":"2"},{"name":"宝鸡市","cityId":"3"},{"name":"咸阳市","cityId":"4"},{"name":"渭南市","cityId":"5"},{"name":"延安市","cityId":"6"},{"name":"汉中市","cityId":"7"},{"name":"榆林市","cityId":"8"},{"name":"安康市","cityId":"9"},{"name":"商洛市","cityId":"10"},{"name":"其他","cityId":"0"}]
 	},
 	{
 		"province" : "甘肃省",
-		"citys" : [{"name":"兰州市"},{"name":"嘉峪关市"},{"name":"金昌市"},{"name":"白银市"},{"name":"天水市"},{"name":"酒泉市"},{"name":"张掖市"},{"name":"武威市"},{"name":"定西市"},{"name":"陇南市"},{"name":"平凉市"},{"name":"庆阳市"},{"name":"临夏回族自治州"},{"name":"甘南藏族自治州"}]
+		"provinceId" : "22",
+		"citys" : [{"name":"兰州市","cityId":"1"},{"name":"嘉峪关市","cityId":"2"},{"name":"金昌市","cityId":"3"},{"name":"白银市","cityId":"4"},{"name":"天水市","cityId":"5"},{"name":"酒泉市","cityId":"6"},{"name":"张掖市","cityId":"7"},{"name":"武威市","cityId":"8"},{"name":"定西市","cityId":"9"},{"name":"陇南市","cityId":"10"},{"name":"平凉市","cityId":"11"},{"name":"庆阳市","cityId":"12"},{"name":"临夏回族自治州","cityId":"13"},{"name":"甘南藏族自治州","cityId":"14"},{"name":"其他","cityId":"0"}]
 	},
 	{
 		"province" : "青海省",
-		"citys" : [{"name":"西宁市"},{"name":"东海市"},{"name":"海北藏族自治州"},{"name":"黄南藏族自治州"},{"name":"海南藏族自治州"},{"name":"果洛藏族自治州"},{"name":"玉树藏族自治州"},{"name":"海西蒙古族藏族自治州"}]
+		"provinceId" : "23",
+		"citys" : [{"name":"西宁市","cityId":"1"},{"name":"东海市","cityId":"2"},{"name":"海北藏族自治州","cityId":"3"},{"name":"黄南藏族自治州","cityId":"4"},{"name":"海南藏族自治州","cityId":"5"},{"name":"果洛藏族自治州","cityId":"6"},{"name":"玉树藏族自治州","cityId":"7"},{"name":"海西蒙古族藏族自治州","cityId":"8"},{"name":"其他","cityId":"0"}]
 	},
 	{
 		"province" : "台湾省",
-		"citys" : [{"name":"台北市"},{"name":"新北市"},{"name":"桃园市"},{"name":"台中市"},{"name":"台南市"},{"name":"高雄市"},{"name":"基隆市"},{"name":"新竹市"},{"name":"嘉义市"}]
+		"provinceId" : "24",
+		"citys" : [{"name":"台北市","cityId":"1"},{"name":"新北市","cityId":"2"},{"name":"桃园市","cityId":"3"},{"name":"台中市","cityId":"4"},{"name":"台南市","cityId":"5"},{"name":"高雄市","cityId":"6"},{"name":"基隆市","cityId":"7"},{"name":"新竹市","cityId":"8"},{"name":"嘉义市","cityId":"9"},{"name":"其他","cityId":"0"}]
 	},
 	{
 		"province" : "内蒙古自治区",
-		"citys" : [{"name":"呼和浩特市"},{"name":"包头市"},{"name":"乌海市"},{"name":"赤峰市"},{"name":"通辽市"},{"name":"鄂尔多斯市"},{"name":"呼伦贝尔市"},{"name":"巴彦淖尔市"},{"name":"乌兰察布市"},{"name":"兴安盟"},{"name":"锡林郭勒盟"},{"name":"阿拉善盟"}]
+		"provinceId" : "25",
+		"citys" : [{"name":"呼和浩特市","cityId":"1"},{"name":"包头市","cityId":"2"},{"name":"乌海市","cityId":"3"},{"name":"赤峰市","cityId":"4"},{"name":"通辽市","cityId":"5"},{"name":"鄂尔多斯市","cityId":"6"},{"name":"呼伦贝尔市","cityId":"7"},{"name":"巴彦淖尔市","cityId":"8"},{"name":"乌兰察布市","cityId":"9"},{"name":"兴安盟","cityId":"10"},{"name":"锡林郭勒盟","cityId":"11"},{"name":"阿拉善盟","cityId":"12"},{"name":"其他","cityId":"0"}]
 	},
 	{
 		"province" : "广西壮族自治区",
-		"citys" : [{"name":"南宁市"},{"name":"柳州市"},{"name":"桂林市"},{"name":"梧州市"},{"name":"北海市"},{"name":"防城港市"},{"name":"钦州市"},{"name":"贵港市"},{"name":"玉林市"},{"name":"百色市"},{"name":"贺州市"},{"name":"河池市"},{"name":"来宾市"},{"name":"崇左市"}]
+		"provinceId" : "26",
+		"citys" : [{"name":"南宁市","cityId":"1"},{"name":"柳州市","cityId":"2"},{"name":"桂林市","cityId":"3"},{"name":"梧州市","cityId":"4"},{"name":"北海市","cityId":"5"},{"name":"防城港市","cityId":"6"},{"name":"钦州市","cityId":"7"},{"name":"贵港市","cityId":"8"},{"name":"玉林市","cityId":"9"},{"name":"百色市","cityId":"10"},{"name":"贺州市","cityId":"11"},{"name":"河池市","cityId":"12"},{"name":"来宾市","cityId":"13"},{"name":"崇左市","cityId":"14"},{"name":"其他","cityId":"0"}]
 	},
 	{
 		"province" : "宁夏回族自治区",
-		"citys" : [{"name":"银川市"},{"name":"石嘴山市"},{"name":"吴忠市"},{"name":"固原市"},{"name":"中卫市"}]
+		"provinceId" : "27",
+		"citys" : [{"name":"银川市","cityId":"1"},{"name":"石嘴山市","cityId":"2"},{"name":"吴忠市","cityId":"3"},{"name":"固原市","cityId":"4"},{"name":"中卫市","cityId":"5"},{"name":"其他","cityId":"0"}]
 	},
 	{
 		"province" : "新疆维吾尔自治区",
-		"citys" : [{"name":"乌鲁木齐市"},{"name":"克拉玛依市"},{"name":"吐鲁番市"},{"name":"哈密市"},{"name":"阿克苏地区"},{"name":"喀什地区"},{"name":"和田地区"},{"name":"昌吉回族自治州"},{"name":"博尔塔拉蒙古自治州"},{"name":"巴音郭楞蒙古自治州"},{"name":"克孜勒苏柯尔克孜自治州"},{"name":"伊犁哈萨克自治州"}]
+		"provinceId" : "28",
+		"citys" : [{"name":"乌鲁木齐市","cityId":"1"},{"name":"克拉玛依市","cityId":"2"},{"name":"吐鲁番市","cityId":"3"},{"name":"哈密市","cityId":"4"},{"name":"阿克苏地区","cityId":"5"},{"name":"喀什地区","cityId":"6"},{"name":"和田地区","cityId":"7"},{"name":"昌吉回族自治州","cityId":"8"},{"name":"博尔塔拉蒙古自治州","cityId":"9"},{"name":"巴音郭楞蒙古自治州","cityId":"10"},{"name":"克孜勒苏柯尔克孜自治州","cityId":"11"},{"name":"伊犁哈萨克自治州","cityId":"12"},{"name":"其他","cityId":"0"}]
 	},
 	{
 		"province" : "西藏自治区",
-		"citys" : [{"name":"拉萨市"},{"name":"昌都市"},{"name":"日喀则市"},{"name":"林芝市"},{"name":"山南市"},{"name":"那曲地区"},{"name":"阿里地区"}]
+		"provinceId" : "29",
+		"citys" : [{"name":"拉萨市","cityId":"1"},{"name":"昌都市","cityId":"2"},{"name":"日喀则市","cityId":"3"},{"name":"林芝市","cityId":"4"},{"name":"山南市","cityId":"5"},{"name":"那曲地区","cityId":"6"},{"name":"阿里地区","cityId":"7"},{"name":"其他","cityId":"0"}]
 	},
 	{
 		"province" : "香港特别行政区",
-		"citys" : [{"name":"香港岛"},{"name":"九龙半岛"},{"name":"新界"}]
+		"provinceId" : "30",
+		"citys" : [{"name":"香港岛","cityId":"1"},{"name":"九龙半岛","cityId":"2"},{"name":"新界","cityId":"3"},{"name":"其他","cityId":"0"}]
 	},
 	{
 		"province" : "澳门特别行政区",
-		"citys" : [{"name":"澳门半岛"},{"name":"凼仔岛"},{"name":"路环岛"},{"name":"路氹城"}]
+		"provinceId" : "31",
+		"citys" : [{"name":"澳门半岛","cityId":"1"},{"name":"凼仔岛","cityId":"2"},{"name":"路环岛","cityId":"3"},{"name":"路氹城","cityId":"4"},{"name":"其他","cityId":"0"}]
 	},
 	{
 		"province" : "海外",
-		"citys" : [{"name":"外国"}]
+		"provinceId" : "32",
+		"citys" : [{"name":"外国","cityId":"1"}]
+	},
+	{
+		"province" : "其他",
+		"provinceId" : "0",
+		"citys" :[{"name":"其他","cityId":"0"}]
 	}
 ]

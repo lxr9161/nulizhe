@@ -1,0 +1,47 @@
+<extend name="public:base"/>
+<block name="title">修改头像</block>
+<block name="content">
+	<div class="container">
+		<div class="row">
+			<div class="" />
+				<ul class="nav nav-tabs" style="margin-bottom: 10px;padding-left: 30px;">
+				    <li role="presentation"><a href="/user/details">我的资料</a></li>
+				    <li role="presentation" class="active"><a href="">修改头像</a></li>
+				</ul>
+				<form method="post" action="" enctype="multipart/form-data">
+					<div class="fileUpload btn btn-primary">
+						<span>选择图片</span>
+						<input type="file" name="file" id="demo1" class="upload" />
+					</div>
+				<span style="font-size: 12px; color: #d1d1d1">支持jpg、jpeg、gif、png格式的图片</span>
+				</form>
+				<div class="notice pull-left" style="width: 300px; height: 300px;vertical-align: 50%;text-align: center;background-image: url('/Public/images/upload4.png');background-repeat: no-repeat;background-position: 0 0">
+				</div>
+				<div class="boxImage pull-left" style="width: 300px; height: 300px;vertical-align: 50%;text-align: center; background-color: #dadada;display:none;">
+
+					<img id="jcrop-pic" class="pic img-responsive" src="{:IMAGES_PATH}3.png" style="vertical-align:middle; max-height: 300px;max-width: 300px;width: auto;height: auto;" />
+				</div>
+				<div id="preview-pane" class="pull-left">
+					<div class="preview-container">
+						<img src="{:IMAGES_PATH}3.png" class="jcrop-preview pic"/>
+					</div>
+				</div>
+				<div class="pull-left" style="margin-left: 32px;">
+					<form method="post" action="user/imgCrop" id="imgInfo">
+						<input type="hidden" id="imgSrc" name="imgSrc" />
+						<input type="hidden" id="x" name="x" />
+						<input type="hidden" id="y" name="y" />
+						<input type="hidden" id="w" name="w" />
+						<input type="hidden" id="h" name="h" />
+						<input type="hidden" id="pw" name="pw" />
+						<input type="hidden" id="ph" name="ph"/>
+						<input type="hidden" id="cw" name="cw"/>
+						<input type="hidden" id="ch" name="ch"/>
+						<input type="hidden" id="postStatus" name="postStatus"/>
+						<input type="hidden" name="picUserId" value="{$user.user_id}"/>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</block>

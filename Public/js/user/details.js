@@ -54,30 +54,36 @@ $(function(){
 		}
 	}
 	$.getJSON('/public/js/city.json',function(data){
+		popt = '<option value="-1">请选择</option>';
+		copt = '<option value="-1">请选择</option>';
 		for(i in data) {
-			if(data[i].province == province){
-				popt += '<option value="'+ data[i].province +'" selected="selected">'+ data[i].province +'</option>';
+			if(data[i].provinceId == province){
+				popt += '<option value="'+ data[i].provinceId +'" selected="selected">'+ data[i].province +'</option>';
 				for(j in data[i].citys){
-					if(data[i].citys[j].name == city){
-						copt += '<option value="'+ data[i].citys[j].name +'" selected="selected">'+ data[i].citys[j].name +'</option>' 
+					if(data[i].citys[j].cityId == city){
+						copt += '<option value="'+ data[i].citys[j].cityId +'" selected="selected">'+ data[i].citys[j].name +'</option>' 
 					}else{
-						copt += '<option value="'+ data[i].citys[j].name +'">'+ data[i].citys[j].name +'</option>' 
+						copt += '<option value="'+ data[i].citys[j].cityId +'">'+ data[i].citys[j].name +'</option>' 
 					}
-					
 				}
 			}else {
-				popt += '<option value="'+ data[i].province +'">'+ data[i].province +'</option>'; 
+				popt += '<option value="'+ data[i].provinceId +'">'+ data[i].province +'</option>'; 
 			}
 			proOption.html(popt);
 			cityOption.html(copt);
 		}
 		proOption.change(function(){
-			copt = '';
+			copt = '<option value="-1">请选择</option>';
 			for(i in data){
-				if(data[i].province == $(this).val()){
-					for(j in data[i].citys){
-						copt += '<option value="'+ data[i].citys[j].name +'">'+ data[i].citys[j].name +'</option>';
+				if(data[i].provinceId == $(this).val()){
+					if(data[i].provinceId == 0){
+						cityOption.hide();	
+					}else{
+						for(j in data[i].citys){
+							copt += '<option value="'+ data[i].citys[j].cityId +'">'+ data[i].citys[j].name +'</option>';
+						}
 					}
+					
 				}
 			}
 			cityOption.html(copt);
