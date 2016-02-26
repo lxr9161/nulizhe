@@ -189,10 +189,10 @@ class UserController extends Controller
 						$this->ajaxReturn(array('status'=>'error','errorType'=>'missImage','Info'=>'图片已丢失。'));
 					}
 				}else{
-					$this->ajaxReturn(array('status'=>'error','errorType'=>'RepeatUpload','Info'=>'请上传图片。'));
+					$this->ajaxReturn(array('status'=>'error','errorType'=>'RepeatUpload','Info'=>'请重新选择图片。'));
 				}
 			}else{
-				$this->ajaxReturn(array('status'=>'error','errorType'=>'NotUploaded','Info'=>'请上传图片。'));
+				$this->ajaxReturn(array('status'=>'error','errorType'=>'NotUploaded','Info'=>'请选择图片。'));
 			}
 		}else{
 			$this->error('请先登录','/login');
@@ -203,6 +203,28 @@ class UserController extends Controller
 	}
 	public function updateAvatar(){
 		$this->display('update_avatar');
+	}
+	public function saveAvatar(){
+		if(isLogin()){
+			if(IS_POST && !empty($_POST['imgSrc'])){
+				if($_POST['postStatus'] == 0){
+					$user = session('user_name') ? session('user_name') : cookie('user_name');
+					$avatar = cropImage($_POST['imgSrc'],$_POST['pw'],$_POST['ph'],$_POST['cw'],$_POST['ch'],$_POST['x'],$_POST['y'],100,100,'avatar',null,$user);
+					$avatarMini = cropImage($_POST['imgSrc'],$_POST['miniw'],$_POST['minih'],$_POST['cw'],$_POST['ch'],$_POST['x'],$_POST['y'],60,90,'avatar',null,$user.'-mini');
+					if($avatar == true && $avatarMini == true){
+						$this->ajaxReturn(array('status'=>'success','Info'=>'图片保存成功。','picInfo'=>$picData));
+					}else{
+						$this->ajaxReturn(array('status'=>'error','errorType'=>'missImage','Info'=>'图片已丢失。请重试'));
+					}
+				}else{
+					$this->ajaxReturn(array('status'=>'error','errorType'=>'RepeatUpload','Info'=>'请重新选择图片。'));
+				}
+			}else{
+				$this->ajaxReturn(array('status'=>'error','errorType'=>'NotUploaded','Info'=>'请选择图片。'));
+			}
+		}else{
+			$this->error('请先登录','/login');
+		}
 	}
 	private function _getPic($userId){
 		$field = 'pic_id,pic_path,pic_user,pic_user_id,pic_words';

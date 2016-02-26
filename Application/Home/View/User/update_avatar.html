@@ -3,11 +3,12 @@
 <block name="content">
 	<div class="container">
 		<div class="row">
-			<div class="" />
+			<div class="col-sm-12" />
 				<ul class="nav nav-tabs" style="margin-bottom: 10px;padding-left: 30px;">
 				    <li role="presentation"><a href="/user/details">我的资料</a></li>
 				    <li role="presentation" class="active"><a href="">修改头像</a></li>
 				</ul>
+				<div class="prompt"></div>
 				<form method="post" action="" enctype="multipart/form-data">
 					<div class="fileUpload btn btn-primary">
 						<span>选择图片</span>
@@ -21,13 +22,20 @@
 
 					<img id="jcrop-pic" class="pic img-responsive" src="{:IMAGES_PATH}3.png" style="vertical-align:middle; max-height: 300px;max-width: 300px;width: auto;height: auto;" />
 				</div>
-				<div id="preview-pane" class="pull-left">
-					<div class="preview-container">
-						<img src="{:IMAGES_PATH}3.png" class="jcrop-preview pic"/>
+				<div style="" class="pull-left">
+					<div id="preview-pane">
+						<div class="preview-container" style="width: 100px;height: 100px;">
+							<img src="{:IMAGES_PATH}3.png" class="jcrop-preview pic"/>
+						</div>
+					</div>
+					<div id="preview-mini" class="" style="display: inline-block;margin-top: 35px;">
+						<div class="preview-mini-box">
+							<img src="{:IMAGES_PATH}3.png" class="jcrop-preview-mini pic"/>
+						</div>
 					</div>
 				</div>
 				<div class="pull-left" style="margin-left: 32px;">
-					<form method="post" action="user/imgCrop" id="imgInfo">
+					<form method="post" action="/user/saveAvatar" id="imgInfo">
 						<input type="hidden" id="imgSrc" name="imgSrc" />
 						<input type="hidden" id="x" name="x" />
 						<input type="hidden" id="y" name="y" />
@@ -37,11 +45,20 @@
 						<input type="hidden" id="ph" name="ph"/>
 						<input type="hidden" id="cw" name="cw"/>
 						<input type="hidden" id="ch" name="ch"/>
+						<input type="hidden" id="miniw" name="miniw"/>
+              			<input type="hidden" id="minih" name="minih"/>
 						<input type="hidden" id="postStatus" name="postStatus"/>
 						<input type="hidden" name="picUserId" value="{$user.user_id}"/>
 					</form>
 				</div>
 			</div>
+        	<a href="javascript:;" class="btn btn-primary btn-save">保存</a>
 		</div>
 	</div>
+</block>
+<block name="script">
+	<script type="text/javascript" src="{:LIBS_PATH}jquery.form.js"></script>
+	<script type="text/javascript" src="{:LIBS_PATH}jquery.ajaxfileupload.js"></script>
+	<script type="text/javascript" src="{:LIBS_PATH}Jcrop/jquery.Jcrop.js"></script>
+	<script type="text/javascript" src="{:JS_PATH}user/update_avatar.js"></script>
 </block>
