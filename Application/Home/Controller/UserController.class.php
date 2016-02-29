@@ -19,7 +19,7 @@ class UserController extends Controller
     public function index(){
     	if(isLogin()){
     		$username = session('user_name') ? session('user_name') : cookie('user_name');
-    		$field = 'user_id,user_nickname,user_name,user_avater,user_sign,user_birthday,user_sex,user_description,user_signature,user_addr';
+    		$field = 'user_id,user_nickname,user_name,user_avatar,user_sign,user_birthday,user_sex,user_description,user_signature,user_province,user_city';
     		$where['user_name'] = $username;
     		$userCenter = $this->user->field($field)->where($where)->find();
     		$this->assign('user',$userCenter);
@@ -199,7 +199,41 @@ class UserController extends Controller
 		}
 	}
 	public function details(){
+		$field = 'user_nickname,user_signature,user_sign,user_sex,user_birthday,user_province,user_city,user_description';
+		$data = $this->user->where(array('user_name'=>get_now_user()))->find();
+		$birthday = explode('-', $data['user_birthday']);
+		$this->assign('birthday',$birthday);
+		$this->assign('data',$data);
 		$this->display('details');
+	}
+	public function save(){
+		if(isLogin()){
+			if(IS_POST){
+				$rule = array(
+						array('user_nickname','2,30','昵称长度需在2-30位之间',2,'length'),
+						array('user_signature','0,50','签名长度需小于50位',2,'length'),
+						array('user_description','0,150','简介长度需小于150位',2,'length')
+					);
+				if(!$this->user->validate($rule)->create()){
+					exit($this->user->getError());
+				}
+				$_POST['birthdayMonth'] < 10 ? $birthdayMonth = '0'.$_POST['birthdayMonth'] : $birthdayMonth = $_POST['birthdayMonth'];
+				$_POST['birthdayDay'] < 10 ? $birthdayDay = '0'.$_POST['birthdayDay'] : $birthdayDay = $_POST['birthdayDay'];
+				$birthday = $_POST['birthdayYear'].'-'.$birthdayMonth.'-'.$birthdayDay;
+				$data['user_nickname'] = $_POST['user_nickname'];
+				$data['user_signature'] = $_POST['user_signature'];
+				$data['user_sign'] = $_POST['user_sign'];
+				$data['user_sex'] = $_POST['user_sex'];
+				$data['user_province'] = $_POST['user_province'];
+				$data['user_city'] = $_POST['user_city'];
+				$data['user_description'] = $_POST['user_description'];
+				$data['user_birthday'] = $birthday;
+				$this->user->where(array('user_name'=>get_now_user()))->save($data) ? $this->success('保存成功','/user'): $this->error('保存失败');
+			}	
+		}else{
+			$this->error('请先登录.','/login');
+		}
+		
 	}
 	public function updateAvatar(){
 		$this->display('update_avatar');
@@ -209,10 +243,13 @@ class UserController extends Controller
 			if(IS_POST && !empty($_POST['imgSrc'])){
 				if($_POST['postStatus'] == 0){
 					$user = session('user_name') ? session('user_name') : cookie('user_name');
-					$avatar = cropImage($_POST['imgSrc'],$_POST['pw'],$_POST['ph'],$_POST['cw'],$_POST['ch'],$_POST['x'],$_POST['y'],100,100,'avatar',null,$user);
-					$avatarMini = cropImage($_POST['imgSrc'],$_POST['miniw'],$_POST['minih'],$_POST['cw'],$_POST['ch'],$_POST['x'],$_POST['y'],60,90,'avatar',null,$user.'-mini');
-					if($avatar == true && $avatarMini == true){
-						$this->ajaxReturn(array('status'=>'success','Info'=>'图片保存成功。','picInfo'=>$picData));
+					$avatar = crop_image($_POST['imgSrc'],$_POST['pw'],$_POST['ph'],$_POST['cw'],$_POST['ch'],$_POST['x'],$_POST['y'],100,100,'avatar',null,$user);
+					$avatarMini = crop_image($_POST['imgSrc'],$_POST['miniw'],$_POST['minih'],$_POST['cw'],$_POST['ch'],$_POST['x'],$_POST['y'],60,90,'avatar',null,$user.'-mini');
+					if($avatar != false && $avatarMini != false){
+						$d['user_avatar'] = $avatar;
+						$d['user_avatar_mini'] = $avatarMini;
+						$this->user->where(array('user_name'=>get_now_user()))->save($d) ? $this->ajaxReturn(array('status'=>'success','Info'=>'图片保存成功。','picInfo'=>$picData)) : $this->ajaxReturn(array('status'=>'error','errorType'=>'saveFail','Info'=>'图片保存失败，请重试！'));
+						
 					}else{
 						$this->ajaxReturn(array('status'=>'error','errorType'=>'missImage','Info'=>'图片已丢失。请重试'));
 					}

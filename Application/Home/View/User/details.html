@@ -8,37 +8,25 @@
 				  <li role="presentation" class="active"><a href="#">我的资料</a></li>
 				  <li role="presentation"><a href="/user/updateAvatar">修改头像</a></li>
 				</ul>
-				<form class="form-horizontal">
+				<form class="form-horizontal" method="post" action="/user/save">
 					<div class="form-group">
-						<label for="userNickname" class="col-sm-3 control-label">昵称</label>
+						<label for="nickname" class="col-sm-3 control-label">昵称</label>
 						<div class="col-sm-9">
-							<input type="text" class="form-control" id="userNickname" name="user_nickname" placeholder="昵称">
+							<input type="text" class="form-control" id="nickname" name="user_nickname" placeholder="昵称" value="{$data.user_nickname|default=''}">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="signature" class="col-sm-3 control-label">个性签名</label>
 						<div class="col-sm-9">
-							<textarea maxlength="50" class="form-control monitor-length" id="signature" style="resize: none;height: 80px"></textarea>
+							<textarea maxlength="50" class="form-control monitor-length" id="signature" name="user_signature" style="resize: none;height: 80px">{$data.user_signature|default=""}</textarea>
 							  <p class="show-length" data-length = "50" style="text-align: right;font-size: 12px; margin-top: 5px;margin-bottom: 0">（还能输入 <span class="words-length">50</span> 个字/50个字）</p>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="sign" class="col-sm-3 control-label">星座</label>
+						<label for="user_sign" class="col-sm-3 control-label">星座</label>
 						<div class="col-sm-3">
-							<select name="" class="form-control" id="sign">
-								<option value="0" selected="selected">请选择</option>
-								<option value="Aries">白羊座</option>
-								<option value="Taurus">金牛座</option>
-								<option value="Gemini">双子座</option>
-								<option value="Cancer">巨蟹座</option>
-								<option value="Leo">狮子座</option>
-								<option value="Virgo">处女座</option>
-								<option value="Libra">天秤座</option>
-								<option value="Scorpio">天蝎座</option>
-								<option value="Sagittarius">射手座</option>
-								<option value="Capricorn">摩羯座</option>
-								<option value="Aquarius">水瓶座</option>
-								<option value="Pisces">双鱼座</option>
+							<select name="user_sign" class="form-control" id="sign">
+								<option value="{$data.user_sign|default=''}" selected="selected">{$data.user_sign|default='请选择'}</option>
 							</select>
 						</div>
 					</div>
@@ -46,13 +34,13 @@
 						<div class="col-sm-3 control-label">性别</div>
 						<div class="col-sm-9">
 							<label class="radio-inline">
-								<input type="radio" name="sex" id="sexNull" value="0" checked="checked"> 保密
+								<input type="radio" name="user_sex" id="sexNull" value="0" checked="checked"> 保密
 							</label>
 							<label class="radio-inline">
-							    <input type="radio" name="sex" id="sexMan" value="1"> 男
+							    <input type="radio" name="user_sex" id="sexMan" value="1"> 男
 							</label>
 							<label class="radio-inline">
-							    <input type="radio" name="sex" id="sexWoman" value="2"> 女
+							    <input type="radio" name="user_sex" id="sexWoman" value="2"> 女
 							</label>
 						</div>
 					</div>
@@ -60,37 +48,37 @@
 						<label for="birthday" class="col-sm-3 control-label">生日</label>
 						<div class="col-sm-3">
 							<select name="birthdayYear" class="form-control" id="birthdayYear">
-								<option value="2008" selected="selected">2008</option>
+								<option value="{$birthday[0]}" selected="selected">{$birthday[0]}</option>
 							</select>
 						</div>
 						<div class="col-sm-3">
 							<select name="birthdayMonth" class="form-control" id="birthdayMonth">
-								<option value="8" selected="selected">08</option>
+								<option value="{$birthday[1]}" selected="selected">{$birthday[1]}</option>
 							</select>
 						</div>
 						<div class="col-sm-3">
 							<select name="birthdayDay" class="form-control" id="birthdayDay">
-								<option value="8" selected="selected">08</option>
+								<option value="{$birthday[2]}" selected="selected">{$birthday[2]}</option>
 							</select>
 						</div>
 					</div>	
 					<div class="form-group">
-						<label for="addr" class="col-sm-3 control-label">所在地</label>
+						<label for="province" class="col-sm-3 control-label">所在地</label>
 						<div class="col-sm-3">
-							<select name="province" class="form-control" id="province">
-								<option value="-1">请选择</option>
+							<select name="user_province" class="form-control" id="province">
+								<option value="{$data.user_province|default='请选择'}">{$data.user_province|default='请选择'}</option>
 							</select>
 						</div>
 						<div class="col-sm-3">
-							<select name="city" class="form-control" id="city">
-								<option value="-1">请选择</option>
+							<select name="user_city" class="form-control" id="city">
+								<option value="{$data.user_city|default='请选择'}">{$data.user_city|default='请选择'}</option>
 							</select>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="description" class="col-sm-3 control-label">个人简介</label>
 						<div class="col-sm-9">
-							<textarea maxlength="150" class="form-control monitor-length" id="description" name="description" style="resize: none;height: 180px;"></textarea>
+							<textarea maxlength="150" class="form-control monitor-length" id="description" name="user_description" style="resize: none;height: 180px;">{$data.user_description|default=''}</textarea>
 							  <p class="show-length" data-length = "150" style="text-align: right;font-size: 12px; margin-top: 5px;margin-bottom: 0">（还能输入 <span class="words-length">150</span> 个字/150个字）</p>
 						</div>
 					</div>

@@ -2,7 +2,7 @@
 	<div class="col-md-6" style="border: 1px solid #dadada;">
 		<div class="pull-left" style="position: relative">
 			<a href="#" style="margin: 5px 0px; display:inline-block;"><img src="{:IMAGES_PATH}3.png" style="height: 80px;weight: 80px;"></a>
-			<div class="" style="position: absolute;bottom: 5px;background-color: rgba(0,0,0,.3);width: 100%;text-align: center;"><a href="" style="color: #ffffff;">换头像</a></div>
+			<div class="" style="position: absolute;bottom: 5px;background-color: rgba(0,0,0,.3);width: 100%;text-align: center;"><a href="/user/updateAvatar" style="color: #ffffff;">换头像</a></div>
 		</div>
 		<div class="" style="margin-left: 100px;padding-top: 10px;">
 			<div class="row">
@@ -22,7 +22,7 @@
 					<p style="">年龄：{$user.user_birthday|default="未填"}</p>
 				</div>
 				<div class="col-xs-8" style="margin-bottom: 5px;">
-					所在地：{$user.user_addr|default="未填"}
+					所在地：{$user.user_province|default="未填"} {$user.user_city|default="未填"}
 				</div>
 				<div class="col-xs-8">
 					{$user.user_signature|default="未填"}

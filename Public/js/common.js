@@ -1,11 +1,18 @@
 $(function(){
-    $('.monitor-length').bind('input propertychange',function(){
+    $('.monitor-length').each(function(){
         var that = $(this),
             shwoWords = that.next('.show-length'),
             w = shwoWords.find('.words-length'),
             wordsLength = that.val().length,
             maxLength = shwoWords.data('length');
-            console.log(maxLength);
+            w.html(maxLength-wordsLength);
+    });
+    $('.monitor-length').bind('load input propertychange',function(){
+        var that = $(this),
+            shwoWords = that.next('.show-length'),
+            w = shwoWords.find('.words-length'),
+            wordsLength = that.val().length,
+            maxLength = shwoWords.data('length');
        if(wordsLength <= maxLength){
             w.html(maxLength-wordsLength);
         }

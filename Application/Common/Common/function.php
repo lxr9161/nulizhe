@@ -10,11 +10,16 @@ function isLogin(){
 function encryption(){
 	
 }
+
+function get_now_user(){
+	$user = session('user_name') ? session('user_name') : cookie('user_name');
+	return $user;
+}
 /*
 *正方形图片裁剪函数
 *
 */
-function cropImage($img,$pw,$ph,$cw,$ch,$x,$y,$targ,$qualigy,$dir,$childdir = null,$filename = null){
+function crop_image($img,$pw,$ph,$cw,$ch,$x,$y,$targ,$qualigy,$dir,$childdir = null,$filename = null){
 	$startX = (int)round($pw / $cw * $x);
 	$startY = (int)round($ph / $ch * $y);
 	//
@@ -65,7 +70,7 @@ function cropImage($img,$pw,$ph,$cw,$ch,$x,$y,$targ,$qualigy,$dir,$childdir = nu
 	imagedestroy($cropImg);
 	imagedestroy($img_r);
 	if(file_exists($d.$picName)){
-		return true;
+		return $d.$picName;
 	}else {
 		return false;
 	}
