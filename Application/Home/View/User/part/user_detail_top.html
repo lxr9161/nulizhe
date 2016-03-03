@@ -1,7 +1,14 @@
 <div class="row">
 	<div class="col-md-6" style="border: 1px solid #dadada;">
 		<div class="pull-left" style="position: relative">
-			<a href="#" style="margin: 5px 0px; display:inline-block;"><img src="{:IMAGES_PATH}3.png" style="height: 80px;weight: 80px;"></a>
+			<a href="#" style="margin: 5px 0px; display:inline-block;">
+			<empty name="user['user_avatar']">
+				<img src="{:IMAGES_PATH}3.png" style="height: 80px;weight: 80px;">
+			<else/>
+				<img src="{$user.user_avatar}" alt="{$user.user_name}" style="height: 80px;weight: 80px;"/>
+			</empty>
+
+			</a>
 			<div class="" style="position: absolute;bottom: 5px;background-color: rgba(0,0,0,.3);width: 100%;text-align: center;"><a href="/user/updateAvatar" style="color: #ffffff;">换头像</a></div>
 		</div>
 		<div class="" style="margin-left: 100px;padding-top: 10px;">

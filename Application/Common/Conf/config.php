@@ -19,6 +19,7 @@ return array(
 		'login' => 'Home/User/login',
 		'register' => 'Home/User/register',
 		'details' =>'Home/User/details',
+		
 	),
 	//数据库配置
 	/*'DB_TYPE' => 'pdo',

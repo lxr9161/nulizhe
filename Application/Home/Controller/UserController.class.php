@@ -19,7 +19,7 @@ class UserController extends Controller
     public function index(){
     	if(isLogin()){
     		$username = session('user_name') ? session('user_name') : cookie('user_name');
-    		$field = 'user_id,user_nickname,user_name,user_avatar,user_sign,user_birthday,user_sex,user_description,user_signature,user_province,user_city';
+    		$field = 'user_id,user_nickname,user_name,user_avatar,user_sign,user_birthday,user_sex,user_description,user_signature,user_province,user_city,user_avatar';
     		$where['user_name'] = $username;
     		$userCenter = $this->user->field($field)->where($where)->find();
     		$this->assign('user',$userCenter);
