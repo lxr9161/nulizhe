@@ -1,9 +1,12 @@
 <extend name="Public:base"/>
+<block name="css">
+	<link rel="stylesheet" type="text/css" href="{:LIBS_PATH}/DateTimePicker/DateTimePicker.min.css">
+</block>
 <block name="title">任务</block>
 <block name="content">
 	<div class="container">
 		<div class="">
-			<a href="javascript:;" class="btn btn-success" data-toggle="modal" data-target="#myModal">新建任务</a>
+			<a href="#" class="btn btn-success" data-toggle="modal" data-target="#myModal">新建任务</a>
 			<include file="task:part/create_task"/>
 		</div>
 		<div class="row">
@@ -78,5 +81,9 @@
 			</div>
 		</div>
 	</div>
-
+</block>
+<block name="script">
+	<script type="text/javascript" src="{:LIBS_PATH}DateTimePicker/DateTimePicker.js"></script>
+	<script type="text/javascript" src=".{:LIBS_PATH}DateTimePicker/i18n/DateTimePicker-i18n.js"></script>
+	<script type="text/javascript" src="{:JS_PATH}/task/task.js"></script>
 </block>

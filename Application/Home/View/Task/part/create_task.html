@@ -7,9 +7,58 @@
       </div>
       <div class="modal-body">
         <form class="" method="post">
-          <div class="form-group">
+          <div class="form-group"  style="margin-bottom: 0">
+            <label for="task_content">任务内容</label>
+            <div class="" style="padding-left: 28px;">
+            <textarea id="task_content" class="form-control" name="task_content" placeholder="任务内容" style="padding: 6px;max-width: 340px;resize: none;display: inline-block;"></textarea>
+            <label class="checkbox-inline" style="padding-bottom: 10px;padding-left: 28px;">
+              <input type="checkbox" name="task_is_remind" value="0"/>提醒
+            </label>
+            </div>
+          </div>
+          <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <h5 for="">任务性质</h5>
+              <div class="" style="padding-left: 28px;">
+                <label class="radio-inline">
+                    <input type="radio" name="task_property" value="0"/>一般
+                </label>
+                 <label class="radio-inline">
+                    <input type="radio" name="task_property" value="1"/>紧急
+                </label>
+                 <label class="radio-inline">
+                    <input type="radio" name="task_property" value="2"/>重要
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="">最后完成时间</label>
+              <div class="" style="padding-left: 28px;position: relative;">
+                <input type="type" name="task_end_time" class="form-control"  data-field="datetime" readonly/>
+                <div class="choose-time"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6" >
+
+              <div class=""><a href="javascript:;">添加奖惩规则>></a></div>
+              <div class="" style="display: none;">
+              <ul class="nav nav-tabs" style="text-align: center;">
+                <li class="active" style="width: 50%;"><a href="#">给自己的奖励</a></li>
+                <li class="" style="width: 50%;"><a href="#">惩罚</a></li>
+              </ul>
             
-            <textarea id="task_content" class="form-contorl" name="task_content" placeholder="任务内容" style="padding: 6px;"></textarea>
+            <div class="" style="position: relative;">
+              <div class="" style="position:absolute;top:0;left: 0;width: 100%;height: 80px;background-color: #dadada;padding: 5px;">
+                <textarea name="task_reward" class="form-control" ></textarea>
+              </div>
+              <div class="" style="display:none;position:absolute;top:0;left: 0;width: 100%;height: 80px;background-color: #666666">
+                 <textarea name="task_punish" class="form-control" ></textarea>
+              </div>
+            </div>
+          </div>
+          </div>
           </div>
         </form>
       </div>
