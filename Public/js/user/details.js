@@ -90,6 +90,7 @@ $(function(){
 					if(data[i].province == '其他'){
 						cityOption.hide();	
 					}else{
+						cityOption.show();
 						for(j in data[i].citys){
 							copt += '<option value="'+ data[i].citys[j].name +'">'+ data[i].citys[j].name +'</option>';
 						}

@@ -9,6 +9,9 @@ class TaskController extends Controller
 	public function index(){
 		$this->display();
 	}
+	public function addTask(){
+		var_dump($_POST);
+	}
 }
 
 
