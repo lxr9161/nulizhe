@@ -32,4 +32,21 @@ $(function(){
 		buttonsToDisplay: [ "SetButton", "ClearButton"],
 		clearButtonContent: "取消",
 	});
+	$('.js-more').click(function(){
+		$(this).parent().next('.more-info').slideToggle();
+	});
+	$('.btn-add').click(function(){
+		$(this).next().show();
+		$(this).hide();
+	});
+	$('.btn-send').click(function(){
+		$task_id = $(this).parents('.task-item').data('task');
+		$reward = $(this).prevAll('.reward-text').val();
+		/*$(this).parent().hide();
+		$(this).parent().prev().show();*/
+		$.get('/task/addReward',{reward:$reward,task_id:$task_id},function(data){
+			console.log(data);
+		})
+		
+	});
 });

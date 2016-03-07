@@ -10,9 +10,9 @@
           <div class="form-group"  style="margin-bottom: 0">
             <label for="task_content">任务内容</label>
             <div class="" style="padding-left: 28px;">
-            <textarea id="task_content" class="form-control" name="task_content" placeholder="任务内容" style="padding: 6px;max-width: 340px;resize: none;display: inline-block;"></textarea>
+            <textarea id="task_content" class="form-control monitor-length" name="task_content" placeholder="任务内容" style="padding: 6px;max-width: 340px;resize: none;display: inline-block;" ></textarea>
             <label class="checkbox-inline" style="padding-bottom: 10px;padding-left: 28px;">
-              <input type="checkbox" name="task_is_remind" value="  "/>提醒
+              <input type="checkbox" name="task_is_remind" value="1"/>提醒
             </label>
             </div>
           </div>
@@ -35,14 +35,14 @@
             <div class="form-group">
               <label for="">最后完成时间</label>
               <div class="" style="padding-left: 28px;position: relative;">
-                <input type="type" name="task_end_time" class="form-control"  data-field="datetime" readonly/>
+                <input type="type" name="task_limit_time" class="form-control"  data-field="datetime" readonly/>
                 <div class="choose-time"></div>
               </div>
             </div>
           </div>
           <div class="col-sm-6">
             <div class=""><a href="javascript:;" class="add-rules">添加奖惩规则>></a></div>
-              <div class="rules" style="display: none;">
+              <div class="rules" style="display: none;height: 126px;">
                 <div class="" style="position: relative;">
                 <ul class="nav nav-tabs" style="text-align: center;">
                   <li class="active" style="width: 50%;"><a href="#" class="js-reward">给自己的奖励</a></li>
@@ -51,16 +51,13 @@
             
                 <div class="" style="position: relative;">
                   <div class="reward-rule" style="position:absolute;top:0;left: 0;width: 100%;height: 80px;background-color: #dadada;padding: 5px;">
-                    <textarea name="task_reward" class="form-control monitor-length" style="resize: none;"></textarea>
-                     <p style="font-size: 12px;text-align: right;margin-top: 2px;">最多只能输入30个字哦</p>
+                    <textarea name="task_reward" class="form-control monitor-length" style="resize: none;" maxlength="30"></textarea>
+                     <p  class="show-length" data-length = "30" style="font-size: 12px;text-align: right;margin-top: 2px;">最多只能输入 (<span class="words-length">30</span>) 30个字哦</p>
                   </div>
                 <div class="punish-rule" style="display:none;position:absolute;top:0;left: 0;width: 100%;height: 80px;background-color: #dadada;padding: 5px;">
-                   <textarea name="task_punish" class="form-control" style="resize: none;"></textarea>
-                   <p style="font-size: 12px;text-align: right;margin-top: 2px;">最多只能输入30个字哦</p>
+                   <textarea name="task_punish" class="form-control monitor-length" style="resize: none;" maxlength="30"></textarea>
+                   <p class="show-length" data-length = "30" style="font-size: 12px;text-align: right;margin-top: 2px;">最多只能输入 (<span class="words-length">30</span>) 30个字哦</p>
                 </div>
-               
-                 
-              
                </div>
             </div>
           </div>

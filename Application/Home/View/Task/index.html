@@ -11,26 +11,56 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-3" style="height: 600px;">
-			<div class="" style="border: 1px solid #dadada;padding: 10px;">
+			<div class="" style="border: 1px solid #dadada;padding: 6px;">
 				<h4><b>还要做的事</b></h4>
-				<div class="" style="width: 98%;height: 80px; margin: 5px auto;background-color: black;">
-					
+				<volist name="toDo" id="vo">
+				<div class="task-item" style="position:relative;width: 99%;min-height: 80px; margin: 5px auto;border: 1px solid #dadada;" data-task="{$vo.task_id}">
+					<a href="javascript:;" style="background-color: red;display: block;width: 10px;float: left;position: absolute;top: 0;bottom: 0"></a>
+					<div class="" style="border: 1px solid #dadada;min-height: 50px;margin:3px 3px 3px 13px;padding: 5px;">
+						<p>{$vo.task_content}</p>
+					</div>
+					<div class="" style="margin: 3px 3px 3px 16px">
+						<p class="" style="font-size: 12px;margin-bottom: 0">最后完成时间:{$vo['task_limit_time']|default=''}</p>
+					</div>
+					<div class="" style="min-height: 30px;margin: 3px 3px 3px 13px; border: 1px solid #dadada;padding: 3px 10px 0;position: relative;">
+						<div class="task-acion" style="margin-bottom: 5px;">
+							<a href="javascript:;" class="js-more" style="font-size: 12px;">查看更多</a>
+							<a href="javascript:;" class="btn btn-default btn-xs pull-right">开始任务</a>
+						</div>
+						<div class="more-info" style="display:none;border-top: 1px solid #dadada;clear: right;">
+							<div class="">
+								<h5><b>奖励</b></h5>
+								<div class="">
+									<empty name="vo['task_reward']">
+										<a href="javascript:;" style="font-size: 12px;" class="btn-add">添加</a>
+										<div class="reward" style="display: none;position: relative;">
+											<textarea class="monitor-length reward-text"  style="resize: none;width: 100%;padding: 3px;" maxlength="30" placeholder="奖励是什么"></textarea>
+											  <p class="show-length" data-length = "30" style="font-size: 12px;text-align: right;margin-top: 2px;">最多只能输入 (<span class="words-length">30</span>) 30个字哦</p>
+											  <button type="button" class="btn btn-default btn-xs btn-send" style="position: absolute;left: 0;top: 52px;">保存</button>
+										</div>
+									<else/>
+										<p>{$vo.task_reward}</p>
+									</empty>
+								</div>
+							</div>
+							<div class="">
+								<h5><b>惩罚</b></h5>
+								<empty name="vo['task_punish']">
+									<a href="javascript:;" style="font-size: 12px;" class="btn-add">添加</a>
+									<div class="punish" style="display: none;">
+										<textarea class="monitor-length"  style="resize: none;width: 100%;padding: 3px;" maxlength="30" placeholder="惩罚是什么"></textarea>
+										  <p class="show-length" data-length = "30" style="font-size: 12px;text-align: right;margin-top: 2px;">最多只能输入 (<span class="words-length">30</span>) 30个字哦</p>
+									</div>
+								<else/>
+									<p>{$vo.task_punish}</p>
+								</empty>
+
+							</div>
+						</div>
+
+					</div>
 				</div>
-				<div class="" style="width: 98%;height: 80px; margin: 5px auto;background-color: black;">
-					
-				</div>
-				<div class="" style="width: 98%;height: 80px; margin: 5px auto;background-color: black;">
-					
-				</div>
-				<div class="" style="width: 98%;height: 80px; margin: 5px auto;background-color: black;">
-					
-				</div>
-				<div class="" style="width: 98%;height: 80px; margin: 5px auto;background-color: black;">
-					
-				</div>
-				<div class="" style="width: 98%;height: 80px; margin: 5px auto;background-color: black;">
-					
-				</div>
+				</volist>
 			</div>
 			</div>
 			<div class="col-sm-3" style="height: 600px;">

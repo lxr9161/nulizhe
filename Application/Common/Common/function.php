@@ -15,6 +15,14 @@ function get_now_user(){
 	$user = session('user_name') ? session('user_name') : cookie('user_name');
 	return $user;
 }
+/**获取当前用户信息**/
+function get_user_info(){
+	$user = session('user_name') ? session('user_name') : cookie('user_name');
+	$d = M('user');
+	$field = 'user_id,user_name,user_nickname,user_avatar,user_avatar_mini';
+	$userInfo = $d->field($field)->where(array('user_name'=>$user))->find();
+	return $userInfo;
+}
 /*
 *正方形图片裁剪函数
 *
