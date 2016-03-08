@@ -83,8 +83,12 @@ $(function(){
 			}
 		});
 	});
-	$('.task_property').on('click',function(){
+	//$('[data-toggle="popover"]').popover();
+	$('.task_property').popover({
+		
+	});
+	/*$('.task_property').on('click',function(){
 		//console.log($(this).attr('class'));
 
-	});
+	});*/
 });
