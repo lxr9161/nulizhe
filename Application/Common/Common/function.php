@@ -23,6 +23,10 @@ function get_user_info(){
 	$userInfo = $d->field($field)->where(array('user_name'=>$user))->find();
 	return $userInfo;
 }
+/**ajax提交后返回的数据**/
+function ajax_return_info($status,$info,$type=null){
+	return array('status'=>$status,'Info'=>$info,'type'=>$type);
+}
 /*
 *正方形图片裁剪函数
 *

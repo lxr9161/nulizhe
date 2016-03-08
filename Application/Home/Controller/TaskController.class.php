@@ -14,7 +14,11 @@ class TaskController extends Controller
 	public function index(){
 		$field = 'task_id,task_user_id,task_status,task_limit_time,task_property,task_content,task_reward,task_punish';
 		$toDo = $this->task->field($field)->where('task_status=0')->order('task_property DESC,task_create_time DESC')->select();
+		$doing = $this->task->field($field)->where('task_status=1')->order('task_property DESC,task_start_time DESC')->select();
+		$done = $this->task->field($field)->where('task_status=2')->order('task_property DESC,task_close_time DESC')->select();
 		$this->assign('toDo',$toDo);
+		$this->assign('doing',$doing);
+		$this->assign('done',$done);
 		$this->display();
 	}
 	public function addTask(){
@@ -39,17 +43,47 @@ class TaskController extends Controller
 			$this->error('用户不存在','/user/logout');
 		}	
 	}
-	public function addReward(){
-		$reward = I('get.reward','');
+	public function addRules(){
+		$content = I('get.content','');
 		$id = I('get.task_id',0,'intval');
-		if(!empty($reward) && !empty($id)){
-			$this->task->where('task_id='.$id)->save(array('task_reward'=>$reward)) ? $this->ajaxReturn(array('status'=>'success','Info'=>'保存成功')) : $this->ajaxReturn(array('status'=>'error','Info'=>'保存失败，请重试'));
+		$rule = I('get.rule','');
+		if(!empty($content) && !empty($id)){
+			switch ($rule) {
+				case 'reward':
+					$this->task->where('task_id='.$id)->save(array('task_reward'=>$content)) ? $this->ajaxReturn(array('status'=>'success','Info'=>'保存成功')) : $this->ajaxReturn(array('status'=>'error','Info'=>'保存失败，请重试'));
+					break;
+				case 'punish':
+					$this->task->where('task_id='.$id)->save(array('task_punish'=>$content)) ? $this->ajaxReturn(array('status'=>'success','Info'=>'保存成功')) : $this->ajaxReturn(array('status'=>'error','Info'=>'保存失败，请重试'));
+					break;
+				default:
+					$this->ajaxReturn(array('status'=>'error','Info'=>'添加失败'));
+					break;
+			}
 		}else{
 			$this->ajaxReturn(array('status'=>'error','Info'=>'添加失败'));
 		}
+		
 	}
 	public function addPunish(){
 
+	}
+	public function startTask(){
+		$id = I('get.id',0,'intval');
+		if(!empty($id)){
+			$startTime = date('Y-m-d H:i:s',time());
+			$this->task->where('task_id='.$id)->save(array('task_status'=>1,'task_start_time'=>$startTime)) ? $this->ajaxReturn(array('status'=>'success','Info'=>'开始干活咯')) : $this->ajaxReturn(array('status'=>'error','Info'=>'错误，请重试'));
+		}else{
+			$this->ajaxReturn(array('status'=>'error','Info'=>'错误，请重试'));
+		}
+	}
+	public function finishTask(){
+		$id = I('get.id',0,'intval');
+		if(!empty($id)){
+			$finishTime = date('Y-m-d H:i:s',time());
+			$this->task->where('task_id='.$id)->save(array('task_status'=>2,'task_close_time'=>$finishTime)) ? $this->ajaxReturn(ajax_return_info('success','很棒哦，任务完成了')) : $this->ajaxReturn(ajax_return_info('error','错误，请重试'));
+		}else{
+			$this->ajaxReturn(ajax_return_info('error','错误，请重试'));
+		}
 	}
 }
 

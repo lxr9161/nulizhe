@@ -40,13 +40,51 @@ $(function(){
 		$(this).hide();
 	});
 	$('.btn-send').click(function(){
-		$task_id = $(this).parents('.task-item').data('task');
-		$reward = $(this).prevAll('.reward-text').val();
-		/*$(this).parent().hide();
-		$(this).parent().prev().show();*/
-		$.get('/task/addReward',{reward:$reward,task_id:$task_id},function(data){
-			console.log(data);
+		var that = $(this),
+			$task_id = that.parents('.task-item').data('task'),
+			$content = that.prevAll('.rule-text').val(),
+			rule = that.data('rule');
+		$.get('/task/addRules',{content:$content,task_id:$task_id,rule:rule},function(data){
+			if(data.status == 'success'){
+				that.parents('.rules-container').html('<p>'+ $content +'</p>');
+				alert(data.Info);
+			}else{
+				alert(data.Info);
+			}	
 		})
-		
+	});
+	$('.start-task').on('click',function(){
+		var that = $(this),
+			id = that.parents('.task-item').data('task');
+			
+		$.get('/task/startTask',{id:id},function(data){
+			if(data.status == 'success'){
+				that.parents('.task-item').prependTo('.doing');
+				that.parent().append('<a href="javascript:;" class="btn btn-default btn-xs pull-right finish-task">任务完成</a>');
+				that.remove();	
+			}else{
+				alert(data.Info);
+			}
+			
+		});
+	});
+	
+	$('.task-acion').on('click','.finish-task',function(){
+		var that = $(this),
+			id = that.parents('.task-item').data('task');
+				
+		$.get('/task/finishTask',{id:id},function(data){
+			if(data.status == 'success') {
+				that.parents('.task-item').prependTo('.done');
+				that.parent().append('<a href="javascript:;" class="btn btn-default btn-xs pull-right end-task disabled">已完成</a>');
+				that.remove();
+			}else{
+				alert(data.Info);
+			}
+		});
+	});
+	$('.task_property').on('click',function(){
+		//console.log($(this).attr('class'));
+
 	});
 });

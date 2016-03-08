@@ -71,3 +71,12 @@
 	opacity: 0;
 	filter: alpha(opacity=0);
 }
+.task-important {
+	background-color: red;
+}
+.task-urgent {
+	background-color: #f0ad4e;
+}
+.task-normal {
+	background-color : #d3d7d4;
+}
