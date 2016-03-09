@@ -80,3 +80,9 @@
 .task-normal {
 	background-color : #d3d7d4;
 }
+.js-update {
+	display: none;
+}
+.task-item:hover .js-update{
+	display: inline-block;
+}

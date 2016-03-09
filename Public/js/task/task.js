@@ -24,14 +24,14 @@ $(function(){
 			$('.punish-rule').show();
 		
 	});
-	$(".choose-time").DateTimePicker({
-				
+	$(".choose-time").DateTimePicker({		
 		language:'zh-CN',
 		defaultDate: new Date(),
 		animationDuration:200,
 		buttonsToDisplay: [ "SetButton", "ClearButton"],
 		clearButtonContent: "取消",
 	});
+	
 	$('.js-more').click(function(){
 		$(this).parent().next('.more-info').slideToggle();
 	});
@@ -84,11 +84,12 @@ $(function(){
 		});
 	});
 	//$('[data-toggle="popover"]').popover();
-	$('.task_property').popover({
+	$('.js-update').on('click',function(){
 		
+		var id = $(this).parents('.task-item').data('task');
+		$.get('/task/getTask',{id:id},function(data){
+			console.log(data);
+			$('#update-task').modal('toggle');
+		});
 	});
-	/*$('.task_property').on('click',function(){
-		//console.log($(this).attr('class'));
-
-	});*/
 });

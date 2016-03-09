@@ -85,6 +85,15 @@ class TaskController extends Controller
 			$this->ajaxReturn(ajax_return_info('error','错误，请重试'));
 		}
 	}
+	public function getTask(){
+		$id = I('get.id',0,'intval');
+		if(!empty($id)){
+			$task = $this->task->field('task_id,task_property,task_is_remind,task_content,task_reward,task_punish,task_limit_time')->where('task_id='.$id)->find();
+			$this->ajaxReturn($task);
+		}else{
+			$this->ajaxReturn(array('error'=>'错误'));
+		}
+	}
 }
 
 
