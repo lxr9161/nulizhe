@@ -1,6 +1,11 @@
 .no-padding {
 	padding: 0;
 }
+.show-length {
+	font-size: 12px;
+	text-align: right;
+	margin-top: 2px;
+}
 .prompt-icon {
 	font-size: 18px;
 	vertical-align: -3px;
@@ -70,6 +75,69 @@
 	cursor: pointer;
 	opacity: 0;
 	filter: alpha(opacity=0);
+}
+.task-item {
+	position:relative;
+	width: 99%;
+	min-height: 80px; 
+	margin: 5px auto;
+	border: 1px solid #dadada;
+}
+.task_property {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	display: block;
+	float: left;
+	width: 10px;
+}
+.task-border {
+	min-height: 50px;
+	margin:3px 3px 3px 13px;
+	padding: 5px;
+	border: 1px solid #dadada;
+}
+.task-limit-time {
+	margin: 3px 3px 3px 16px
+}
+.task-limit-time > p {
+	margin-bottom: 0;
+	font-size: 12px;
+}
+.task-more {
+	position: relative;
+	min-height: 30px;
+	padding: 3px 10px 0;
+	margin: 3px 3px 3px 13px; 
+	border: 1px solid #dadada;
+}
+.task-more .task-action {
+	margin-bottom: 5px;
+}
+.task-more a {
+	font-size: 12px;
+}
+.task-more .task-action .js-update {
+	margin-left: 6px;
+}
+.task-more .more-info {
+	display:none;
+	clear: both;
+	border-top: 1px solid #dadada;
+}
+.task-more .rules-box {
+	position: relative;
+	display: none;
+}
+.task-more .rule-text {
+	width: 100%;
+	padding: 3px;
+	resize: none;
+}
+.task-more .btn-send {
+	position: absolute;
+	left: 0;
+	top: 52px;
 }
 .task-important {
 	background-color: red;

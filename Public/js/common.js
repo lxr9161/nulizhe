@@ -5,7 +5,7 @@ $(function(){
             w = shwoWords.find('.words-length'),
             wordsLength = that.val().length,
             maxLength = shwoWords.data('length');
-            w.html(maxLength-wordsLength);
+        w.html(maxLength-wordsLength);
     });
     $('.monitor-length').bind('load input propertychange',function(){
         var that = $(this),
@@ -13,7 +13,7 @@ $(function(){
             w = shwoWords.find('.words-length'),
             wordsLength = that.val().length,
             maxLength = shwoWords.data('length');
-       if(wordsLength <= maxLength){
+        if(wordsLength <= maxLength){
             w.html(maxLength-wordsLength);
         }
         if(wordsLength > maxLength){

@@ -22,7 +22,7 @@ class TaskController extends Controller
 		$this->display();
 	}
 	public function addTask(){
-		if(get_user_info()){
+		/*if(get_user_info() && IS_POST){
 			$task = $this->task;
 			$rules = array(
 					array('task_content','require','任务不能为空'),
@@ -34,14 +34,19 @@ class TaskController extends Controller
 			$data['task_create_time'] = date('Y-m-d H:i:s');
 			$data['task_user_id'] = get_user_info()['user_id'];
 			if(!$task->validate($rules)->create()){
-				exit($task->getError());
+				$this->ajaxReturn(ajax_return_info('error',$task->getError()));
 			}else{
-				$task->add($data) ? $this->success('添加成功','/task') : $this->error('添加失败');
+				
+				$result = $task->add($data);
+				if($result){
+					$this->ajaxReturn(array('status'=>'success','currentId'=> $result,'Info'=>'新建成功'));
+				}else{
+					$this->ajaxReturn(ajax_return_info('error','创建失败，请重试'));
+				}
 			}
 		}else{
-
-			$this->error('用户不存在','/user/logout');
-		}	
+			$this->ajaxReturn(array('status'=>'login','/user/logout'));
+		}*/
 	}
 	public function addRules(){
 		$content = I('get.content','');

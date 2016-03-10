@@ -1,16 +1,16 @@
-<div class="modal fade" id="update-task" tabindex="-1" role="dialog" aria-labelledby="task-action">
+<div class="modal fade" id="update-task" tabindex="-1" role="dialog" aria-labelledby="update-task">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="task-action">新建任务</h4>
+        <h4 class="modal-title" id="update-task">新建任务</h4>
       </div>
       <div class="modal-body">
-        <form class="add-task" method="post" action="/task/addTask">
+        <form class="update-task" method="post" action="/task/updateTask">
           <div class="form-group"  style="margin-bottom: 0">
-            <label for="task_content">任务内容</label>
+            <label for="update-content">任务内容</label>
             <div class="" style="padding-left: 28px;">
-              <textarea id="task_content" class="form-control monitor-length" name="task_content" placeholder="任务内容" style="padding: 6px;max-width: 340px;resize: none;display: inline-block;" ></textarea>
+              <textarea id="update-content" class="form-control monitor-length" name="task_content" placeholder="任务内容" style="padding: 6px;max-width: 340px;resize: none;display: inline-block;" ></textarea>
               <label class="checkbox-inline" style="padding-bottom: 10px;padding-left: 28px;">
               <input type="checkbox" name="task_is_remind" value="1"/>提醒
               </label>
