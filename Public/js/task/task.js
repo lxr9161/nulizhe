@@ -1,55 +1,56 @@
 $(function(){
-	/*$('.nihao').click(function(){
-		$("#myModal").modal('show');
-	});*/
 	$('.add-rules').click(function(){
 		$('.rules').toggle();
 	});
-	$('.btn-submit').click(function(){
-		$('.add-task').submit();
+	$('.btn-task-a').click(function(){
+		$('.add-task')[0].reset();
+		$('.update-task').hide().attr('disabled','disabled');
+		$('.new-task').show().attr('disabled',false);
 	});
-	
 	$('.new-task').on('click',function(){
-
 		var serialize = $('.add-task').serializeArray();
 		$.post('task/addTask',serialize,function(data){
-			var arr = new Array(),
-				propertyClass;
-			for(i in serialize){
-				arr[serialize[i].name] = serialize[i].value;
-			}
-			console.log(arr);
-			switch(arr['task_property']){
-				case '0':
-					propertyClass = 'task-normal';
-					break;
-				case '1':
-					propertyClass = 'task-urgent';
-					break;
-				case '2':
-					propertyClass = 'task-important';
-					break;
-			}
-			var id = 25;
-			var item = $('<div class="task-item" data-task="'+ id +'">'),
-				property = $('<a href="javascript" class="task-property">'),
-				border = $('<div class="task-border">'),
-				limit = $('<div class="task-limit-time">'),
-				more = $('<div class="task-more">');
-			property.addClass(propertyClass);
-			border.append('<p class="task-content">'+ arr['task_content'] +'</p>');
-			if(arr['task_limit_time'] != ''){
-				limit.append('<p>最后完成时间:'+ arr['task_limit_time'] +'</p>');
-			}
-			console.log(item.append(property).append(border).append(limit));
 			switch(data.status){
 				case 'success':
-					/*$('.add-task')[0].reset();
-					$('#myModal').modal('hide');*/
+					var arr = new Array(),
+						propertyClass;
+					$('.add-task')[0].reset();
+					$('#myModal').modal('hide');
 					for(i in serialize){
 						arr[serialize[i].name] = serialize[i].value;
 					}
-
+					switch(arr['task_property']){
+						case '0':
+							propertyClass = 'task-normal';
+							break;
+						case '1':
+							propertyClass = 'task-urgent';
+							break;
+						case '2':
+							propertyClass = 'task-important';
+							break;
+					}
+					var r = ruleContent('reward','奖励','奖励是什么',arr['task_reward']);
+					var p = ruleContent('punish','惩罚','惩罚是什么',arr['task_punish']);
+					var a = '<a href="javascript:;" class="js-more">查看更多</a> ';
+						a += '<a href="javascript:;" class="js-update action-display"><sapn class="glyphicon glyphicon-edit"></sapn> 修改</a> '
+						a += '<a href="javascript:;" class="js-delete action-display"><span class="glyphicon glyphicon-trash"></span> 删除</a> ';
+						a += '<a href="javascript:;" class="btn btn-default btn-xs pull-right start-task">开始任务</a>';
+					var item = $('<div class="task-item" data-task="'+ data.currentId +'">'),
+						property = $('<a href="javascript:;" class="task-property">'),
+						border = $('<div class="task-border">'),
+						limit = $('<div class="task-limit-time">'),
+						more = $('<div class="task-more">'),
+						action = $('<div class="task-action">').html(a),
+						moreInfo = $('<div class="more-info">').html(r+p);
+						taskMore = more.append(action).append(moreInfo);
+					property.addClass(propertyClass).attr('data-property',data.currentId);
+					border.append('<p class="task-content">'+ arr['task_content'] +'</p>');
+					if(arr['task_limit_time'] != ''){
+						limit.append('<p>最后完成时间:'+ arr['task_limit_time'] +'</p>');
+					}
+					var task = item.append(property).append(border).append(limit).append(taskMore);
+					$('.to-do').prepend(task);
 					break;
 				case 'error':
 					alert(data.Info);
@@ -60,6 +61,12 @@ $(function(){
 			}
 		})
 	});
+	$('.update-task').on('click',function(){
+		var id = $(this).attr('data-task');
+		$.post('/task/updateTask',$('.add-task').serializeArray(),function(data){
+			console.log(data);
+		});
+	});
 	$('.js-reward').click(function(){
 			$(this).parent().addClass('active');
 			$('.js-punish').parent().removeClass('active');
@@ -68,12 +75,10 @@ $(function(){
 		
 	});
 	$('.js-punish').click(function(){
-		
 			$(this).parent().addClass('active');
 			$('.js-reward').parent().removeClass('active');
 			$('.reward-rule').hide();
 			$('.punish-rule').show();
-		
 	});
 	$(".choose-time").DateTimePicker({		
 		language:'zh-CN',
@@ -82,15 +87,14 @@ $(function(){
 		buttonsToDisplay: [ "SetButton", "ClearButton"],
 		clearButtonContent: "取消",
 	});
-	
-	$('.js-more').click(function(){
+	$('.task-list').on('click','.js-more',function(){
 		$(this).parent().next('.more-info').slideToggle();
 	});
-	$('.btn-add').click(function(){
+	$('.task-list').on('click','.btn-add',function(){
 		$(this).next().show();
 		$(this).hide();
 	});
-	$('.btn-send').click(function(){
+	$('.task-list').on('click','.btn-send',function(){
 		var that = $(this),
 			$task_id = that.parents('.task-item').data('task'),
 			$content = that.prevAll('.rule-text').val(),
@@ -103,11 +107,10 @@ $(function(){
 				alert(data.Info);
 			}	
 		})
-	});
-	$('.start-task').on('click',function(){
+	})
+	$('.to-do').on('click','.start-task',function(){
 		var that = $(this),
 			id = that.parents('.task-item').data('task');
-			
 		$.get('/task/startTask',{id:id},function(data){
 			if(data.status == 'success'){
 				that.parents('.task-item').prependTo('.doing');
@@ -119,11 +122,9 @@ $(function(){
 			
 		});
 	});
-	
-	$('.task-action').on('click','.finish-task',function(){
+	$('.doing').on('click','.finish-task',function(){
 		var that = $(this),
-			id = that.parents('.task-item').data('task');
-				
+			id = that.parents('.task-item').data('task');	
 		$.get('/task/finishTask',{id:id},function(data){
 			if(data.status == 'success') {
 				that.parents('.task-item').prependTo('.done');
@@ -134,14 +135,47 @@ $(function(){
 			}
 		});
 	});
-
-	//$('[data-toggle="popover"]').popover();
-	$('.js-update').on('click',function(){
-		
-		/*var id = $(this).parents('.task-item').data('task');
+	$('.task-list').on('click','.js-update',function(){
+		var id = $(this).parents('.task-item').data('task');
 		$.get('/task/getTask',{id:id},function(data){
 			console.log(data);
-			$('#update-task').modal('toggle');
-		});*/
+			if(data.status == 'success'){
+				$('#myModal').modal('show');
+				$('.new-task').hide().attr('disabled','disabled');
+				$('.update-task').show().attr('disabled',false);
+				$('#task-content').val(data.Info.task_content);
+				data.Info.task_is_remind != 0 ? $('#remind').attr('checked','checked') : $('#remind').attr('checked',false);
+				if(data.Info.task_limit_time != '0000-00-00 00:00:00')$('#limit-time').val(data.Info.task_limit_time);
+				$('input[name="task_property"]').each(function(){
+					if($(this).val() == data.Info.task_property){
+						$(this).attr('checked','checked');
+					}else{
+						$(this).attr('checked',false);
+					}
+				});
+				$('#task-reward').val(data.Info.task_reward);
+				$('#task-punish').val(data.Info.task_punish);
+				$('.update-task').attr('data-task',data.Info.task_id);
+			}else{
+				alert(data.Info);
+			}
+		});
 	});
+	function ruleContent(type,title,placeholder,content){
+		var c = '<div>';
+			c += '<h5><b>'+ title +'</b></h5>';
+			c += '<div class="rules-container">';
+		if(content == ''){
+			c += '<a href="javascript:;" class="btn-add">添加</a>';
+			c += '<div class="rules-box reward">';
+			c += '<textarea class="monitor-length rule-text" maxlength="30" placeholder="'+ placeholder +'"></textarea>';
+			c += '<p class="show-length" data-length = "30">最多只能输入 (<span class="words-length">30</span>) 30个字哦</p>';
+			c += '<button type="button" class="btn btn-default btn-xs btn-send" data-rule="'+ type +'">保存</button>';
+			c += '</div>';
+		}else{
+			c += '<p>'+ content +'</p>';
+		}
+			c += '</div></div>';
+		return c;
+	}
 });

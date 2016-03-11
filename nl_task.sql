@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2016-03-03 09:37:07
+-- Generation Time: 2016-03-11 10:28:12
 -- 服务器版本： 5.6.17
 -- PHP Version: 5.5.12
 
@@ -30,14 +30,18 @@ CREATE TABLE IF NOT EXISTS `nl_task` (
   `task_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '任务id',
   `task_user_id` int(10) unsigned NOT NULL COMMENT '用户id',
   `task_create_time` datetime NOT NULL COMMENT '任务发布时间',
+  `task_start_time` datetime DEFAULT '0000-00-00 00:00:00' COMMENT '任务开始时间',
   `task_status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '任务状态',
-  `task_end_time` datetime DEFAULT NULL COMMENT '设置任务完成时间',
-  `task_tab` tinyint(1) NOT NULL DEFAULT '0' COMMENT '任务标记',
+  `task_limit_time` datetime DEFAULT NULL COMMENT '设置任务完成时间',
+  `task_property` tinyint(1) NOT NULL DEFAULT '0' COMMENT '任务属性',
   `task_is_remind` tinyint(1) DEFAULT '0' COMMENT '任务是否需要提醒',
   `task_content` varchar(255) NOT NULL COMMENT '任务内容',
-  `task_details` text COMMENT '任务详情',
+  `task_reward` varchar(255) DEFAULT NULL COMMENT '任务奖励',
+  `task_punish` varchar(255) DEFAULT NULL COMMENT '任务惩罚',
+  `task_close_time` datetime DEFAULT NULL COMMENT '任务完成时间',
+  `task_update_time` datetime DEFAULT NULL COMMENT '任务修改时间',
   PRIMARY KEY (`task_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=46 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

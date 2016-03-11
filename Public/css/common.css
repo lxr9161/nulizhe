@@ -83,7 +83,7 @@
 	margin: 5px auto;
 	border: 1px solid #dadada;
 }
-.task_property {
+.task-property {
 	position: absolute;
 	top: 0;
 	bottom: 0;
@@ -118,7 +118,7 @@
 	font-size: 12px;
 }
 .task-more .task-action .js-update {
-	margin-left: 6px;
+	margin-left: 3px;
 }
 .task-more .more-info {
 	display:none;
@@ -148,9 +148,9 @@
 .task-normal {
 	background-color : #d3d7d4;
 }
-.js-update {
+.action-display {
 	display: none;
 }
-.task-item:hover .js-update{
+.task-item:hover .action-display{
 	display: inline-block;
 }

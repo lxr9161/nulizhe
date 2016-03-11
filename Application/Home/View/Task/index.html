@@ -6,9 +6,9 @@
 <block name="content">
 <div class="container">
 	<div class="">
-		<a href="#" class="btn btn-success" data-toggle="modal" data-target="#myModal">新建任务</a>
+		<a href="#" class="btn btn-success btn-task-a" data-toggle="modal" data-target="#myModal">新建任务</a>
 	</div>
-	<div class="row">
+	<div class="row task-list">
 		<div class="col-sm-4 col-md-3" style="min-height: 600px;">
 			<div class="" style="border: 1px solid #dadada;padding: 6px;">
 				<h4><b>需要做的事</b></h4>
@@ -17,13 +17,13 @@
 						<div class="task-item" data-task="{$vo.task_id}">
 							<switch name="vo['task_property']">
 								<case value="0">
-									<a href="javascript:;" class="task_property task-normal" data-property="{vo['task_property']}"></a>
+									<a href="javascript:;" class="task-property task-normal" data-property="{vo['task_property']}"></a>
 								</case>
 								<case value="1">
-									<a href="javascript:;" class="task_property task-urgent"  data-property="{vo['task_property']}"></a>
+									<a href="javascript:;" class="task-property task-urgent"  data-property="{vo['task_property']}"></a>
 								</case>
 								<case value="2">
-									<a href="javascript:;" class="task_property task-important"  data-property="{vo['task_property']}"></a>
+									<a href="javascript:;" class="task-property task-important"  data-property="{vo['task_property']}"></a>
 								</case>
 							</switch>
 							<div class="task-border">
@@ -40,7 +40,8 @@
 							<div class="task-more">
 								<div class="task-action">
 									<a href="javascript:;" class="js-more">查看更多</a>
-									<a href="javascript:;" class="js-update"><sapn class="glyphicon glyphicon-edit"></sapn> 修改</a>
+									<a href="javascript:;" class="js-update action-display"><sapn class="glyphicon glyphicon-edit"></sapn> 修改</a>
+									<a href="javascritp:;" class="js-delete action-display"><span class="glyphicon glyphicon-trash"></span> 删除</a>
 									<a href="javascript:;" class="btn btn-default btn-xs pull-right start-task">开始任务</a>
 								</div>
 								<div class="more-info">
@@ -110,7 +111,7 @@
 								</if>
 							</div>
 							<div class="" style="min-height: 30px;margin: 3px 3px 3px 13px; border: 1px solid #dadada;padding: 3px 10px 0;position: relative;">
-								<div class="task-acion" style="margin-bottom: 5px;">
+								<div class="task-action" style="margin-bottom: 5px;">
 									<a href="javascript:;" class="js-more" style="font-size: 12px;">查看更多</a>
 									<a href="javascript:;" class="js-update" style="font-size: 12px;margin-left: 6px;"><sapn class="glyphicon glyphicon-edit"></sapn> 修改</a>
 									<a href="javascript:;" class="btn btn-default btn-xs pull-right finish-task">任务完成</a>
@@ -223,3 +224,5 @@
 	<script type="text/javascript" src=".{:LIBS_PATH}DateTimePicker/i18n/DateTimePicker-i18n.js"></script>
 	<script type="text/javascript" src="{:JS_PATH}/task/task.js"></script>
 </block>
+
+

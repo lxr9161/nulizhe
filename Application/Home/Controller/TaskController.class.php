@@ -13,16 +13,16 @@ class TaskController extends Controller
 	}
 	public function index(){
 		$field = 'task_id,task_user_id,task_status,task_limit_time,task_property,task_content,task_reward,task_punish';
-		$toDo = $this->task->field($field)->where('task_status=0')->order('task_property DESC,task_create_time DESC')->select();
-		$doing = $this->task->field($field)->where('task_status=1')->order('task_property DESC,task_start_time DESC')->select();
-		$done = $this->task->field($field)->where('task_status=2')->order('task_property DESC,task_close_time DESC')->select();
+		$toDo = $this->task->field($field)->where(array('task_status'=>0,'task_user_id'=>get_user_info()['user_id']))->order('task_property DESC,task_create_time DESC')->select();
+		$doing = $this->task->field($field)->where(array('task_status'=>1,'task_user_id'=>get_user_info()['user_id']))->order('task_property DESC,task_start_time DESC')->select();
+		$done = $this->task->field($field)->where(array('task_status'=>2,'task_user_id'=>get_user_info()['user_id']))->order('task_property DESC,task_close_time DESC')->select();
 		$this->assign('toDo',$toDo);
 		$this->assign('doing',$doing);
 		$this->assign('done',$done);
 		$this->display();
 	}
 	public function addTask(){
-		/*if(get_user_info() && IS_POST){
+		if(get_user_info() && IS_POST){
 			$task = $this->task;
 			$rules = array(
 					array('task_content','require','任务不能为空'),
@@ -46,7 +46,7 @@ class TaskController extends Controller
 			}
 		}else{
 			$this->ajaxReturn(array('status'=>'login','/user/logout'));
-		}*/
+		}
 	}
 	public function addRules(){
 		$content = I('get.content','');
@@ -68,6 +68,9 @@ class TaskController extends Controller
 			$this->ajaxReturn(array('status'=>'error','Info'=>'添加失败'));
 		}
 		
+	}
+	public function updateTask(){
+		$this->ajaxReturn($_POST);
 	}
 	public function addPunish(){
 
@@ -94,9 +97,9 @@ class TaskController extends Controller
 		$id = I('get.id',0,'intval');
 		if(!empty($id)){
 			$task = $this->task->field('task_id,task_property,task_is_remind,task_content,task_reward,task_punish,task_limit_time')->where('task_id='.$id)->find();
-			$this->ajaxReturn($task);
+			$this->ajaxReturn(ajax_return_info('success',$task));
 		}else{
-			$this->ajaxReturn(array('error'=>'错误'));
+			$this->ajaxReturn(ajax_return_info('error','任务不存在'));
 		}
 	}
 }
