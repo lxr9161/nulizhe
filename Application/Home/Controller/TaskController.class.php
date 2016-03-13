@@ -70,7 +70,7 @@ class TaskController extends Controller
 		
 	}
 	public function updateTask(){
-		$this->ajaxReturn($_POST);
+		$this->ajaxReturn($this->task->create());
 	}
 	public function addPunish(){
 

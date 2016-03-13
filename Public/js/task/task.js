@@ -4,6 +4,7 @@ $(function(){
 	});
 	$('.btn-task-a').click(function(){
 		$('.add-task')[0].reset();
+		//$('.remind').attr('checked',false);
 		$('.update-task').hide().attr('disabled','disabled');
 		$('.new-task').show().attr('disabled',false);
 	});
@@ -63,7 +64,19 @@ $(function(){
 	});
 	$('.update-task').on('click',function(){
 		var id = $(this).attr('data-task');
-		$.post('/task/updateTask',$('.add-task').serializeArray(),function(data){
+		//console.log($('.add-task').serializeArray());
+		serializeArray = $('.add-task').serializeArray();
+		var data = {};
+			for(i in serializeArray){
+					data[serializeArray[i].name] = serializeArray[i].value;
+			}
+			data['task_id'] = id;
+		var postDate = {
+				id: id,
+				data: data
+			}
+		//console.log(postDate);
+		$.post('/task/updateTask',data,function(data){
 			console.log(data);
 		});
 	});
@@ -138,24 +151,45 @@ $(function(){
 	$('.task-list').on('click','.js-update',function(){
 		var id = $(this).parents('.task-item').data('task');
 		$.get('/task/getTask',{id:id},function(data){
-			console.log(data);
 			if(data.status == 'success'){
-				$('#myModal').modal('show');
+				//console.log(data);
+				
 				$('.new-task').hide().attr('disabled','disabled');
 				$('.update-task').show().attr('disabled',false);
 				$('#task-content').val(data.Info.task_content);
 				data.Info.task_is_remind != 0 ? $('#remind').attr('checked','checked') : $('#remind').attr('checked',false);
 				if(data.Info.task_limit_time != '0000-00-00 00:00:00')$('#limit-time').val(data.Info.task_limit_time);
-				$('input[name="task_property"]').each(function(){
+				/*$('input[name=task_property]').each(function(){
 					if($(this).val() == data.Info.task_property){
+
 						$(this).attr('checked','checked');
 					}else{
-						$(this).attr('checked',false);
+						$(this).attr("checked",false);
 					}
-				});
+				});*/
+				
+				switch (data.Info.task_property){
+					case "1": 
+						$('input[name="task_property"]').eq(0).removeAttr('checked');
+						$('input[name="task_property"]').eq(2).removeAttr('checked');
+						$('input[name="task_property"]').eq(1).attr('checked','checked');
+						break;
+					case "2":
+						$('input[name="task_property"]').eq(0).removeAttr('checked');
+						$('input[name="task_property"]').eq(1).removeAttr('checked');
+						$('input[name="task_property"]').eq(2).attr('checked','checked');
+						break;
+					default:
+						$('input[name="task_property"]').eq(1).removeAttr('checked');
+						$('input[name="task_property"]').eq(2).removeAttr('checked');
+						$('input[name="task_property"]').eq(0).attr('checked',true);
+						break;
+				}
+				console.log($('input[name=task_property]'));
 				$('#task-reward').val(data.Info.task_reward);
 				$('#task-punish').val(data.Info.task_punish);
 				$('.update-task').attr('data-task',data.Info.task_id);
+				$('#myModal').modal('show');
 			}else{
 				alert(data.Info);
 			}
