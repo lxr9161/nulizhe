@@ -7,7 +7,8 @@ $(function(){
             maxLength = shwoWords.data('length');
         w.html(maxLength-wordsLength);
     });
-    $('.monitor-length').bind('load input propertychange',function(){
+    $('body').on('input propertychange','.monitor-length',function(){
+       
         var that = $(this),
             shwoWords = that.next('.show-length'),
             w = shwoWords.find('.words-length'),
@@ -21,5 +22,6 @@ $(function(){
             that.val(c);
             w.html(0);
         }
-    });
+    })
 })
+

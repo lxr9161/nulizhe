@@ -1,14 +1,23 @@
 $(function(){
-	$('.add-rules').click(function(){
+	$('.task-model').on('click','.add-rules',function(){
 		$('.rules').toggle();
 	});
 	$('.btn-task-a').click(function(){
-		$('.add-task')[0].reset();
-		//$('.remind').attr('checked',false);
-		$('.update-task').hide().attr('disabled','disabled');
-		$('.new-task').show().attr('disabled',false);
+		$.get('task/ajax_get_task_model',function(data){
+			$('.task-model').html(data.tpl);
+			$('.update-task').hide().attr('disabled','disabled');
+			$('.new-task').show().attr('disabled',false);
+			$(".choose-time").DateTimePicker({		
+				language:'zh-CN',
+				defaultDate: new Date(),
+				animationDuration:200,
+				buttonsToDisplay: [ "SetButton", "ClearButton"],
+				clearButtonContent: "取消",
+			});
+			$('#myModal').modal('show');
+		});
 	});
-	$('.new-task').on('click',function(){
+	$('.task-model').on('click','.new-task',function(){
 		var serialize = $('.add-task').serializeArray();
 		$.post('task/addTask',serialize,function(data){
 			switch(data.status){
@@ -62,44 +71,36 @@ $(function(){
 			}
 		})
 	});
-	$('.update-task').on('click',function(){
+	$('.task-model').on('click','.update-task',function(){
 		var id = $(this).attr('data-task');
-		//console.log($('.add-task').serializeArray());
 		serializeArray = $('.add-task').serializeArray();
 		var data = {};
 			for(i in serializeArray){
 					data[serializeArray[i].name] = serializeArray[i].value;
 			}
 			data['task_id'] = id;
-		var postDate = {
-				id: id,
-				data: data
-			}
-		//console.log(postDate);
 		$.post('/task/updateTask',data,function(data){
-			console.log(data);
+			if(data.status == 'success'){
+				window.location.reload();
+			}else{
+				alert(data.Info);
+			}
 		});
 	});
-	$('.js-reward').click(function(){
-			$(this).parent().addClass('active');
-			$('.js-punish').parent().removeClass('active');
-			$('.punish-rule').hide();
-			$('.reward-rule').show();
-		
+	$('.task-model').on('click','.js-reward',function(){
+		$(this).parent().addClass('active');
+		$('.js-punish').parent().removeClass('active');
+		$('.punish-rule').hide();
+		$('.reward-rule').show();
 	});
-	$('.js-punish').click(function(){
-			$(this).parent().addClass('active');
-			$('.js-reward').parent().removeClass('active');
-			$('.reward-rule').hide();
-			$('.punish-rule').show();
+
+	$('.task-model').on('click','.js-punish',function(){
+		$(this).parent().addClass('active');
+		$('.js-reward').parent().removeClass('active');
+		$('.reward-rule').hide();
+		$('.punish-rule').show();
 	});
-	$(".choose-time").DateTimePicker({		
-		language:'zh-CN',
-		defaultDate: new Date(),
-		animationDuration:200,
-		buttonsToDisplay: [ "SetButton", "ClearButton"],
-		clearButtonContent: "取消",
-	});
+	
 	$('.task-list').on('click','.js-more',function(){
 		$(this).parent().next('.more-info').slideToggle();
 	});
@@ -128,7 +129,7 @@ $(function(){
 			if(data.status == 'success'){
 				that.parents('.task-item').prependTo('.doing');
 				that.parent().append('<a href="javascript:;" class="btn btn-default btn-xs pull-right finish-task">任务完成</a>');
-				that.remove();	
+				that.remove();
 			}else{
 				alert(data.Info);
 			}
@@ -142,6 +143,7 @@ $(function(){
 			if(data.status == 'success') {
 				that.parents('.task-item').prependTo('.done');
 				that.parent().append('<a href="javascript:;" class="btn btn-default btn-xs pull-right end-task disabled">已完成</a>');
+				that.parent().children('.js-update').remove();
 				that.remove();
 			}else{
 				alert(data.Info);
@@ -150,49 +152,39 @@ $(function(){
 	});
 	$('.task-list').on('click','.js-update',function(){
 		var id = $(this).parents('.task-item').data('task');
-		$.get('/task/getTask',{id:id},function(data){
-			if(data.status == 'success'){
-				//console.log(data);
-				
-				$('.new-task').hide().attr('disabled','disabled');
-				$('.update-task').show().attr('disabled',false);
-				$('#task-content').val(data.Info.task_content);
-				data.Info.task_is_remind != 0 ? $('#remind').attr('checked','checked') : $('#remind').attr('checked',false);
-				if(data.Info.task_limit_time != '0000-00-00 00:00:00')$('#limit-time').val(data.Info.task_limit_time);
-				/*$('input[name=task_property]').each(function(){
-					if($(this).val() == data.Info.task_property){
-
-						$(this).attr('checked','checked');
-					}else{
-						$(this).attr("checked",false);
-					}
-				});*/
-				
-				switch (data.Info.task_property){
-					case "1": 
-						$('input[name="task_property"]').eq(0).removeAttr('checked');
-						$('input[name="task_property"]').eq(2).removeAttr('checked');
-						$('input[name="task_property"]').eq(1).attr('checked','checked');
-						break;
-					case "2":
-						$('input[name="task_property"]').eq(0).removeAttr('checked');
-						$('input[name="task_property"]').eq(1).removeAttr('checked');
-						$('input[name="task_property"]').eq(2).attr('checked','checked');
-						break;
-					default:
-						$('input[name="task_property"]').eq(1).removeAttr('checked');
-						$('input[name="task_property"]').eq(2).removeAttr('checked');
-						$('input[name="task_property"]').eq(0).attr('checked',true);
-						break;
+		$.get('/task/ajax_get_task_model',{id:id},function(data){
+			$('.task-model').html(data.tpl);
+			$('.new-task').hide().attr('disabled','disabled');
+			$('.update-task').show().attr('disabled',false);
+			$('#task-content').val(data.data.task_content);
+			data.data.task_is_remind != 0 ? $('#remind').attr('checked','checked') : $('#remind').attr('checked',false);
+			if(data.data.task_limit_time != '0000-00-00 00:00:00')$('#limit-time').val(data.data.task_limit_time);
+			$('input[name=task_property]').each(function(){
+				if($(this).val() == data.data.task_property){
+					$(this).attr('checked','checked');
+				}else{
+					$(this).attr("checked",false);
 				}
-				console.log($('input[name=task_property]'));
-				$('#task-reward').val(data.Info.task_reward);
-				$('#task-punish').val(data.Info.task_punish);
-				$('.update-task').attr('data-task',data.Info.task_id);
-				$('#myModal').modal('show');
-			}else{
-				alert(data.Info);
-			}
+			});
+			$('#task-reward').val(data.data.task_reward);
+			$('#task-punish').val(data.data.task_punish);
+			$('.update-task').attr('data-task',data.data.task_id);
+			$(".choose-time").DateTimePicker({		
+				language:'zh-CN',
+				defaultDate: new Date(),
+				animationDuration:200,
+				buttonsToDisplay: [ "SetButton", "ClearButton"],
+				clearButtonContent: "取消",
+			});
+		  	$('.monitor-length').each(function(){
+		        var that = $(this),
+		            shwoWords = that.next('.show-length'),
+		            w = shwoWords.find('.words-length'),
+		            wordsLength = that.val().length,
+		            maxLength = shwoWords.data('length');
+	        	w.html(maxLength-wordsLength);
+	   		});
+			$('#myModal').modal('show');
 		});
 	});
 	function ruleContent(type,title,placeholder,content){

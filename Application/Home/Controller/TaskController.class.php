@@ -70,10 +70,28 @@ class TaskController extends Controller
 		
 	}
 	public function updateTask(){
-		$this->ajaxReturn($this->task->create());
+		$id = I('post.task_id',0,'intval');
+		if(!empty($id)){
+			$data['task_content'] = I('post.task_content');
+			$data['task_property'] = I('post.task_property');
+			$data['task_is_remind'] = I('post.task_is_remind');
+			$data['task_reward'] = I('post.task_reward');
+			$data['task_punish'] = I('post.task_punish');
+			$data['task_limit_time'] = I('post.task_limit_time');
+			$this->task->where('task_id='.$id)->save($data) ? $this->ajaxReturn(ajax_return_info('success','修改成功')) : $this->ajaxReturn(ajax_return_info('error','数据并没有改变，修改失败'));
+		}else{
+			$this->ajaxReturn(ajax_return_info('error','错误'));
+		}
 	}
-	public function addPunish(){
-
+	public function ajax_get_task_model(){
+		$id = I('get.id',0,'intval');
+		$t = $this->fetch('Task:part:create_task');
+		if(empty($id)){
+			$this->ajaxReturn(array('tpl'=>$t,'data'=>null),'JSON',JSON_UNESCAPED_UNICODE);
+		}else{
+			$d = $this->task->where('task_id='.$id)->find();
+			$this->ajaxReturn(array('tpl'=>$t,'data'=>$d));
+		}
 	}
 	public function startTask(){
 		$id = I('get.id',0,'intval');
