@@ -83,6 +83,14 @@ class TaskController extends Controller
 			$this->ajaxReturn(ajax_return_info('error','错误'));
 		}
 	}
+	public function deleteTask(){
+		$id = I('get.id',0,'intval');
+		if(!empty($id)){
+			$this->task->where('task_id='.$id)->delete() ? $this->ajaxReturn(ajax_return_info('success','删除成功')) : $this->ajaxReturn(ajax_return_info('error','删除失败'));
+		}else{
+			$this->ajaxReturn(ajax_return_info('error','对不起，出错了，请重试'));
+		}
+	}
 	public function ajax_get_task_model(){
 		$id = I('get.id',0,'intval');
 		$t = $this->fetch('Task:part:create_task');

@@ -100,7 +100,6 @@ $(function(){
 		$('.reward-rule').hide();
 		$('.punish-rule').show();
 	});
-	
 	$('.task-list').on('click','.js-more',function(){
 		$(this).parent().next('.more-info').slideToggle();
 	});
@@ -186,6 +185,17 @@ $(function(){
 	   		});
 			$('#myModal').modal('show');
 		});
+	});
+
+	$('.task-item').on('click','.js-delete',function(){
+		if(confirm('是否删除')){
+			var i = $(this).parents('.task-item').data('task');
+			$.get('task/deleteTask',{id:i},function(){
+				
+			},'JSON');
+		}
+		
+
 	});
 	function ruleContent(type,title,placeholder,content){
 		var c = '<div>';
