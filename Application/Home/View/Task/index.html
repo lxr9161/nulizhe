@@ -6,24 +6,37 @@
 <block name="content">
 <div class="container">
 	<div class="">
-		<a href="javascript:;" class="btn btn-success btn-task-a">新建任务</a>
+		<ul class="nav nav-tabs task-nav" style="margin-left: 1px;">
+			<li class="" style="width: 33.33333%;text-align: center;"><a href="javascript:;" class="nav-to-do ">还要做的事</a></li>
+			<li class="active" style="width: 33.33333%;text-align: center;"><a href="javascript:;" class="nav-doing">正在做的事</a></li>
+			<li class="" style="width: 33.33333%;text-align: center;"><a href="javascript:;" class="nav-done">已完成的事</a></li>
+		</ul>
 	</div>
 	<div class="row task-list">
-		<div class="col-sm-4 col-md-3" style="min-height: 600px;">
-			<div class="" style="border: 1px solid #dadada;padding: 6px;">
+		<div class="col-sm-4 col-md-3 tab tab-to-do task-hidden">
+			<div class="task-pool" style="">
 				<h4><b>需要做的事</b></h4>
+				<div class="make-task">
+					<a href="javascript:;" class="btn btn-success btn-task-a">新建任务</a>
+				</div>
+				<div class="task-sort">
+					<span style="">排序：</span>
+					<a href="javascript:;" class="btn btn-default btn-xs sort-normal" >一般</a>
+					<a href="javascript:;" class="btn btn-warning btn-xs sort-urgent" >紧急</a>
+					<a href="javascript:;" class="btn btn-danger btn-xs sort-important">重要</a>
+				</div>
 				<div class="to-do" >
 					<volist name="toDo" id="vo">
-						<div class="task-item" data-task="{$vo.task_id}">
+						<div class="task-item" data-task="{$vo.task_id}" data-task-sort="{$vo.task_property}">
 							<switch name="vo['task_property']">
 								<case value="0">
-									<a href="javascript:;" class="task-property task-normal" data-property="{vo['task_property']}"></a>
+									<a href="javascript:;" class="task-property task-normal" data-property="{$vo['task_property']}"></a>
 								</case>
 								<case value="1">
-									<a href="javascript:;" class="task-property task-urgent"  data-property="{vo['task_property']}"></a>
+									<a href="javascript:;" class="task-property task-urgent"  data-property="{$vo['task_property']}"></a>
 								</case>
 								<case value="2">
-									<a href="javascript:;" class="task-property task-important"  data-property="{vo['task_property']}"></a>
+									<a href="javascript:;" class="task-property task-important"  data-property="{$vo['task_property']}"></a>
 								</case>
 							</switch>
 							<div class="task-border">
@@ -82,9 +95,15 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-4 col-md-3" style="min-height: 600px;">
-			<div class=""style="border: 1px solid #dadada;padding: 6px;">
+		<div class="col-sm-4 col-md-3 tab tab-doing">
+			<div class="task-pool">
 				<h4><b>正在做的事</b></h4>
+				<div class="task-sort">
+					<span style="">排序：</span>
+					<a href="javascript:;" class="btn btn-default btn-xs" >一般</a>
+					<a href="javascript:;" class="btn btn-warning btn-xs" >紧急</a>
+					<a href="javascript:;" class="btn btn-danger btn-xs">重要</a>
+				</div>
 				<div class="doing">
 					<volist name="doing" id="vo">
 						<div class="task-item" data-task="{$vo.task_id}">
@@ -156,9 +175,15 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-4 col-md-3" style="min-height: 600px;">
-			<div class=""  style="border: 1px solid #dadada;padding: 6px;">
+		<div class="col-sm-4 col-md-3 tab tab-done task-hidden">
+			<div class="task-pool">
 				<h4><b>已完成的事</b></h4>
+				<div class="task-sort">
+					<span style="">排序：</span>
+					<a href="javascript:;" class="btn btn-default btn-xs" >一般</a>
+					<a href="javascript:;" class="btn btn-warning btn-xs" >紧急</a>
+					<a href="javascript:;" class="btn btn-danger btn-xs">重要</a>
+				</div>
 				<div class="done">
 					<volist name="done" id="vo">
 						<div class="task-item" data-task="{$vo.task_id}">

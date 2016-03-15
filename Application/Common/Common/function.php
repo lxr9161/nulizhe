@@ -42,16 +42,20 @@ function crop_image($img,$pw,$ph,$cw,$ch,$x,$y,$targ,$qualigy,$dir,$childdir = n
 	}
 	if(is_dir('./Uploads/'.$dir)){
 		$d = './Uploads/'.$dir.'/';
+		$path = '/Uploads/'.$dir.'/';
 	}else{
 		mkdir('./Uploads/'.$dir);
 		$d = './Uploads/'.$dir.'/';
+		$path = '/Uploads/'.$dir.'/';
 	}
 	if(isset($childdir) && !empty($childdir)){
 		if(is_dir('./Uploads/'.$dir.'/'.$childdir)){
 			$d = './Uploads/'.$dir.'/'.$childdir.'/';
+			$path = '/Uploads/'.$dir.'/'.$childdir.'/';
 		}else{
 			mkdir('./Uploads/'.$dir.'/'.$childdir);
 			$d = './Uploads/'.$dir.'/'.$childdir.'/';
+			$path = '/Uploads/'.$dir.'/'.$childdir.'/';
 
 		}
 	}
@@ -82,7 +86,7 @@ function crop_image($img,$pw,$ph,$cw,$ch,$x,$y,$targ,$qualigy,$dir,$childdir = n
 	imagedestroy($cropImg);
 	imagedestroy($img_r);
 	if(file_exists($d.$picName)){
-		return $d.$picName;
+		return $path.$picName;
 	}else {
 		return false;
 	}

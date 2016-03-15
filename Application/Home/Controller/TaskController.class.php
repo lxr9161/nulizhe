@@ -13,9 +13,9 @@ class TaskController extends Controller
 	}
 	public function index(){
 		$field = 'task_id,task_user_id,task_status,task_limit_time,task_property,task_content,task_reward,task_punish';
-		$toDo = $this->task->field($field)->where(array('task_status'=>0,'task_user_id'=>get_user_info()['user_id']))->order('task_property DESC,task_create_time DESC')->select();
-		$doing = $this->task->field($field)->where(array('task_status'=>1,'task_user_id'=>get_user_info()['user_id']))->order('task_property DESC,task_start_time DESC')->select();
-		$done = $this->task->field($field)->where(array('task_status'=>2,'task_user_id'=>get_user_info()['user_id']))->order('task_property DESC,task_close_time DESC')->select();
+		$toDo = $this->task->field($field)->where(array('task_status'=>0,'task_user_id'=>get_user_info()['user_id']))->order('task_create_time DESC')->select();
+		$doing = $this->task->field($field)->where(array('task_status'=>1,'task_user_id'=>get_user_info()['user_id']))->order('task_start_time DESC')->select();
+		$done = $this->task->field($field)->where(array('task_status'=>2,'task_user_id'=>get_user_info()['user_id']))->order('task_close_time DESC')->select();
 		$this->assign('toDo',$toDo);
 		$this->assign('doing',$doing);
 		$this->assign('done',$done);

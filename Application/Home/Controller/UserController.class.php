@@ -179,7 +179,7 @@ class UserController extends Controller
 					imagedestroy($img_r);
 					if(file_exists('./Uploads/pic/'.$user.'/'.$picName)) {
 						$picData['pic_create_date'] = date('Y-m-d H:i:s',time());
-						$picData['pic_path'] = './Uploads/pic/'.$user.'/'.$picName;
+						$picData['pic_path'] = '/Uploads/pic/'.$user.'/'.$picName;
 						$picData['pic_user'] = $user;
 						$picData['pic_words'] = $_POST['picWords'];
 						$picData['pic_user_id'] = $_POST['picUserId'];

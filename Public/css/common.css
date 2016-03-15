@@ -76,12 +76,33 @@
 	opacity: 0;
 	filter: alpha(opacity=0);
 }
+.task-pool {
+	position:relative;
+	min-height: 600px;
+	padding: 6px;
+	border: 1px solid #dadada;
+}
+.make-task {
+	position: absolute;
+	top:5px;
+	right: 5px;
+}
 .task-item {
 	position:relative;
 	width: 99%;
 	min-height: 80px; 
 	margin: 5px auto;
 	border: 1px solid #dadada;
+}
+.task-sort {
+	padding: 0 5px;
+}
+.task-sort span {
+	font-size: 12px;
+	font-weight: bold;
+}
+.task-sort a{
+	margin-right: 5px;
 }
 .task-property {
 	position: absolute;
@@ -153,4 +174,28 @@
 }
 .task-item:hover .action-display{
 	display: inline-block;
+}
+.task-nav {
+	display: none;
+}
+@media(max-width: 767px){
+	.task-hidden {
+		display: none;
+	}
+	.task-show {
+		display: block;
+	}
+	.task-nav {
+		display: block;
+	}
+	.task-list {
+		position: relative;
+	}
+	.tab {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+	}
+	
 }

@@ -15,6 +15,8 @@ $(function(){
 				clearButtonContent: "取消",
 			});
 			$('#myModal').modal('show');
+		}).fail(function(){
+			alert('对不起，系统出错。')
 		});
 	});
 	$('.task-model').on('click','.new-task',function(){
@@ -46,7 +48,7 @@ $(function(){
 						a += '<a href="javascript:;" class="js-update action-display"><sapn class="glyphicon glyphicon-edit"></sapn> 修改</a> '
 						a += '<a href="javascript:;" class="js-delete action-display"><span class="glyphicon glyphicon-trash"></span> 删除</a> ';
 						a += '<a href="javascript:;" class="btn btn-default btn-xs pull-right start-task">开始任务</a>';
-					var item = $('<div class="task-item" data-task="'+ data.currentId +'">'),
+					var item = $('<div class="task-item" data-task="'+ data.currentId +'" data-task-sort="'+ arr['task_property'] +'">'),
 						property = $('<a href="javascript:;" class="task-property">'),
 						border = $('<div class="task-border">'),
 						limit = $('<div class="task-limit-time">'),
@@ -54,7 +56,7 @@ $(function(){
 						action = $('<div class="task-action">').html(a),
 						moreInfo = $('<div class="more-info">').html(r+p);
 						taskMore = more.append(action).append(moreInfo);
-					property.addClass(propertyClass).attr('data-property',data.currentId);
+					property.addClass(propertyClass).attr('data-property',arr['task_property']);
 					border.append('<p class="task-content">'+ arr['task_content'] +'</p>');
 					if(arr['task_limit_time'] != ''){
 						limit.append('<p>最后完成时间:'+ arr['task_limit_time'] +'</p>');
@@ -93,7 +95,6 @@ $(function(){
 		$('.punish-rule').hide();
 		$('.reward-rule').show();
 	});
-
 	$('.task-model').on('click','.js-punish',function(){
 		$(this).parent().addClass('active');
 		$('.js-reward').parent().removeClass('active');
@@ -186,16 +187,21 @@ $(function(){
 			$('#myModal').modal('show');
 		});
 	});
-
 	$('.task-item').on('click','.js-delete',function(){
+		var that = $(this);
 		if(confirm('是否删除')){
-			var i = $(this).parents('.task-item').data('task');
-			$.get('task/deleteTask',{id:i},function(){
-				
-			},'JSON');
+			var i = that.parents('.task-item').data('task');
+			$.get('task/deleteTask',{id:i},function(data){
+				if(data.status == 'success'){
+					that.parents('.task-item').remove();
+					alert(data.Info);
+				}else{
+					alert(data.Info);
+				}
+			},'JSON').fail(function(){
+				alert('对不起，系统出错。');
+			});
 		}
-		
-
 	});
 	function ruleContent(type,title,placeholder,content){
 		var c = '<div>';
@@ -214,4 +220,39 @@ $(function(){
 			c += '</div></div>';
 		return c;
 	}
+	$('.nav-to-do').click(function(){
+		$('.tab-to-do').removeClass('task-hidden').addClass('task-show');
+		$('.tab-doing').removeClass('task-show').addClass('task-hidden');
+		$('.tab-done').removeClass('task-show').addClass('task-hidden');
+		$('.task-nav').children().removeClass('active');
+		$(this).parent().addClass('active');
+	});
+	$('.nav-doing').click(function(){
+		$('.tab-to-do').removeClass('task-show').addClass('task-hidden');
+		$('.tab-doing').removeClass('task-hidden').addClass('task-show');
+		$('.tab-done').removeClass('task-show').addClass('task-hidden');
+		$('.task-nav').children().removeClass('active');
+		$(this).parent().addClass('active');
+	});
+	$('.nav-done').click(function(){
+		$('.tab-to-do').removeClass('task-show').addClass('task-hidden');
+		$('.tab-doing').removeClass('task-show').addClass('task-hidden');
+		$('.tab-done').removeClass('task-hidden').addClass('task-show');
+		$('.task-nav').children().removeClass('active');
+		$(this).parent().addClass('active');
+	});	
+	$('.sort-normal').click(function(){
+		var i = $(this).parent().next().children().toArray();
+		console.log($(this).parent().next().children().toArray());
+		i.sort(function(o,p){
+			var a,b;
+			if(typeof o === 'object' && typeof p === 'object' && o && p){
+				a = o.attr('data-task-sort');
+				b = p.attr('data-task-sort');
+			}else{
+				throw('error')
+			}
+		});
+	});
+
 });
