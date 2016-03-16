@@ -39,7 +39,7 @@ class TaskController extends Controller
 				
 				$result = $task->add($data);
 				if($result){
-					$this->ajaxReturn(array('status'=>'success','currentId'=> $result,'Info'=>'新建成功'));
+					$this->ajaxReturn(array('status'=>'success','currentId'=> $result,'Info'=>'新建成功','time'=>$data['task_create_time']));
 				}else{
 					$this->ajaxReturn(ajax_return_info('error','创建失败，请重试'));
 				}

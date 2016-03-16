@@ -98,6 +98,7 @@ $(function(){
         $('#miniw').val(miniw);
         $('#minih').val(minih);
         $.post('/user/saveAvatar',$('#imgInfo').serialize(),function(data){
+          console.log(data);
             if(data.status == 'success'){
                 $('#postStatus').val(1);
                 $('.btn-save').addClass('disabled');

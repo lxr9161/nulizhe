@@ -146,6 +146,12 @@
 	clear: both;
 	border-top: 1px solid #dadada;
 }
+.task-more .task-create-time {
+	margin:3px 0;
+}
+.task-create-time span{
+	font-size: 12px;
+}
 .task-more .rules-container {
 	position: relative;
 }
@@ -153,7 +159,6 @@
 	position: absolute;
 	top: -25px;
 	left: 36px;
-
 }
 .task-more .rules-box {
 	position: relative;
@@ -173,6 +178,9 @@
 	position: absolute;
 	left: 40px;
 	top: 52px;
+}
+.task-ud {
+	margin: 3px 0;
 }
 .task-important {
 	background-color: red;

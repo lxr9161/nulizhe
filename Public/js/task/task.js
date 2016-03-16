@@ -44,9 +44,11 @@ $(function(){
 					}
 					var r = ruleContent('reward','奖励','奖励是什么',arr['task_reward']);
 					var p = ruleContent('punish','惩罚','惩罚是什么',arr['task_punish']);
+					var t = '<p class="task-create-time"><b>创建时间：</b><span>'+ data.time +'</span></p>';
+					var ud = '<div class="task-ud">';
+						ud += '<a href="javascript:;" class="js-update"><sapn class="glyphicon glyphicon-edit"></sapn> 修改</a>';
+						ud += '<a href="javascritp:;" class="js-delete "><span class="glyphicon glyphicon-trash"></span> 删除</a></div>'
 					var a = '<a href="javascript:;" class="js-more">查看更多</a> ';
-						a += '<a href="javascript:;" class="js-update action-display"><sapn class="glyphicon glyphicon-edit"></sapn> 修改</a> '
-						a += '<a href="javascript:;" class="js-delete action-display"><span class="glyphicon glyphicon-trash"></span> 删除</a> ';
 						a += '<a href="javascript:;" class="btn btn-default btn-xs pull-right start-task">开始任务</a>';
 					var item = $('<div class="task-item" data-task="'+ data.currentId +'" data-task-sort="'+ arr['task_property'] +'">'),
 						property = $('<a href="javascript:;" class="task-property">'),
@@ -54,7 +56,7 @@ $(function(){
 						limit = $('<div class="task-limit-time">'),
 						more = $('<div class="task-more">'),
 						action = $('<div class="task-action">').html(a),
-						moreInfo = $('<div class="more-info">').html(r+p);
+						moreInfo = $('<div class="more-info">').html(t+r+p+ud);
 						taskMore = more.append(action).append(moreInfo);
 					property.addClass(propertyClass).attr('data-property',arr['task_property']);
 					border.append('<p class="task-content">'+ arr['task_content'] +'</p>');
@@ -111,6 +113,7 @@ $(function(){
 	$('.task-list').on('click','.btn-cancel',function(){
 		$(this).parent('.rules-box').hide();
 		$(this).parents('.rules-container').find('.btn-add').show();
+		$(this).siblings('.rule-text').val('');
 	})
 	$('.task-list').on('click','.btn-send',function(){
 		var that = $(this),
@@ -146,7 +149,7 @@ $(function(){
 			if(data.status == 'success') {
 				that.parents('.task-item').prependTo('.done');
 				that.parent().append('<a href="javascript:;" class="btn btn-default btn-xs pull-right end-task disabled">已完成</a>');
-				that.parent().children('.js-update').remove();
+				that.parents('.task-more').find('.js-update').remove();
 				that.remove();
 			}else{
 				alert(data.Info);
@@ -190,7 +193,7 @@ $(function(){
 			$('#myModal').modal('show');
 		});
 	});
-	$('.task-item').on('click','.js-delete',function(){
+	$('.task-list').on('click','.js-delete',function(){
 		var that = $(this);
 		if(confirm('是否删除')){
 			var i = that.parents('.task-item').data('task');

@@ -248,7 +248,11 @@ class UserController extends Controller
 					if($avatar != false && $avatarMini != false){
 						$d['user_avatar'] = $avatar;
 						$d['user_avatar_mini'] = $avatarMini;
-						$this->user->where(array('user_name'=>get_now_user()))->save($d) ? $this->ajaxReturn(array('status'=>'success','Info'=>'图片保存成功。','picInfo'=>$picData)) : $this->ajaxReturn(array('status'=>'error','errorType'=>'saveFail','Info'=>'图片保存失败，请重试！'));
+						if($this->user->where(array('user_name'=>get_now_user()))->save($d) === false){
+							 $this->ajaxReturn(array('status'=>'error','errorType'=>'saveFail','Info'=>'图片保存失败，请重试！'));
+						}else{
+							$this->ajaxReturn(array('status'=>'success','Info'=>'图片保存成功。')) ;
+						} 
 						
 					}else{
 						$this->ajaxReturn(array('status'=>'error','errorType'=>'missImage','Info'=>'图片已丢失。请重试'));
