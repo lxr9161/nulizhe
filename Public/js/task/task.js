@@ -108,6 +108,10 @@ $(function(){
 		$(this).next().show();
 		$(this).hide();
 	});
+	$('.task-list').on('click','.btn-cancel',function(){
+		$(this).parent('.rules-box').hide();
+		$(this).parents('.rules-container').find('.btn-add').show();
+	})
 	$('.task-list').on('click','.btn-send',function(){
 		var that = $(this),
 			$task_id = that.parents('.task-item').data('task'),
@@ -133,7 +137,6 @@ $(function(){
 			}else{
 				alert(data.Info);
 			}
-			
 		});
 	});
 	$('.doing').on('click','.finish-task',function(){
@@ -211,8 +214,9 @@ $(function(){
 			c += '<a href="javascript:;" class="btn-add">添加</a>';
 			c += '<div class="rules-box reward">';
 			c += '<textarea class="monitor-length rule-text" maxlength="30" placeholder="'+ placeholder +'"></textarea>';
-			c += '<p class="show-length" data-length = "30">最多只能输入 (<span class="words-length">30</span>) 30个字哦</p>';
+			c += '<p class="show-length" data-length = "30"> (<span class="words-length">30</span>) 30个字哦</p>';
 			c += '<button type="button" class="btn btn-default btn-xs btn-send" data-rule="'+ type +'">保存</button>';
+			c += '<button type="button" class="btn btn-default btn-xs btn-cancel">取消</button>'
 			c += '</div>';
 		}else{
 			c += '<p>'+ content +'</p>';
@@ -242,17 +246,41 @@ $(function(){
 		$(this).parent().addClass('active');
 	});	
 	$('.sort-normal').click(function(){
-		var i = $(this).parent().next().children().toArray();
-		console.log($(this).parent().next().children().toArray());
-		i.sort(function(o,p){
-			var a,b;
-			if(typeof o === 'object' && typeof p === 'object' && o && p){
-				a = o.attr('data-task-sort');
-				b = p.attr('data-task-sort');
-			}else{
-				throw('error')
-			}
-		});
+		var i = $(this).parent().next().children('[data-task-sort=0]');
+		$(this).parent().next().prepend(i);
 	});
-
+	$('.sort-important').click(function(){
+		var i =  $(this).parent().next().children('[data-task-sort=2]');
+		$(this).parent().next().prepend(i);
+	});
+	$('.sort-urgent').click(function(){
+		var i = $(this).parent().next().children('[data-task-sort=1]');
+		$(this).parent().next().prepend(i);
+	});
+	$('.sort-time').click(function(){
+		var s =  $(this).parent().next().children().toArray();
+		var timesort = s.sort(byTime('data-task'));
+		var c='';
+		for(var i=0 ; i<timesort.length;i++){
+			c += '<div class="task-item" data-task="'+ $(timesort[i]).data('task') +'" data-task-sort="'+ $(timesort[i]).data('task-sort') +'">'
+			c += $(timesort[i]).html();
+			c += '</div>'
+		}
+		$(this).parent().next().html(c);
+		c = '';
+	});
+	var byTime = function(name){
+		return function(o,p){
+			var a,b
+			if(o && p && typeof o ==='object' && typeof p ==='object'){
+				a = $(o).attr(name);
+				b = $(p).attr(name);
+				if(typeof a === typeof b){
+						return a < b ? 1 : -1;
+				}
+			}else{
+				throw('error');
+			}
+		}
+	};
 });

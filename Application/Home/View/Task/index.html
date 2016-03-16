@@ -20,10 +20,11 @@
 					<a href="javascript:;" class="btn btn-success btn-task-a">新建任务</a>
 				</div>
 				<div class="task-sort">
-					<span style="">排序：</span>
+					<span style="">排序:</span>
 					<a href="javascript:;" class="btn btn-default btn-xs sort-normal" >一般</a>
 					<a href="javascript:;" class="btn btn-warning btn-xs sort-urgent" >紧急</a>
 					<a href="javascript:;" class="btn btn-danger btn-xs sort-important">重要</a>
+					<a href="javascript:;" class="btn btn-info btn-xs sort-time">时间</a>
 				</div>
 				<div class="to-do" >
 					<volist name="toDo" id="vo">
@@ -53,11 +54,10 @@
 							<div class="task-more">
 								<div class="task-action">
 									<a href="javascript:;" class="js-more">查看更多</a>
-									<a href="javascript:;" class="js-update action-display"><sapn class="glyphicon glyphicon-edit"></sapn> 修改</a>
-									<a href="javascritp:;" class="js-delete action-display"><span class="glyphicon glyphicon-trash"></span> 删除</a>
 									<a href="javascript:;" class="btn btn-default btn-xs pull-right start-task">开始任务</a>
 								</div>
 								<div class="more-info">
+									<p style="font-size: 14px;margin:3px 0;"><b>创建时间：</b><span style="font-size: 12px;">{$vo.task_create_time}</span></p>
 									<div class="">
 										<h5><b>奖励</b></h5>
 										<div class="rules-container">
@@ -65,8 +65,9 @@
 												<a href="javascript:;" class="btn-add">添加</a>
 												<div class="rules-box reward">
 													<textarea class="monitor-length rule-text" maxlength="30" placeholder="奖励是什么"></textarea>
-													<p class="show-length" data-length = "30">最多只能输入 (<span class="words-length">30</span>) 30个字哦</p>
+													<p class="show-length" data-length = "30"> 可写(<span class="words-length">30</span>) 30个字</p>
 													<button type="button" class="btn btn-default btn-xs btn-send" data-rule="reward">保存</button>
+													<button type="button" class="btn btn-default btn-xs btn-cancel">取消</button>
 												</div>
 											<else/>
 												<p>{$vo.task_reward}</p>
@@ -80,13 +81,18 @@
 												<a href="javascript:;" class="btn-add">添加</a>
 												<div class="rules-box punish">
 													<textarea class="monitor-length rule-text" maxlength="30" placeholder="惩罚是什么"></textarea>
-													<p class="show-length" data-length = "30">最多只能输入 (<span class="words-length">30</span>) 30个字哦</p>
+													<p class="show-length" data-length = "30"> (<span class="words-length">30</span>) 30个字</p>
 													<button type="button" class="btn btn-default btn-xs btn-send" data-rule="punish">保存</button>
+													<button type="button" class="btn btn-default btn-xs btn-cancel">取消</button>
 												</div>
 											<else/>
 												<p>{$vo.task_punish}</p>
 											</empty>
 										</div>
+									</div>
+									<div class="" style="margin: 3px 0">
+										<a href="javascript:;" class="js-update"><sapn class="glyphicon glyphicon-edit"></sapn> 修改</a>
+									<a href="javascritp:;" class="js-delete "><span class="glyphicon glyphicon-trash"></span> 删除</a>
 									</div>
 								</div>
 							</div>
@@ -98,15 +104,10 @@
 		<div class="col-sm-4 col-md-3 tab tab-doing">
 			<div class="task-pool">
 				<h4><b>正在做的事</b></h4>
-				<div class="task-sort">
-					<span style="">排序：</span>
-					<a href="javascript:;" class="btn btn-default btn-xs" >一般</a>
-					<a href="javascript:;" class="btn btn-warning btn-xs" >紧急</a>
-					<a href="javascript:;" class="btn btn-danger btn-xs">重要</a>
-				</div>
+				<include file="task:part/sort_task"/>
 				<div class="doing">
 					<volist name="doing" id="vo">
-						<div class="task-item" data-task="{$vo.task_id}">
+						<div class="task-item" data-task="{$vo.task_id}" data-task-sort="{$vo.task_property}">
 							<switch name="vo['task_property']">
 								<case value="0">
 									<a href="javascript:;" class="task-property task-normal"  data-property="{vo['task_property']}"></a>
@@ -145,7 +146,7 @@
 												<a href="javascript:;" class="btn-add">添加</a>
 												<div class="rules-box reward">
 													<textarea class="monitor-length rule-text" maxlength="30" placeholder="奖励是什么"></textarea>
-													<p class="show-length" data-length = "30">最多只能输入 (<span class="words-length">30</span>) 30个字哦</p>
+													<p class="show-length" data-length = "30">最多输入 (<span class="words-length">30</span>) 30个字</p>
 													<button type="button" class="btn btn-default btn-xs btn-send" data-rule="reward">保存</button>
 												</div>
 											<else/>
@@ -160,7 +161,7 @@
 												<a href="javascript:;" class="btn-add">添加</a>
 												<div class="rules-box punish">
 													<textarea class="monitor-length rule-text" maxlength="30" placeholder="惩罚是什么"></textarea>
-													<p class="show-length" data-length = "30">最多只能输入 (<span class="words-length">30</span>) 30个字哦</p>
+													<p class="show-length" data-length = "30">最多输入 (<span class="words-length">30</span>) 30个字</p>
 													<button type="button" class="btn btn-default btn-xs btn-send" data-rule="punish">保存</button>
 												</div>
 											<else/>
@@ -178,15 +179,10 @@
 		<div class="col-sm-4 col-md-3 tab tab-done task-hidden">
 			<div class="task-pool">
 				<h4><b>已完成的事</b></h4>
-				<div class="task-sort">
-					<span style="">排序：</span>
-					<a href="javascript:;" class="btn btn-default btn-xs" >一般</a>
-					<a href="javascript:;" class="btn btn-warning btn-xs" >紧急</a>
-					<a href="javascript:;" class="btn btn-danger btn-xs">重要</a>
-				</div>
+				<include file="task:part/sort_task"/>
 				<div class="done">
 					<volist name="done" id="vo">
-						<div class="task-item" data-task="{$vo.task_id}">
+						<div class="task-item" data-task="{$vo.task_id}" data-task-sort="{$vo.task_property}">
 							<switch name="vo['task_property']">
 								<case value="0">
 									<a href="javascript:;" class="task-property task-normal"  data-property="{vo['task_property']}"></a>
