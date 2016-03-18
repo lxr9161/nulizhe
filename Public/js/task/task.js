@@ -111,9 +111,12 @@ $(function(){
 		$(this).hide();
 	});
 	$('.task-list').on('click','.btn-cancel',function(){
-		$(this).parent('.rules-box').hide();
-		$(this).parents('.rules-container').find('.btn-add').show();
-		$(this).siblings('.rule-text').val('');
+		var that = $(this);
+		that.parent('.rules-box').hide();
+		that.parents('.rules-container').find('.btn-add').show();
+		that.siblings('.rule-text').val('');
+		var length = that.siblings('.show-length').data('length');
+		that.siblings('.show-length').children('.words-length').html(length);
 	})
 	$('.task-list').on('click','.btn-send',function(){
 		var that = $(this),
@@ -249,27 +252,31 @@ $(function(){
 		$(this).parent().addClass('active');
 	});	
 	$('.sort-normal').click(function(){
-		var i = $(this).parent().next().children('[data-task-sort=0]');
-		$(this).parent().next().prepend(i);
+		var b = $(this).parent().next(),
+			i = b.find('[data-task-sort=0]');
+		b.find('.task-screen').prepend(i);
 	});
 	$('.sort-important').click(function(){
-		var i =  $(this).parent().next().children('[data-task-sort=2]');
-		$(this).parent().next().prepend(i);
+		var b = $(this).parent().next(),
+			i = b.find('[data-task-sort=2]');
+		b.find('.task-screen').prepend(i);
 	});
 	$('.sort-urgent').click(function(){
-		var i = $(this).parent().next().children('[data-task-sort=1]');
-		$(this).parent().next().prepend(i);
+		var b = $(this).parent().next(),
+		    i = b.find('[data-task-sort=1]');
+		b.find('.task-screen').prepend(i);
 	});
 	$('.sort-time').click(function(){
-		var s =  $(this).parent().next().children().toArray();
-		var timesort = s.sort(byTime('data-task'));
-		var c='';
+		var b = $(this).parent().next(),
+			s = b.find('.task-item').toArray(),
+			timesort = s.sort(byTime('data-task')),
+			c='';
 		for(var i=0 ; i<timesort.length;i++){
 			c += '<div class="task-item" data-task="'+ $(timesort[i]).data('task') +'" data-task-sort="'+ $(timesort[i]).data('task-sort') +'">'
 			c += $(timesort[i]).html();
 			c += '</div>'
 		}
-		$(this).parent().next().html(c);
+		b.find('.task-screen').html(c);
 		c = '';
 	});
 	var byTime = function(name){
@@ -286,4 +293,11 @@ $(function(){
 			}
 		}
 	};
+	$('.task-container').mCustomScrollbar({
+		theme:"dark",
+		setHeight: 520,
+		autoDraggerLength: true,
+		scrollbarPosition: "outside",
+		mouseWheel:{ normalizeDelta: -1 },
+	});
 });

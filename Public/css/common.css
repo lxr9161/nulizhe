@@ -78,7 +78,7 @@
 }
 .task-pool {
 	position:relative;
-	min-height: 600px;
+	height: 600px;
 	padding: 6px;
 	border: 1px solid #dadada;
 }
@@ -101,9 +101,7 @@
 	font-size: 12px;
 	font-weight: bold;
 }
-.task-sort a{
-	margin-right: 1px;
-}
+
 .task-property {
 	position: absolute;
 	top: 0;

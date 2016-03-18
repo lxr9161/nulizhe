@@ -1,0 +1,57 @@
+<div class="task-item" data-task="{$vo.task_id}" data-task-sort="{$vo.task_property}">
+	
+	<a href="javascript:;" class="task-property"></a>
+	<div class="task-border">
+		<p class="task-content"></p>
+	</div>
+	<div class="task-limit-time">
+		<p class="">
+			最后完成时间:{$vo['task_limit_time']|default=''}
+		</p>
+	</div>
+	<div class="task-more">
+		<div class="task-action">
+			<a href="javascript:;" class="js-more">查看更多</a>
+			<a href="javascript:;" class="btn btn-default btn-xs pull-right"></a>
+		</div>
+		<div class="more-info">
+			<p class="task-create-time"><b>创建时间：</b><span></span></p>
+			<div class="">
+				<h5><b>奖励</b></h5>
+				<div class="rules-container">
+					<empty name="vo['task_reward']">
+						<a href="javascript:;" class="btn-add">添加</a>
+						<div class="rules-box reward">
+							<textarea class="monitor-length rule-text" maxlength="30" placeholder="奖励是什么"></textarea>
+							<p class="show-length" data-length = "30"> 可写(<span class="words-length">30</span>) 30个字</p>
+							<button type="button" class="btn btn-default btn-xs btn-send" data-rule="reward">保存</button>
+							<button type="button" class="btn btn-default btn-xs btn-cancel">取消</button>
+						</div>
+					<else/>
+						<p>{$vo.task_reward}</p>
+					</empty>
+				</div>
+			</div>
+			<div class="">
+				<h5><b>惩罚</b></h5>
+				<div class="rules-container">
+					<empty name="vo['task_punish']">
+						<a href="javascript:;" class="btn-add">添加</a>
+						<div class="rules-box punish">
+							<textarea class="monitor-length rule-text" maxlength="30" placeholder="惩罚是什么"></textarea>
+							<p class="show-length" data-length = "30"> (<span class="words-length">30</span>) 30个字</p>
+							<button type="button" class="btn btn-default btn-xs btn-send" data-rule="punish">保存</button>
+							<button type="button" class="btn btn-default btn-xs btn-cancel">取消</button>
+						</div>
+					<else/>
+						<p>{$vo.task_punish}</p>
+					</empty>
+				</div>
+			</div>
+			<div class="task-ud">
+				<a href="javascript:;" class="js-update"><sapn class="glyphicon glyphicon-edit"></sapn> 修改</a>
+				<a href="javascritp:;" class="js-delete "><span class="glyphicon glyphicon-trash"></span> 删除</a>
+			</div>
+		</div>
+	</div>
+</div>
