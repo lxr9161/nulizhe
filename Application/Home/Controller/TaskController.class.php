@@ -131,7 +131,8 @@ class TaskController extends Controller
 	public function ajaxLoadTask(){
 		$status = I('get.status');
 		$count = I('get.count');
-		if(!empty($status) && !empty($count)){	
+
+		if(isset($status) && !empty($count)){	
 			$item = $this->fetch('Task:part:task_item');
 			$task = $this->task->where(array('task_status'=>$status,'task_user_id'=>get_user_info()['user_id']))->order('task_create_time DESC')->limit($count,6)->select();
 			$this->ajaxReturn(array('tpl'=>$item,'data'=>$task));

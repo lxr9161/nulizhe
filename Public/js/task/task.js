@@ -3,7 +3,7 @@ $(function(){
 		$('.rules').toggle();
 	});
 	$('.btn-task-a').click(function(){
-		$.get('task/ajax_get_task_model',function(data){
+		$.get('task/ajaxGetTaskModel',function(data){
 			$('.task-model').html(data.tpl);
 			$('.update-task').hide().attr('disabled','disabled');
 			$('.new-task').show().attr('disabled',false);
@@ -295,15 +295,18 @@ $(function(){
 	};
 	var page = 2;
 	$('.more-task').click(function(){
+		var b = $(this);
 		var that = $(this).parents('.task-container'),
-    				status = that.find('.task-screen').data('task-status'),
-    				taskcount = that.find('.task-item').length;
+			status = that.find('.task-screen').data('task-status'),
+			taskcount = that.find('.task-item').length;
+			console.log(status);
+			console.log(taskcount);
+		var	box = that.find('.task-screen');
+		console.log(box);
 		$.get('/task/ajaxLoadTask',{count:taskcount,status:status},function(data){
 			if(data.data != ''){
-				console.log(data);
 				var item = data.tpl;
 					d = data.data;
-					
 				for(var i in d){
 					var c = $(item);
 					c.attr('data-task',d[i].task_id);
@@ -353,10 +356,12 @@ $(function(){
 					if(d[i].task_status == '2'){
 						c.find('.task-ud').remove('.js-update');
 					}
-					$('.to-do').append(c);
-
+					box.append(c);
 				}
 				page++;
+			}else{
+				b.hide();
+				b.siblings('p').show();
 			}
 		})
 	});
@@ -366,77 +371,6 @@ $(function(){
 		autoDraggerLength: true,
 		scrollbarPosition: "outside",
 		mouseWheel:{ normalizeDelta: -1 },
-		
-		callbacks:{
-		    onTotalScrollOffset:20,
-    		onTotalScroll: function(){
-    			/*var that = $(this),
-    				status = that.find('.task-screen').data('task-status');
-    			$.get('/task/ajax_load_task',{page:page,status:status},function(data){
-    				
-    				if(data.data != ''){
-    					console.log(data);
-	    				var item = data.tpl;
-	    					d = data.data;
-	    					
-						for(var i in d){
-							var c = $(item);
-							c.attr('data-task',d[i].task_id);
-							c.attr('data-task-sort',d[i].task_property);
-							switch(d[i].task_property){
-								case '1' :
-									c.find('.task-property').addClass('task-urgent');
-									break;
-								case '2' : 
-									c.find('.task-property').addClass('task-important');
-									break;
-								default :
-									c.find('.task-property').addClass('task-normal');
-									break;
-							}
-							c.find('.task-content').html(d[i].task_content);
-							if(d[i].task_limit_time != '0000-00-00 00:00:00'){
-								c.find('.task-limit-time > p').html('最后完成时间：'+ d[i].task_limit_time);
-							}
-							switch(d[i].task_status){
-								case '0' :
-									c.find('.task-action').children('.btn').addClass('start-task').html('开始任务');
-									break;
-								case '1' :
-									c.find('.task-action').children('.btn').addClass('finish-task').html('任务完成');
-									break;
-								case '2' : 
-									c.find('.task-action').children('.btn').addClass('disabled').html('已完成');
-									break;
-							}
-							c.find('.task-create-time').children('span').html(d[i].task_create_time);
-							if(d[i].task_reward != ''){
-								c.find('.task-reward-info .btn-add').remove();
-								c.find('.task-reward-info .rules-box').remove();
-								c.find('.task-reward-info .rule-content').html(d[i].task_reward);
-								
-							}else{
-								c.find('.task-reward-info .rule-content').remove();
-							}
-							if(d[i].task_punish != ''){
-								c.find('.task-punish-info .btn-add').remove();
-								c.find('.task-punish-info .rules-box').remove();
-								c.find('.task-punish-info .rule-content').html(d[i].task_punish);
-							}else{
-								c.find('.task-punish-info .rule-content').remove();
-							}
-							if(d[i].task_status == '2'){
-								c.find('.task-ud').remove('.js-update');
-							}
-							$('.to-do').append(c);
-
-						}
-						page++;
-					}
-				})*/
-    		}
-		  
-    	}
 	});
 
 	

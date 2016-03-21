@@ -97,6 +97,7 @@
 					</div>
 					<div class="">
 						<a href="javascript:;" class="more-task">加载更过</a>
+						<p style="display: none">没有了</p>
 					</div>
 				</div>
 			</div>
@@ -180,9 +181,6 @@
 							</div>
 						</volist>	
 					</div>
-					<div class="">
-						<a href="javascript:;" class="more-task111">加载更过</a>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -191,66 +189,82 @@
 				<h4><b>已完成的事</b></h4>
 				<include file="task:part/sort_task"/>
 				<div class="task-container" style="height: 420px;overflow: hidden;">
-				<div class="done task-screen" data-task-status="3">
-					<volist name="done" id="vo">
-						<div class="task-item" data-task="{$vo.task_id}" data-task-sort="{$vo.task_property}">
-							<switch name="vo['task_property']">
-								<case value="0">
-									<a href="javascript:;" class="task-property task-normal"  data-property="{vo['task_property']}"></a>
-								</case>
-								<case value="1">
-									<a href="javascript:;" class="task-property task-urgent"  data-property="{vo['task_property']}"></a>
-								</case>
-								<case value="2">
-									<a href="javascript:;" class="task-property task-important"  data-property="{vo['task_property']}"></a>
-								</case>
-							</switch>
-							<div class="task-border">
-								<p>{$vo.task_content}</p>
-							</div>
-							<div class="task-limit-time">
-								<p>
-									<php>$t = strtotime($vo['task_limit_time'])</php>
-									<if condition="$t">
-										最后完成时间:{$vo['task_limit_time']|default=''}
-									</if>
-								</p>
-							</div>
-							<div class="task-more">
-								<div class="task-acion">
-									<a href="javascript:;" class="js-more">查看更多</a>
-									<a href="javascript:;" class="btn btn-default btn-xs pull-right disabled">已完成</a>
+					<div class="done task-screen" data-task-status="2">
+						<volist name="done" id="vo">
+							<div class="task-item" data-task="{$vo.task_id}" data-task-sort="{$vo.task_property}">
+								<switch name="vo['task_property']">
+									<case value="0">
+										<a href="javascript:;" class="task-property task-normal"  data-property="{vo['task_property']}"></a>
+									</case>
+									<case value="1">
+										<a href="javascript:;" class="task-property task-urgent"  data-property="{vo['task_property']}"></a>
+									</case>
+									<case value="2">
+										<a href="javascript:;" class="task-property task-important"  data-property="{vo['task_property']}"></a>
+									</case>
+								</switch>
+								<div class="task-border">
+									<p>{$vo.task_content}</p>
 								</div>
-								<div class="more-info">
-									<p class="task-create-time"><b>创建时间：</b><span>{$vo.task_create_time}</span></p>
-									<div>
-										<h5><b>奖励</b></h5>
-										<div class="rules-container">
-											<empty name="vo['task_reward']">
-												<p>没有奖励</p>
-											<else/>
-												<p>{$vo.task_reward}</p>
-											</empty>
+								<div class="task-limit-time">
+									<p>
+										<php>$t = strtotime($vo['task_limit_time'])</php>
+										<if condition="$t">
+											最后完成时间:{$vo['task_limit_time']|default=''}
+										</if>
+									</p>
+								</div>
+								<div class="task-more">
+									<div class="task-action">
+										<a href="javascript:;" class="js-more">查看更多</a>
+										<a href="javascript:;" class="btn btn-default btn-xs pull-right disabled">已完成</a>
+									</div>
+									<div class="more-info">
+										<p class="task-create-time"><b>创建时间：</b><span>{$vo.task_create_time}</span></p>
+										<div>
+											<h5><b>奖励</b></h5>
+											<div class="rules-container">
+												<empty name="vo['task_reward']">
+													<a href="javascript:;" class="btn-add">添加</a>
+													<div class="rules-box reward">
+														<textarea class="monitor-length rule-text" maxlength="30" placeholder="奖励是什么"></textarea>
+														<p class="show-length" data-length = "30">最多输入 (<span class="words-length">30</span>) 30个字</p>
+														<button type="button" class="btn btn-default btn-xs btn-send" data-rule="reward">保存</button>
+														<button type="button" class="btn btn-default btn-xs btn-cancel">取消</button>
+													</div>
+												<else/>
+													<p>{$vo.task_reward}</p>
+												</empty>
+											</div>
+										</div>
+										<div>
+											<h5><b>惩罚</b></h5>
+											<div class="rules-container">
+												<empty name="vo['task_punish']">
+													<a href="javascript:;" class="btn-add">添加</a>
+													<div class="rules-box punish">
+														<textarea class="monitor-length rule-text" maxlength="30" placeholder="惩罚是什么"></textarea>
+														<p class="show-length" data-length = "30">最多输入 (<span class="words-length">30</span>) 30个字</p>
+														<button type="button" class="btn btn-default btn-xs btn-send" data-rule="punish">保存</button>
+														<button type="button" class="btn btn-default btn-xs btn-cancel">取消</button>
+													</div>
+												<else/>
+													<p>{$vo.task_punish}</p>
+												</empty>
+											</div>
+										</div>
+										<div class="task-ud">
+											<a href="javascritp:;" class="js-delete "><span class="glyphicon glyphicon-trash"></span> 删除</a>
 										</div>
 									</div>
-									<div>
-										<h5><b>惩罚</b></h5>
-										<div class="rules-container">
-											<empty name="vo['task_punish']">
-												<p>没有测法</p>
-											<else/>
-												<p>{$vo.task_punish}</p>
-											</empty>
-										</div>
-									</div>
-									<div class="task-ud">
-										<a href="javascritp:;" class="js-delete "><span class="glyphicon glyphicon-trash"></span> 删除</a>
-									</div>
 								</div>
 							</div>
-						</div>
-					</volist>
-				</div>
+						</volist>
+					</div>
+					<div class="">
+						<a href="javascript:;" class="more-task">加载更过</a>
+						<p style="display: none">没有了</p>
+					</div>
 				</div>
 			</div>
 		</div>
