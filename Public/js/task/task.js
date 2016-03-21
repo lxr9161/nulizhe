@@ -161,7 +161,7 @@ $(function(){
 	});
 	$('.task-list').on('click','.js-update',function(){
 		var id = $(this).parents('.task-item').data('task');
-		$.get('/task/ajax_get_task_model',{id:id},function(data){
+		$.get('/task/ajaxGetTaskModel',{id:id},function(data){
 			$('.task-model').html(data.tpl);
 			$('.new-task').hide().attr('disabled','disabled');
 			$('.update-task').show().attr('disabled',false);
@@ -298,7 +298,7 @@ $(function(){
 		var that = $(this).parents('.task-container'),
     				status = that.find('.task-screen').data('task-status'),
     				taskcount = that.find('.task-item').length;
-		$.get('/task/ajax_load_task',{count:taskcount,status:status},function(data){
+		$.get('/task/ajaxLoadTask',{count:taskcount,status:status},function(data){
 			if(data.data != ''){
 				console.log(data);
 				var item = data.tpl;

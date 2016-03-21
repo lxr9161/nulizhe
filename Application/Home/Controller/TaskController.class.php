@@ -15,7 +15,7 @@ class TaskController extends Controller
 		$field = 'task_id,task_user_id,task_status,task_limit_time,task_property,task_content,task_reward,task_punish,task_create_time';
 		$toDo = $this->task->field($field)->where(array('task_status'=>0,'task_user_id'=>get_user_info()['user_id']))->order('task_create_time DESC')->limit(0,6)->select();
 		$doing = $this->task->field($field)->where(array('task_status'=>1,'task_user_id'=>get_user_info()['user_id']))->order('task_start_time DESC')->select();
-		$done = $this->task->field($field)->where(array('task_status'=>2,'task_user_id'=>get_user_info()['user_id']))->order('task_close_time DESC')->select();
+		$done = $this->task->field($field)->where(array('task_status'=>2,'task_user_id'=>get_user_info()['user_id']))->order('task_close_time DESC')->limit(0,6)->select();
 		$this->assign('toDo',$toDo);
 		$this->assign('doing',$doing);
 		$this->assign('done',$done);
@@ -91,7 +91,7 @@ class TaskController extends Controller
 			$this->ajaxReturn(ajax_return_info('error','对不起，出错了，请重试'));
 		}
 	}
-	public function ajax_get_task_model(){
+	public function ajaxGetTaskModel(){
 		$id = I('get.id',0,'intval');
 		$t = $this->fetch('Task:part:create_task');
 		if(empty($id)){
@@ -128,13 +128,16 @@ class TaskController extends Controller
 			$this->ajaxReturn(ajax_return_info('error','任务不存在'));
 		}
 	} 
-	public function ajax_load_task(){
+	public function ajaxLoadTask(){
 		$status = I('get.status');
 		$count = I('get.count');
-		
-		$item = $this->fetch('Task:part:task_item');
-		$task = $this->task->where('task_status='.$status)->order('task_create_time DESC')->limit($count,6)->select();
-		$this->ajaxReturn(array('tpl'=>$item,'data'=>$task));
+		if(!empty($status) && !empty($count)){	
+			$item = $this->fetch('Task:part:task_item');
+			$task = $this->task->where(array('task_status'=>$status,'task_user_id'=>get_user_info()['user_id']))->order('task_create_time DESC')->limit($count,6)->select();
+			$this->ajaxReturn(array('tpl'=>$item,'data'=>$task));
+		}else{
+			$this->ajaxReturn(ajax_return_info('error','操作错误'));
+		}
 	}
 }
 
