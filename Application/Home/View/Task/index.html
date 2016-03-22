@@ -21,10 +21,13 @@
 					<a href="javascript:;" class="btn btn-success btn-task-a">新建任务</a>
 				</div>
 				<include file="task:part/sort_task"/>
-				<div class="task-container" style="height: 520px;overflow: hidden;">
+				<div class="task-container" style="height: 520px;overflow: hidden;position: relative;">
 					<div class="to-do task-screen" data-task-status="0" >
 						<volist name="toDo" id="vo">
 							<div class="task-item" data-task="{$vo.task_id}" data-task-sort="{$vo.task_property}">
+							<if condition="$vo['task_is_remind'] eq 1">
+							<div class="task-remind" style="position: absolute;z-index: 200;font-size: 22px; color: #EE4000"><span class="glyphicon glyphicon-star-empty "></span></div>
+							</if>
 								<switch name="vo['task_property']">
 									<case value="0">
 										<a href="javascript:;" class="task-property task-normal" data-property="{$vo['task_property']}"></a>

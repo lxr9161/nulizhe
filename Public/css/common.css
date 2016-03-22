@@ -94,6 +94,12 @@
 	margin: 5px auto;
 	border: 1px solid #dadada;
 }
+.task-remind {
+	position: absolute;
+	z-index: 200;
+	font-size: 22px; 
+	color: #EE4000;
+}
 .task-sort {
 	padding: 0 5px;
 }

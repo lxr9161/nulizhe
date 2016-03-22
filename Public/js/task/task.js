@@ -311,6 +311,9 @@ $(function(){
 					var c = $(item);
 					c.attr('data-task',d[i].task_id);
 					c.attr('data-task-sort',d[i].task_property);
+					if(d[i].task_is_remind != 1){
+						c.find('.task-remind').remove();
+					}
 					switch(d[i].task_property){
 						case '1' :
 							c.find('.task-property').addClass('task-urgent');
