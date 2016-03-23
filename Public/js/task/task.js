@@ -42,6 +42,10 @@ $(function(){
 							propertyClass = 'task-important';
 							break;
 					}
+					if(typeof arr['task_is_remind'] != undefined && arr['task_is_remind'] == 1){
+						var rbox = '<div class="task-remind">';
+						var remind = $(rbox).html('<span class="glyphicon glyphicon-star-empty"></span>');
+					}
 					var r = ruleContent('reward','奖励','奖励是什么',arr['task_reward'],'task-reward-info');
 					var p = ruleContent('punish','惩罚','惩罚是什么',arr['task_punish'],'task-punish-info');
 					var t = '<p class="task-create-time"><b>创建时间：</b><span>'+ data.time +'</span></p>';
@@ -63,7 +67,7 @@ $(function(){
 					if(arr['task_limit_time'] != ''){
 						limit.append('<p>最后完成时间:'+ arr['task_limit_time'] +'</p>');
 					}
-					var task = item.append(property).append(border).append(limit).append(taskMore);
+					var task = item.append(remind).append(property).append(border).append(limit).append(taskMore);
 					$('.to-do').prepend(task);
 					break;
 				case 'error':
