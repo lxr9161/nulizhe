@@ -33,6 +33,9 @@ class TaskController extends Controller
 			$data = $task->create();
 			$data['task_create_time'] = date('Y-m-d H:i:s');
 			$data['task_user_id'] = get_user_info()['user_id'];
+			if($data['task_limit_time'] == ''){
+				$data['task_limit_time'] = '0000-00-00 00:00:00';
+			}
 			if(!$task->validate($rules)->create()){
 				$this->ajaxReturn(ajax_return_info('error',$task->getError()));
 			}else{

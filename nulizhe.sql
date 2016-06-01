@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `nl_picture` (
   `pic_path` varchar(200) NOT NULL COMMENT '//图片路径',
   `pic_create_date` datetime NOT NULL COMMENT '//图片保存时间',
   PRIMARY KEY (`pic_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `nl_user` (
   `user_last_login_time` datetime NOT NULL COMMENT '//最后登录时间',
   `user_last_login_ip` varchar(20) DEFAULT NULL COMMENT '//会后登陆IP',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
